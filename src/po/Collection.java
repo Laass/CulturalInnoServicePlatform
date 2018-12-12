@@ -1,12 +1,13 @@
 package po;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
 @IdClass(CollectionPK.class)
-public class Collection
+public class Collection implements Serializable
 {
     private String userId;
     private String originId;

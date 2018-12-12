@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="po.Product" table="product" schema="service_platform_db">
+        <id name="proId" column="proID"/>
+        <property name="userId" column="userID"/>
+        <property name="proName" column="proName"/>
+        <property name="price" column="price"/>
+        <property name="hits" column="hits"/>
+        <property name="purchase" column="purchase"/>
+        <property name="isPass" column="isPass"/>
+        <property name="productType" column="productType"/>
+    </class>
+</hibernate-mapping>

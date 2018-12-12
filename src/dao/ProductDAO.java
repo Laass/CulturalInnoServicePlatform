@@ -45,9 +45,9 @@ public class ProductDAO {
     }
 
     /**
-     * ��ҳ��ȡList����ȡ��Page-1��*maxEssayNum -- page*maxEssayNum �������
-     * @param page ҳ��
-     * @return List
+     * 分页获取所有产品 获取范围为(Page-1)*maxEssayNum -- page*maxEssayNum
+     * @param page 获取第几页的产品
+     * @return List 产品列表
      */
     public List getProductByPage(int page) {
         SessionMgr.getSession(cfg, sf, hsession, ts);
@@ -65,9 +65,9 @@ public class ProductDAO {
     }
 
     /**
-     * ��ȡĳ���û�����������product
-     * @param userId �û�Id
-     * @return List
+     * 获取企业用户的所有产品
+     * @param userId 企业用户的id
+     * @return List 产品列表
      */
     public List getUserProducts(String userId) {
         SessionMgr.getSession(cfg, sf, hsession, ts);
@@ -85,8 +85,8 @@ public class ProductDAO {
     }
 
     /**
-     * ��ȡĳ����Ʒ����ϸ��Ϣ
-     * @param productId ��ƷId
+     *获取指定的产品
+     * @param productId 要查找的产品的id
      * @return 指定id的产品
      */
     public Product getProducById(String productId) {
@@ -104,8 +104,8 @@ public class ProductDAO {
     }
 
     /**
-     * ģ����ѯ
-     * @param keyword �ؼ���
+     * 模糊查找 获取名称中包含{@param keyword}的所有产品
+     * @param keyword 要查找的关键字
      */
     public List getProductByKeyword(String keyword) {
         SessionMgr.getSession(cfg, sf, hsession, ts);
@@ -123,13 +123,13 @@ public class ProductDAO {
     }
 
     /**
-     * ��ȷ��ѯ
-     * @param keyword �ؼ���
+     * 精确查找
+     * @param productName 要查找的产品名
      */
-    public List getProductByTitle(String keyword) {
+    public List getProductByTitle(String productName) {
         SessionMgr.getSession(cfg, sf, hsession, ts);
         try {
-            String sql = "from Product where Product .proName like :keyword";
+            String sql = "from Product where Product .proName like :productName";
             Query q = hsession.createQuery(sql);
             List t = q.list();
 
@@ -143,14 +143,14 @@ public class ProductDAO {
     }
 
     /**
-     * ��������ȡ��Ʒ
-     * @param ptype ��Ʒ���
-     * @return List
+     * 获取一类产品
+     * @param ptype 要获取的产品类型
+     * @return List 一类产品的列表
      */
     public List getProductByType(String ptype) {
         SessionMgr.getSession(cfg, sf, hsession, ts);
         try {
-            Query q = hsession.createQuery("from Product where Product .type = :ptitle");
+            Query q = hsession.createQuery("from Product where Product .productType = :ptitle");
             List t = q.list();
 
             SessionMgr.releaseConnect(sf, hsession);

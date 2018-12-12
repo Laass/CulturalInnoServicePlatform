@@ -64,7 +64,7 @@ public class CollectionDAO {
     public List getCompareUserCollectionByType(String userId, String colltype) {
         SessionMgr.getSession(cfg, sf, hsession, ts);
         try {
-            Query q = hsession.createQuery("from Collection  where Collection .producttype = :colltype");
+            Query q = hsession.createQuery("from Collection  where Collection .productType = :colltype");
             List t = q.list();
 
             SessionMgr.releaseConnect(sf,hsession);
@@ -77,9 +77,9 @@ public class CollectionDAO {
     }
 
     /**
-     * ��ȡ�û����ղ��б�
-     * @param userId �û�id
-     * @return �û��ղصĲ�ƷList
+     * 获取一个用户的所有收藏
+     * @param userId 用户的id
+     * @return 用户的所有收藏列表
      */
     public List getUserCollection(String userId) {
         SessionMgr.getSession(cfg, sf, hsession, ts);
@@ -97,14 +97,15 @@ public class CollectionDAO {
     }
 
     /**
-     * ��ҳ��ȡ�ղ�List����ȡ��Page-1��*maxEssayNum -- page*maxEssayNum �������
-     * @param page ҳ��
-     * @return List
+     * 分页获取某个用户的收藏 获取一页的内容 数量为(Page-1)*maxEssayNum -- page*maxEssayNum
+     * @param page 获取第几页的内容
+     * @return List 获取的结果
      */
-    public List getCollectionByPage(int page) {
+    public List getCollectionByPage(String userId,int page) {
         SessionMgr.getSession(cfg, sf, hsession, ts);
         try {
-            Query q = hsession.createQuery("select * from Collection limit"+(page-1)*maxEssayNum+","+page*maxEssayNum);
+            Query q = hsession.createQuery("from Collection where userId=? and limit"+(page-1)*maxEssayNum+","+page*maxEssayNum);
+            q.setParameter(0,userId);
             List t = q.list();
 
             SessionMgr.releaseConnect(sf, hsession);

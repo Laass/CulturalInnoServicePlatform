@@ -44,7 +44,7 @@ public class UserDAO
             SessionMgr.getSession(cfg, sf, hs, ts);
 
             User toDel = (User) hs.get(User.class, userId);
-            //É¾³ıÍ·Ïñ
+            //åˆ é™¤å¤´åƒ
             String getPortraitHql="from Image where originId=?";
             Query getPortraitQuery=hs.createQuery(getPortraitHql);
             getPortraitQuery.setParameter(0,toDel.getUserId());
@@ -52,11 +52,11 @@ public class UserDAO
             for(Image i:portraitList)
                 hs.delete(i);
 
-            //É¾³ıÏêÏ¸ĞÅÏ¢
+            //åˆ é™¤è¯¦ç»†ä¿¡æ¯
             UserInfo infoToDel=(UserInfo)hs.get(UserInfo.class,toDel.getUserId());
             hs.delete(infoToDel);
 
-            //×îºóÉ¾³ıÓÃ»§ĞÅÏ¢
+            //æœ€ååˆ é™¤ç”¨æˆ·ä¿¡æ¯
             hs.delete(toDel);
 
             SessionMgr.releaseConnect(sf, hs);
@@ -116,7 +116,7 @@ public class UserDAO
         {
             SessionMgr.getSession(cfg, sf, hs, ts);
 
-            //´´½¨ĞÂ¶©µ¥
+            //åˆ›å»ºæ–°è®¢å•
             Order newOrder=new Order();
             newOrder.setOrderId(UUID.randomUUID().toString().replace("-",""));
             newOrder.setUserId(userId);
@@ -126,7 +126,7 @@ public class UserDAO
 
             hs.save(newOrder);
 
-            //Ôö¼Ó²úÆ·µÄ¹ºÂòÊıÁ¿
+            //å¢åŠ äº§å“çš„è´­ä¹°æ•°é‡
             Product hasBought=(Product)hs.get(Product.class,productId);
             hasBought.setPurchase(hasBought.getPurchase()+num);
 

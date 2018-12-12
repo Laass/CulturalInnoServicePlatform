@@ -4,13 +4,12 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="po.Collection" table="collection" schema="service_platform_db">
-        <composite-id> <!--mapped="true" class="po.CollectionPK"-->
-            <key-property name="userId" column="userID"/>
-            <key-property name="originId" column="originID"/>
-        </composite-id>
+    <class name="po.Message" table="message" schema="service_platform_db">
+        <id name="mesId" column="mesID"/>
+        <property name="userId" column="userID"/>
+        <property name="originId" column="originID"/>
         <property name="originType" column="originType"/>
+        <property name="content" column="content"/>
         <property name="establishTime" column="establishTime"/>
-        <property name="productType" column="productType"/>
     </class>
 </hibernate-mapping>

@@ -19,8 +19,8 @@ public class NewsDAO {
     private int maxEssayNum = 12;
 
     /**
-     * ��ȡıƪNew����ϸ����
-     * @param newsId New��ID
+     * 获取一条资讯
+     * @param newsId 资讯的id
      */
     public News getNewsById(String newsId) {
         SessionMgr.getSession(cfg, sf, hsession, ts);
@@ -82,9 +82,9 @@ public class NewsDAO {
     }
 
     /**
-     * ��ҳ��ȡ����List����ȡ��Page-1��*maxEssayNum -- page*maxEssayNum �������
-     * @param page ҳ��
-     * @return List
+     * 分页获取资讯 获取news表中第(Page-1)*maxEssayNum -- page*maxEssayNum行的信息
+     * @param page 获取第几页的资讯
+     * @return List 资讯列表
      */
     public List getNewsByPage(int page) {
         SessionMgr.getSession(cfg, sf, hsession, ts);
@@ -103,9 +103,9 @@ public class NewsDAO {
     }
 
     /**
-     * ��ȡĳ���û�����������News
-     * @param userId 用户Id
-     * @return List
+     * 获取某个企业用户的全部资讯
+     * @param userId 企业用户Id
+     * @return List 资讯列表
      */
     public List getNewsByUserId(int userId) {
         SessionMgr.getSession(cfg, sf, hsession, ts);

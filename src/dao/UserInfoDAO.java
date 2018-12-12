@@ -1,75 +1,103 @@
 package dao;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
 import java.util.List;
 
 import org.hibernate.query.Query;
-import po.User;
 import po.UserInfo;
 
 public class UserInfoDAO {
-
-        private Configuration cfg;
-        private SessionFactory sf=null;
+        //每个DAO类中只用Session 和 Transaction 不需要 Configuration SessionFactory
         private Session hsession=null;
         private Transaction ts=null;
 
-        public UserInfo addUserInfo(UserInfo newUserInfo) {
-            SessionMgr.getSession(cfg, sf, hsession, ts);
-            try{
-                UserInfo u = (UserInfo) hsession.save(newUserInfo);
-                SessionMgr.releaseConnect(sf, hsession);
+        private void getSession()
+        {
+            //从SessionMgr获取Session和Transaction
+            Object[] connectionList=SessionMgr.getSession();
+            hsession=(Session)connectionList[0];
+            ts=(Transaction)connectionList[1];
+        }
 
-                return u;
+        private void releaseSession()
+        {
+            SessionMgr.releaseConnect(hsession,ts);
+        }
+
+    /**
+     * 增加新详细用户信息
+     * @param newUserInfo 要保存的新详细信息
+     * @return 新详细信息
+     */
+    public UserInfo addUserInfo(UserInfo newUserInfo) {
+           getSession();
+            try{
+                hsession.save(newUserInfo);
+                releaseSession();
+
+                return newUserInfo;
             }catch(Exception e) {
                 e.printStackTrace();
-                SessionMgr.releaseConnect(sf, hsession);
+                releaseSession();
                 return null;
             }
         }
 
-        public UserInfo modifyUserInfo(UserInfo newUserInfo) {
-            SessionMgr.getSession(cfg, sf, hsession, ts);
+    /**
+     * 测试通过
+     * @param newUserInfo 要保存的新用户信息
+     * @return 保存的新用户信息
+     */
+    public UserInfo modifyUserInfo(UserInfo newUserInfo) {
+            getSession();
             try{
                  hsession.update(newUserInfo);
-                 SessionMgr.releaseConnect(sf,hsession);
+                releaseSession();
                  return newUserInfo;
             }catch(Exception e) {
                 e.printStackTrace();
-                SessionMgr.releaseConnect(sf, hsession);
+                releaseSession();
                 return null;
             }
         }
 
-        public UserInfo getUserInfo(String userId) {
-            SessionMgr.getSession(cfg, sf, hsession, ts);
+    /**
+     * 测试通过
+     * 获取某个用户的信息
+     * @param userId 用户的id
+     * @return 用户信息类
+     */
+    public UserInfo getUserInfo(String userId) {
+            getSession();
             try{
                 UserInfo u = (UserInfo) hsession.get(UserInfo.class,userId);
-                SessionMgr.releaseConnect(sf,hsession);
+                releaseSession();
                 return u;
             }catch (Exception e) {
                 e.printStackTrace();
-                SessionMgr.releaseConnect(sf, hsession);
+                releaseSession();
                 return null;
             }
         }
 
-        public List getAllUserWithInfo() {
-            SessionMgr.getSession(cfg, sf, hsession, ts);
+    /**
+     * 测试通过
+     * @return 所有用户详细信息列表
+     */
+    public List<UserInfo> getAllUserWithInfo() {
+            getSession();
             try{
                 String hql = "from UserInfo";
                 Query q= hsession.createQuery(hql);
-                List t = q.list();
+                List<UserInfo> t = q.list();
 
-                SessionMgr.releaseConnect(sf,hsession);
+                releaseSession();
                 return t;
             }catch (Exception e) {
                 e.printStackTrace();
-                SessionMgr.releaseConnect(sf, hsession);
+                releaseSession();
                 return null;
             }
         }
