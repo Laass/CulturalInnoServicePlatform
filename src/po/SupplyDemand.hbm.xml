@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="po.SupplyDemand" table="supply_demand" schema="service_platform_db">
+        <id name="sdId" column="sdID"/>
+        <property name="userId" column="userID"/>
+        <property name="title" column="title"/>
+        <property name="content" column="content"/>
+        <property name="startTime" column="startTime"/>
+        <property name="endTime" column="endTime"/>
+        <property name="hits" column="hits"/>
+        <property name="isPass" column="isPass"/>
+        <property name="type" column="type"/>
+    </class>
+</hibernate-mapping>

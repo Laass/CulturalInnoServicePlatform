@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="po.News" table="news" schema="service_platform_db">
+        <id name="newsId" column="newsID"/>
+        <property name="userId" column="userID"/>
+        <property name="title" column="title"/>
+        <property name="content" column="content"/>
+        <property name="establishTime" column="establishTime"/>
+        <property name="hits" column="hits"/>
+        <property name="isPass" column="isPass"/>
+    </class>
+</hibernate-mapping>

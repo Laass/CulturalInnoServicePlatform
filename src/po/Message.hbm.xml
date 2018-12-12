@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="po.Message" table="message" schema="service_platform_db">
+        <id name="mesId" column="mesID"/>
+        <property name="userId" column="userID"/>
+        <property name="originId" column="originID"/>
+        <property name="originType" column="originType"/>
+        <property name="content" column="content"/>
+        <property name="establishTime" column="establishTime"/>
+    </class>
+</hibernate-mapping>

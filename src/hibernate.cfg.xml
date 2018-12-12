@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+<session-factory>
+    <property name="connection.url">jdbc:mysql://localhost:3306/service_platform_db</property>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="show_sql">true</property>
+    <mapping resource="po/Collection.hbm.xml"/>
+    <mapping class="po.Collection"/>
+    <mapping class="po.Exhibition"/>
+    <mapping resource="po/Exhibition.hbm.xml"/>
+    <mapping resource="po/Image.hbm.xml"/>
+    <mapping class="po.Image"/>
+    <mapping resource="po/Message.hbm.xml"/>
+    <mapping class="po.Message"/>
+    <mapping resource="po/News.hbm.xml"/>
+    <mapping class="po.News"/>
+    <mapping resource="po/Order.hbm.xml"/>
+    <mapping class="po.Order"/>
+    <mapping class="po.Product"/>
+    <mapping resource="po/Product.hbm.xml"/>
+    <mapping resource="po/SupplyDemand.hbm.xml"/>
+    <mapping class="po.SupplyDemand"/>
+    <mapping resource="po/User.hbm.xml"/>
+    <mapping class="po.User"/>
+    <mapping resource="po/UserInfo.hbm.xml"/>
+    <mapping class="po.UserInfo"/>
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hbm2ddl.auto">update</property> -->
+</session-factory>
+</hibernate-configuration>
