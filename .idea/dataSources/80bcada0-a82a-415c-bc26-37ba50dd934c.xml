@@ -1132,7 +1132,7 @@
     <table id="286" parent="8" name="news">
       <Comment>资讯表</Comment>
     </table>
-    <table id="287" parent="8" name="order">
+    <table id="287" parent="8" name="ordertable">
       <Comment>订单表</Comment>
     </table>
     <table id="288" parent="8" name="product">

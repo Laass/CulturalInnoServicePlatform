@@ -27,6 +27,7 @@ public class UserInfoDAO {
         }
 
     /**
+     * 测试通过
      * 增加新详细用户信息
      * @param newUserInfo 要保存的新详细信息
      * @return 新详细信息
