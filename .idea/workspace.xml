@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57aee6de-58ca-47a1-8b08-ad8372572e5e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/gson-2.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5d172b19-d0f1-441d-8a02-f9689b55c3e1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/80bcada0-a82a-415c-bc26-37ba50dd934c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/80bcada0-a82a-415c-bc26-37ba50dd934c.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CulturalInnoServicePlatform.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CulturalInnoServicePlatform.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/Test.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/dao/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/dao/UserDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/dao/UserInfoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/dao/UserInfoDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/UserInfoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UserInfoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/po/Order.hbm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/po/Order.hbm.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/po/Order.hbm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/po/Order.hbm.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,7 +66,7 @@
           <entry key="class" value="2" />
           <entry key="java" value="98" />
           <entry key="sql" value="2" />
-          <entry key="xml" value="21" />
+          <entry key="xml" value="22" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -82,21 +74,21 @@
           <entry key="CLASS" value="2" />
           <entry key="JAVA" value="98" />
           <entry key="Scratch" value="2" />
-          <entry key="XML" value="21" />
+          <entry key="XML" value="22" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="8" />
           <entry key="java" value="8867" />
-          <entry key="txt" value="56" />
+          <entry key="txt" value="134" />
           <entry key="xml" value="252" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="8867" />
-          <entry key="PLAIN_TEXT" value="64" />
+          <entry key="PLAIN_TEXT" value="142" />
           <entry key="XML" value="252" />
         </counts>
       </usages-collector>
@@ -107,8 +99,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="47" column="2" lean-forward="true" selection-start-line="47" selection-start-column="2" selection-end-line="47" selection-end-column="2" />
+            <state relative-caret-position="53">
+              <caret line="62" column="19" lean-forward="true" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -359,7 +351,7 @@
     <property name="JPA.DatabaseSchemaImportDialog" value="80bcada0-a82a-415c-bc26-37ba50dd934c" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544595223715" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544595345084" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/gson-2.0.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -498,12 +490,20 @@
       <workItem from="1544524036917" duration="14254000" />
       <workItem from="1544540810769" duration="516000" />
       <workItem from="1544573124201" duration="15492000" />
-      <workItem from="1544591423086" duration="3663000" />
+      <workItem from="1544591423086" duration="3909000" />
     </task>
+    <task id="LOCAL-00001" summary="v1.2  魔改SessionMgr 测试通过UserInfoDAO  UserDAO order表改为ordertable表">
+      <created>1544595344168</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1544595344168</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40589000" />
+    <option name="totallyTimeSpent" value="40835000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -530,7 +530,7 @@
       <window_info anchor="bottom" id="Spring" order="0" weight="0.32839838" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.32839838" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="3" weight="0.18791947" />
+      <window_info active="true" anchor="bottom" id="Messages" order="3" visible="true" weight="0.6067114" />
       <window_info anchor="bottom" id="Java Enterprise" order="4" weight="0.32885906" />
       <window_info anchor="bottom" id="Database Changes" order="5" weight="0.32885906" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.32885906" />
@@ -596,7 +596,8 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="v1.2  魔改SessionMgr 测试通过UserInfoDAO  UserDAO order表改为ordertable表" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.2  魔改SessionMgr 测试通过UserInfoDAO  UserDAO order表改为ordertable表" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -782,6 +783,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="27" selection-start-line="12" selection-start-column="8" selection-end-line="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#794#795#0" expanded="true" />
+            <element signature="e#856#857#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -860,13 +866,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/po/Order.hbm.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/po/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -927,10 +926,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/po/Order.hbm.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="6" column="54" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="47" column="2" lean-forward="true" selection-start-line="47" selection-start-column="2" selection-end-line="47" selection-end-column="2" />
+        <state relative-caret-position="53">
+          <caret line="62" column="19" lean-forward="true" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
