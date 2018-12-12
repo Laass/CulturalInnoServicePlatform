@@ -6,7 +6,6 @@
 
     <class name="po.SupplyDemand" table="supply_demand" schema="service_platform_db">
         <id name="sdId" column="sdID"/>
-        <property name="userId" column="userID"/>
         <property name="title" column="title"/>
         <property name="content" column="content"/>
         <property name="startTime" column="startTime"/>

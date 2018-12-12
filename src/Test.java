@@ -1,5 +1,4 @@
-import dao.UserDAO;
-import dao.UserInfoDAO;
+import dao.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -61,7 +60,7 @@ public class Test
 //        uiDAO.addUserInfo(toAdd);
 
 //        测试UserDAO
-        UserDAO uDAO=new UserDAO();
+//        UserDAO uDAO=new UserDAO();
 //        User toAdd=new User();
 //        toAdd.setUserId("13051205200");
 //        toAdd.setPassword("123");
@@ -73,12 +72,26 @@ public class Test
 //        List<User> allUserList=uDAO.getAllUser();
 //        System.out.println(allUserList);
 //        uDAO.purchaseProduct(gettedFromTable.getUserId(),"pro1",2);
-        System.out.println(uDAO.validateUser("13051205196","123"));
-        System.out.println(uDAO.validateUser("13051205193","123"));
-        System.out.println(uDAO.validateUser("13051205196","121"));
-        System.out.println(uDAO.validateUser("13051205193","120"));
+//        System.out.println(uDAO.validateUser("13051205196","123"));
+//        System.out.println(uDAO.validateUser("13051205193","123"));
+//        System.out.println(uDAO.validateUser("13051205196","121"));
+//        System.out.println(uDAO.validateUser("13051205193","120"));
 
+//        测试SupplyDemandDAO
+        SupplyDemandDAO sdDAO=new SupplyDemandDAO();
+        Supply s=new Supply();
+        s.setSdId(UUID.randomUUID().toString().replace("-", ""));
+        s.setUserId("13051205199");
+        s.setTitle("supplyTitle");
+        s.setContent("supplyContent");
 
+        Demand d=new Demand();
+        d.setSdId(UUID.randomUUID().toString().replace("-", ""));
+        d.setUserId("13051205196");
+        d.setTitle("demandTitle");
+        d.setContent("demandContent");
 
+        sdDAO.addSupply(s);
+        sdDAO.addDemand(d);
     }
 }
