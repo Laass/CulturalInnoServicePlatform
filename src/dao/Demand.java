@@ -9,6 +9,18 @@ public class Demand extends SupplyDemand
         setType("D");
         setIsPass((byte)0);
     }
+    public Demand(SupplyDemand sd)
+    {
+        setSdId(sd.getSdId());
+        setUserId(sd.getUserId());
+        setTitle(sd.getTitle());
+        setContent(sd.getContent());
+        setStartTime(getStartTime());
+        setEndTime(getEndTime());
+        setHits(getHits());
+        setIsPass(getIsPass());
+        setType("D");
+    }
     public SupplyDemand toSupplyDemand()
     {
         SupplyDemand sd=new SupplyDemand();

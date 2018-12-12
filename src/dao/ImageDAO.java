@@ -9,54 +9,77 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import po.Image;
 
-public class ImageDAO {
+public class ImageDAO
+{
+    private Session hsession;
+    private Transaction ts;
 
-	private Configuration cfg;
-	private SessionFactory sf=null;
-	private Session hsession=null;
-	private Transaction ts=null;
-	private int maxEssayNum = 12;
-	
-	public Boolean addImage(Image newImage) {
-		SessionMgr.getSession(cfg, sf, hsession, ts);
-		try {
+    private void getSession()
+    {
+        //从SessionMgr获取Session和Transaction
+        Object[] connectionList = SessionMgr.getSession();
+        hsession = (Session) connectionList[0];
+        ts = (Transaction) connectionList[1];
+    }
 
-			hsession.save(newImage);
+    private void releaseSession()
+    {
+        SessionMgr.releaseConnect(hsession, ts);
+    }
 
-			SessionMgr.releaseConnect(sf, hsession);
+    /**
+     * 测试通过
+     * @param newImage
+     * @return
+     */
+    public Boolean addImage(Image newImage)
+    {
+        getSession();
+        try
+        {
+            hsession.save(newImage);
 
-			return true;
-		}catch(Exception e) {
-			e.printStackTrace();
-			SessionMgr.releaseConnect(sf, hsession);
-			return false;
-		}
-	}
-	
-	/**
-	 * 返回用户或文章的图片
-	 * 
-	 * @param id 用户或文章的id
-	 */
-	public List getImageById(String id) {
-		SessionMgr.getSession(cfg, sf, hsession, ts);
-		try {
+            releaseSession();
 
-			Query hquery = hsession.createQuery("from Image im where im.originId=?");
-			hquery.setString(0,id);
-			List<Image> list = hquery.list();
+            return true;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            releaseSession();
+            return false;
+        }
+    }
 
-            SessionMgr.releaseConnect(sf, hsession);
+    /**
+     * 测试通过
+     * 返回用户或文章的图片
+     *
+     * @param id 用户或文章的id
+     */
+    public List<Image> getImageByOriginId(String id)
+    {
+        getSession();
+        try
+        {
 
-			return list;
-		}catch(Exception e) {
-			e.printStackTrace();
-			SessionMgr.releaseConnect(sf, hsession);
-			return null;
-		}
-	}
-	
-	// 此处假设设置好了级联删除
+            Query hquery = hsession.createQuery("from Image im where im.originId=?1");
+            hquery.setParameter(1, id);
+            List<Image> list = hquery.list();
+
+            releaseSession();
+
+            return list;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            releaseSession();
+            return null;
+        }
+    }
+
+    // 此处假设设置好了级联删除
 //	public Boolean deleteImage(String imageId) {
 //		SessionMgr.getSession(cfg, sf, hsession, ts);
 //		try {
@@ -72,7 +95,4 @@ public class ImageDAO {
 //			return false;
 //		}
 //	}
-	
-	
-	
 }
