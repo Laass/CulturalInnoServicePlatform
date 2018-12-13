@@ -114,7 +114,7 @@
           <entry key="html" value="9" />
           <entry key="java" value="19202" />
           <entry key="jsp" value="1942" />
-          <entry key="txt" value="242" />
+          <entry key="txt" value="247" />
           <entry key="xml" value="516" />
         </counts>
       </usages-collector>
@@ -124,7 +124,7 @@
           <entry key="JAVA" value="19201" />
           <entry key="JPA QL" value="1" />
           <entry key="JSP" value="1942" />
-          <entry key="PLAIN_TEXT" value="250" />
+          <entry key="PLAIN_TEXT" value="255" />
           <entry key="XML" value="516" />
         </counts>
       </usages-collector>
@@ -414,7 +414,7 @@
     <property name="JPA.DatabaseSchemaImportDialog" value="80bcada0-a82a-415c-bc26-37ba50dd934c" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544712051466" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544712512750" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/mysql-connector-java-8.0.13.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -629,7 +629,7 @@
       <workItem from="1544689786762" duration="7562000" />
       <workItem from="1544701498764" duration="6735000" />
       <workItem from="1544709089106" duration="629000" />
-      <workItem from="1544709753823" duration="2362000" />
+      <workItem from="1544709753823" duration="2712000" />
     </task>
     <task id="LOCAL-00001" summary="v1.2  魔改SessionMgr 测试通过UserInfoDAO  UserDAO order表改为ordertable表">
       <created>1544595344168</created>
@@ -659,11 +659,18 @@
       <option name="project" value="LOCAL" />
       <updated>1544632219578</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="安卓测试用">
+      <created>1544712177795</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1544712177795</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101469000" />
+    <option name="totallyTimeSpent" value="101819000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -724,7 +731,8 @@
     <MESSAGE value="v1.2  魔改SessionMgr 测试通过UserInfoDAO  UserDAO order表改为ordertable表" />
     <MESSAGE value="v1.2" />
     <MESSAGE value="v1.3 所有DAO中的函数都经过测试 修改 删除文章和产品加了图片删除和从收藏删除 加了根据用户分页查找&#10;所有测试用的代码都留在了Test中" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.3 所有DAO中的函数都经过测试 修改 删除文章和产品加了图片删除和从收藏删除 加了根据用户分页查找&#10;所有测试用的代码都留在了Test中" />
+    <MESSAGE value="安卓测试用" />
+    <option name="LAST_COMMIT_MESSAGE" value="安卓测试用" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
