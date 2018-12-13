@@ -226,6 +226,7 @@ public class Test
 //        System.out.println(nDAO.delNews("15e51171dab84478a38f54bab5798856"));
 //        System.out.println(nDAO.getUserNewsByPage("13051205199",1));
 //        System.out.println(nDAO.getUserNewsByPage("13051205199",2));
+//        System.out.println(nDAO.setAsPass("2f868518a7354dada1dd6c970d712dae"));
 
 //        测试MessageDAO
 //        MessageDAO mDAO=new MessageDAO();

@@ -299,4 +299,29 @@ public class NewsDAO
             return false;
         }
     }
+
+    /**
+     * 测试通过
+     * @param newsId
+     * @return
+     */
+    public Boolean setAsPass(String newsId)
+    {
+        getSession();
+        try
+        {
+            Query q=hsession.createQuery("update News set isPass='1' where newsId=?1");
+            q.setParameter(1,newsId);
+            q.executeUpdate();
+
+            releaseSession();
+            return true;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            releaseSession();
+            return false;
+        }
+    }
 }
