@@ -26,20 +26,22 @@ public class NewsController {
         this.message = message;
     }
 
-//    @RequestMapping(value = "/getAllNews.action")
-//    @ResponseBody
+    @RequestMapping(value = "/getAllNews.action")
+    @ResponseBody
     @ModelAttribute("allNewsList")
-    public List<News> getAllNews()
+    public List<News> getAllNews(HttpServletRequest request)
     {
         NewsDAO nDAO=new NewsDAO();
         System.out.println("allNewsListallNewsListallNewsList");
-        return nDAO.getAllNews();
+        List<News> allNewsList=nDAO.getAllNews();
+        request.setAttribute("allNewsList",allNewsList);
+        return allNewsList;
     }
 
-//    @RequestMapping(value = "/getAllPassedNews.action")
-//    @ResponseBody
+    @RequestMapping(value = "/getAllPassedNews.action")
+    @ResponseBody
     @ModelAttribute("allPassedNewsList")
-    public List<News> getAllPassedNews()
+    public List<News> getAllPassedNews(HttpServletRequest request)
     {
         NewsDAO nDAO=new NewsDAO();
         List<News> l=nDAO.getAllNews();
@@ -48,12 +50,15 @@ public class NewsController {
             if(n.getIsPass()==(byte)1)
                 passedList.add(n);
         System.out.println("allPassedNewsListallPassedNewsListallPassedNewsList");
+        request.setAttribute("allPassedNewsList",passedList);
         return passedList;
     }
 
     @RequestMapping(value = "/News.html")
-    public ModelAndView initNewsPage()
+    public ModelAndView initNewsPage(HttpServletRequest request)
     {
+
+        getAllNews(request);
         System.out.println("NewsNewsNewsNews");
         return new ModelAndView("News","command",this);
     }

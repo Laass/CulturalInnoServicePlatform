@@ -26,13 +26,18 @@ public class UserInfoDAO {
             SessionMgr.releaseConnect(hsession,ts);
         }
 
+        private void releaseSession(Session hsession)
+        {
+            SessionMgr.releaseConnect(hsession);
+        }
+
     /**
      * 测试通过
      * 增加新详细用户信息
      * @param newUserInfo 要保存的新详细信息
      * @return 新详细信息
      */
-    public UserInfo addUserInfo(UserInfo newUserInfo) {
+    public UserInfo addUserInfo(UserInfo newUserInfo) throws Exception{
            getSession();
             try{
                 hsession.save(newUserInfo);
@@ -40,8 +45,7 @@ public class UserInfoDAO {
 
                 return newUserInfo;
             }catch(Exception e) {
-                e.printStackTrace();
-                releaseSession();
+                releaseSession(hsession);
                 return null;
             }
         }
@@ -51,15 +55,14 @@ public class UserInfoDAO {
      * @param newUserInfo 要保存的新用户信息
      * @return 保存的新用户信息
      */
-    public UserInfo modifyUserInfo(UserInfo newUserInfo) {
+    public UserInfo modifyUserInfo(UserInfo newUserInfo) throws Exception{
             getSession();
             try{
                  hsession.update(newUserInfo);
                 releaseSession();
                  return newUserInfo;
             }catch(Exception e) {
-                e.printStackTrace();
-                releaseSession();
+                releaseSession(hsession);
                 return null;
             }
         }
@@ -70,15 +73,14 @@ public class UserInfoDAO {
      * @param userId 用户的id
      * @return 用户信息类
      */
-    public UserInfo getUserInfo(String userId) {
+    public UserInfo getUserInfo(String userId) throws Exception{
             getSession();
             try{
                 UserInfo u = (UserInfo) hsession.get(UserInfo.class,userId);
                 releaseSession();
                 return u;
             }catch (Exception e) {
-                e.printStackTrace();
-                releaseSession();
+                releaseSession(hsession);
                 return null;
             }
         }
@@ -87,7 +89,7 @@ public class UserInfoDAO {
      * 测试通过
      * @return 所有用户详细信息列表
      */
-    public List<UserInfo> getAllUserWithInfo() {
+    public List<UserInfo> getAllUserWithInfo() throws Exception{
             getSession();
             try{
                 String hql = "from UserInfo";
@@ -97,8 +99,7 @@ public class UserInfoDAO {
                 releaseSession();
                 return t;
             }catch (Exception e) {
-                e.printStackTrace();
-                releaseSession();
+                releaseSession(hsession);
                 return null;
             }
         }

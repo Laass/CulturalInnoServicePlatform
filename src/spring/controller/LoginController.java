@@ -6,7 +6,9 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import dao.UserDAO;
 import dao.UserInfoDAO;
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -31,24 +33,32 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/Login.html")
-    public ModelAndView initLogin(){
-        return new ModelAndView("login","command",this);
+    public ModelAndView initLogin(HttpServletRequest request){
+        request.setAttribute("message",message);
+        return new ModelAndView("Login","command",this);
     }
 
     @RequestMapping(value = "login.action", method = RequestMethod.POST)
-    public LoginController validateLogin(@ModelAttribute("user")User user, HttpServletRequest request,HttpSession session, Model model)
+    public String validateLogin(@ModelAttribute("user")User user, HttpServletRequest request,HttpSession session, Model model)
     {
         System.out.println(user.getUserId());
         session.setAttribute("currentUser",user);
         UserDAO ud = new UserDAO();
-        if( ud.validateUser(user.getUserId(),user.getPassword()) ){
-            this.message="登录成功";
-            model.addAttribute("message",message);
-            return this;
+        try
+        {
+            if( ud.validateUser(user.getUserId(),user.getPassword()) )
+            {
+                this.message="登录成功";
+                model.addAttribute("message",message);
+                return "index";
+            }
         }
-        this.message = "用户名/密码错误";
-        model.addAttribute("message",message);
-        return this;
+        catch(Exception e)
+        {
+            this.message = "用户名/密码错误";
+            model.addAttribute("message",message);
+        }
+        return null;
     }
 
     @RequestMapping(value = "/Register.html")
@@ -62,12 +72,21 @@ public class LoginController {
     {
         User registeredUser=(User)session.getAttribute("registeredUser");
         userInfo.setUserId(registeredUser.getUserId());
+        userInfo.setTel(registeredUser.getUserId());
         UserInfoDAO uiDAO=new UserInfoDAO();
-        if( uiDAO.addUserInfo(userInfo) != null)
+        try
         {
-            return "index";
+            if( uiDAO.addUserInfo(userInfo) != null)
+            {
+                System.out.println("注册详细信息成功");
+                return "index";
+            }
         }
-        this.message = "注册失败";
+        catch (Exception e)
+        {
+            this.message = "注册详细信息失败";
+            System.out.println(message);
+        }
         return "redirect:/Login.html";
     }
 
@@ -75,12 +94,20 @@ public class LoginController {
     public String registerUser(@ModelAttribute("registerUser") User user, HttpServletRequest request, HttpSession session, ModelMap model)
     {
         UserDAO uDAO=new UserDAO();
-        if( uDAO.addUser(user))
+        try
         {
-            session.setAttribute("registeredUser",user);
-            return "RegisterUserInfo";
+            if( uDAO.addUser(user))
+            {
+                session.setAttribute("registeredUser",user);
+                System.out.println("注册成功");
+                return "RegisterUserInfo";
+            }
         }
-        this.message = "注册失败";
+        catch (Exception e)
+        {
+            this.message = "注册失败";
+            System.out.println(message);
+        }
         return "redirect:/Login.html";
     }
 
@@ -89,16 +116,23 @@ public class LoginController {
     {
         UserInfoDAO uiDAO=new UserInfoDAO();
         User currentUser=(User)session.getAttribute("currentUser");
-        UserInfo currentUserInfo=uiDAO.getUserInfo(currentUser.getUserId());
-        model.addAttribute("userId",currentUserInfo.getUserId());
-        model.addAttribute("nickName",currentUserInfo.getNickName());
-        model.addAttribute("realName",currentUserInfo.getRealName());
-        model.addAttribute("intro",currentUserInfo.getIntro());
-        model.addAttribute("email",currentUserInfo.getEmail());
-        model.addAttribute("address",currentUserInfo.getAddress());
-        model.addAttribute("qq",currentUserInfo.getQq());
-        model.addAttribute("tel",currentUserInfo.getTel());
-        return "UserInfo";
+        try
+        {
+            UserInfo currentUserInfo = uiDAO.getUserInfo(currentUser.getUserId());
+            model.addAttribute("userId", currentUserInfo.getUserId());
+            model.addAttribute("nickName", currentUserInfo.getNickName());
+            model.addAttribute("realName", currentUserInfo.getRealName());
+            model.addAttribute("intro", currentUserInfo.getIntro());
+            model.addAttribute("email", currentUserInfo.getEmail());
+            model.addAttribute("address", currentUserInfo.getAddress());
+            model.addAttribute("qq", currentUserInfo.getQq());
+            model.addAttribute("tel", currentUserInfo.getTel());
+            return "UserInfo";
+        }
+        catch(Exception e)
+        {
+            return "redirect:/Login.html";
+        }
     }
 
 }

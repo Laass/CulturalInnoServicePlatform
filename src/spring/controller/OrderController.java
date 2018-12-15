@@ -1,8 +1,8 @@
 package spring.controller;
 
-import com.google.gson.Gson;
 import dao.AO;
 import dao.OrderDAO;
+import dao.ProductDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.portlet.ModelAndView;
+import po.Order;
+import po.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,6 +27,27 @@ public class OrderController {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    @ModelAttribute("orderInfoList")
+    public List<AO> getAllOrderList()
+    {
+        OrderDAO oDAO=new OrderDAO();
+        ProductDAO pDAO=new ProductDAO();
+        List<Order> orderList=oDAO.getUserOrders("13051205197");
+        //利用AO 将订单和商品信息拼在一起 这样就可以同时显示同时显示
+        List<AO> orderInfoList=new ArrayList<>();
+        for(Order o:orderList)
+        {
+            Product p=pDAO.getProducById(o.getProId());
+            AO a=new AO();
+            a.setFirst(o.getOrderId());
+            a.setSecond(p.getProName());
+            a.setThird(Integer.toString(o.getCount()));
+            a.setFourth(Double.toString(p.getPrice()));
+            orderInfoList.add(a);
+        }
+        return orderInfoList;
     }
 
     @RequestMapping(value = "/Order.html")

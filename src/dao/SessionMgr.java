@@ -13,11 +13,6 @@ public class SessionMgr
     //SessionFactory只在这个类内部使用 所以设成类的属性
     private static SessionFactory sf;
 
-    public static void getSession(Configuration cfg,SessionFactory sf,Session hsession,Transaction ts)
-    {
-
-    }
-
 	public static Object[] getSession()
 	{
 		try
@@ -49,8 +44,9 @@ public class SessionMgr
 		sf.close();
 	}
 
-    public static void releaseConnect(SessionFactory sf,Session hs)
+    public static void releaseConnect(Session hs)
     {
-
+		if (hs.isOpen())
+			hs.close();
     }
 }

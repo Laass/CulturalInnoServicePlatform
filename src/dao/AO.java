@@ -4,8 +4,8 @@ public class AO {
     private String first;
     private String second;
     private String third;
-    private String four;
-    private String five;
+    private String fourth;
+    private String fifth;
 
     public String getFirst() {
         return first;
@@ -31,19 +31,19 @@ public class AO {
         this.third = third;
     }
 
-    public String getFour() {
-        return four;
+    public String getFourth() {
+        return fourth;
     }
 
-    public void setFour(String four) {
-        this.four = four;
+    public void setFourth(String fourth) {
+        this.fourth = fourth;
     }
 
-    public String getFive() {
-        return five;
+    public String getFifth() {
+        return fifth;
     }
 
-    public void setFive(String five) {
-        this.five = five;
+    public void setFifth(String fifth) {
+        this.fifth = fifth;
     }
 }

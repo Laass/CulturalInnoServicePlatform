@@ -25,6 +25,7 @@
     <div style="width: 500px;height:400px;margin-top: 130px;margin-left: auto;margin-right:auto ;background-color: white;padding:90px;opacity: 0.8;border-radius: 5%;padding-top: 30px;">
         <h2>Login</h2>
         <hr/>
+        ${message}
         <form style="width: 300px;" method="post" action="/login.action">
             <div class="form-group">
                 <label for="email">Phone:</label>
@@ -34,7 +35,7 @@
                 <label for="pwd">Password:</label>
                 <input type="password" class="form-control" name="password" id="pwd" placeholder="Enter password">
             </div>
-            <div class="form-check" style="margin-bottom: 20px;">
+            <div class="form-check" style="margin-bottom: 15px;">
                 <label class="form-check-label">
                     <input class="form-check-input" type="checkbox"> Remember me
                 </label>

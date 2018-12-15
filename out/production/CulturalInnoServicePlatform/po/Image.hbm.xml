@@ -7,6 +7,6 @@
     <class name="po.Image" table="image" schema="service_platform_db">
         <id name="imageId" column="imageID"/>
         <property name="originId" column="originID"/>
-        <property name="storeLocation" column="storeLocation"/>
+        <property name="photo" column="photo"/>
     </class>
 </hibernate-mapping>

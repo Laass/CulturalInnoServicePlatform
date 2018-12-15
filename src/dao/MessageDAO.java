@@ -115,7 +115,7 @@ public class MessageDAO
      * 测试通过
      * 获取（Page-1）*maxEssayNum -- page*maxEssayNum 间的内容
      * 分页获取文章或产品的留言（评价）
-     *
+     * 如果page=-1 则不分页获取
      * @param originId 文章或产品的id
      * @param page
      * @return
@@ -134,8 +134,11 @@ public class MessageDAO
 
             Query hQuery = hsession.createQuery("from Message where originId=?1");
             hQuery.setParameter(1, originId);
-            hQuery.setFirstResult((page - 1) * maxEssayNum);
-            hQuery.setMaxResults(maxEssayNum);
+            if(page!=-1)
+            {
+                hQuery.setFirstResult((page - 1) * maxEssayNum);
+                hQuery.setMaxResults(maxEssayNum);
+            }
             List<Message> list = hQuery.list();
 
             releaseSession();

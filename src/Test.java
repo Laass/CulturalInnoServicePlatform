@@ -6,6 +6,10 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import po.*;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -295,5 +299,42 @@ public class Test
 //        System.out.println(cDAO.getUserCollection("13051205199"));
 //        System.out.println(cDAO.getCollectionByPage("13051205199",1));
 //        System.out.println(cDAO.getCollectionByPage("13051205199",2));
+
+//        测试图片存储
+//        try
+//        {
+//            FileInputStream in = new FileInputStream("D:\\servletTest\\robin.jpg");
+//            存图片1
+//            Image i=(Image)hs.get(Image.class,"ima2");
+//            byte[] b=in.readAllBytes();
+//            in.close();
+//            i.setPhoto(b);
+//            hs.update(i);
+//            ts.commit();
+//            hs.close();
+//            存图片2
+//            byte[] b=in.readAllBytes();
+//            Image i=new Image();
+//            i.setImageId("ima3");
+//            i.setOriginId("13051205197");
+//            i.setPhoto(b);
+//            hs.save(i);
+//            ts.commit();
+//            hs.close();
+//            取图片
+//            Query q=hs.createQuery("from Image");
+//            List<Image> imageList=q.list();
+//            File f=new File("D:\\servletTest\\robinTest.jpg");
+//            FileOutputStream out=new FileOutputStream(f,false);
+//            out.write(imageList.get(3).getPhoto());
+//            out.close();
+//
+//        }
+//        catch(Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//        System.out.println(ProductType.MUSINSTRU.getName());
+//        System.out.println(ProductType.MUSINSTRU.toString());
     }
 }

@@ -30,6 +30,11 @@ public class ExhibitionDAO
     {
         SessionMgr.releaseConnect(hs, ts);
     }
+
+    private void releaseSession(Session hs)
+    {
+        SessionMgr.releaseConnect(hs);
+    }
     
 	/**
      * 测试通过
@@ -38,7 +43,7 @@ public class ExhibitionDAO
 	 * @param exhibitionId 文章id
 	 * @return Exhibition
 	 */
-    public Exhibition getExhibitionById(String exhibitionId)
+    public Exhibition getExhibitionById(String exhibitionId) throws Exception
     {
         getSession();
         try
@@ -50,10 +55,10 @@ public class ExhibitionDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 	
 	/**
@@ -62,7 +67,7 @@ public class ExhibitionDAO
 	 * 
 	 * @return list
 	 */
-    public List<Exhibition> getAllExhibition()
+    public List<Exhibition> getAllExhibition() throws Exception
     {
         getSession();
         try
@@ -77,10 +82,10 @@ public class ExhibitionDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 	
 	/**
@@ -89,7 +94,7 @@ public class ExhibitionDAO
 	 * @param page 页数
 	 * @return List
 	 */
-    public List<Exhibition> getExhibitionByPage(int page)
+    public List<Exhibition> getExhibitionByPage(int page) throws Exception
     {
         getSession();
         try
@@ -106,10 +111,10 @@ public class ExhibitionDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 
     /**
@@ -118,7 +123,7 @@ public class ExhibitionDAO
      * @param page 页数
      * @return List
      */
-    public List<Exhibition> getUserExhibitionByPage(String userId,int page)
+    public List<Exhibition> getUserExhibitionByPage(String userId,int page) throws Exception
     {
         getSession();
         try
@@ -136,10 +141,10 @@ public class ExhibitionDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 	
 	/**
@@ -148,7 +153,7 @@ public class ExhibitionDAO
 	 * @param userId
 	 * @return
 	 */
-    public List<Exhibition> getExhibitionByUserId(String userId)
+    public List<Exhibition> getExhibitionByUserId(String userId) throws Exception
     {
         getSession();
         try
@@ -164,10 +169,10 @@ public class ExhibitionDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 	
 	/**
@@ -175,7 +180,7 @@ public class ExhibitionDAO
 	 * 根据关键字 在主题中模糊查询
 	 * @param keyword 关键字
 	 */
-    public List<Exhibition> getExhibitionByKeyword(String keyword)
+    public List<Exhibition> getExhibitionByKeyword(String keyword) throws Exception
     {
         getSession();
         try
@@ -191,10 +196,10 @@ public class ExhibitionDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 	
 	/**
@@ -203,7 +208,7 @@ public class ExhibitionDAO
 	 * @param theme 精确查询字段
 	 * @return
 	 */
-    public List<Exhibition> getExhibitionByTheme(String theme)
+    public List<Exhibition> getExhibitionByTheme(String theme) throws Exception
     {
         getSession();
         try
@@ -219,10 +224,10 @@ public class ExhibitionDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 
     /**
@@ -230,7 +235,7 @@ public class ExhibitionDAO
      * @param exhibitionId
      * @return
      */
-    public Boolean delExhibition(String exhibitionId)
+    public Boolean delExhibition(String exhibitionId) throws Exception
     {
         getSession();
         try
@@ -262,10 +267,10 @@ public class ExhibitionDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 
     /**
@@ -273,7 +278,7 @@ public class ExhibitionDAO
      * @param newExhibition
      * @return
      */
-    public Exhibition addExhibition(Exhibition newExhibition)
+    public Exhibition addExhibition(Exhibition newExhibition) throws Exception
     {
         getSession();
         try
@@ -286,10 +291,10 @@ public class ExhibitionDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 
     /**
@@ -297,7 +302,7 @@ public class ExhibitionDAO
      * @param validatedExhibition
      * @return
      */
-    public boolean setAsPass(Exhibition validatedExhibition)
+    public boolean setAsPass(Exhibition validatedExhibition) throws Exception
     {
         getSession();
         try
@@ -311,10 +316,10 @@ public class ExhibitionDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
+            releaseSession(hs);
+            throw e;
         }
-        return false;
+//        return false;
     }
 
 	
