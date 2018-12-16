@@ -13,6 +13,7 @@ import po.UserInfo;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -44,25 +45,50 @@ public class ExhibitionController {
 
     @RequestMapping(value = "/Exhibition.html")
     public ModelAndView initEPage(Model model){
-        //仅做测试用
         ExhibitionDAO eDAO=new ExhibitionDAO();
         UserInfoDAO uiDAO=new UserInfoDAO();
-        AO a=new AO();
         try{
-            Exhibition e=eDAO.getExhibitionById("33598a66959c4e4b8edca8c470f31199");
-            UserInfo ui=uiDAO.getUserInfo(e.getUserId());
-            a.setFirst(e.getTheme());
-            a.setSecond(ui.getNickName());
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String time = df.format(e.getEstablishTime());
-            a.setThird(time);
-            a.setFourth(e.getContent());
-            model.addAttribute("exhi",a);
+            List<Exhibition> eList=eDAO.getAllExhibition();
+            List<AO> eInfoList=new ArrayList<>();
+            for(Exhibition e:eList)
+            {
+                UserInfo ui=uiDAO.getUserInfo(e.getUserId());
+                AO a=new AO();
+                a.setFirst(e.getTheme());
+                a.setSecond(ui.getNickName());
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String time = df.format(e.getEstablishTime());
+                a.setThird(time);
+                a.setFourth(e.getContent());
+                a.setFifth(e.getExId());
+                eInfoList.add(a);
+            }
+            model.addAttribute("eInfoList",eInfoList);
             return new ModelAndView("Exhibition","command",this);
         }
         catch(Exception e){
             return null;
         }
+    }
+
+    @RequestMapping(value = "getExhibitionInfo",method = RequestMethod.GET)
+    public String getExhibitionInfo(@RequestParam("exhiId") String exhiId,Model model)
+    {
+        ExhibitionDAO eDAO=new ExhibitionDAO();
+        UserInfoDAO uDAO=new UserInfoDAO();
+        try
+        {
+            Exhibition e=eDAO.getExhibitionById(exhiId);
+            UserInfo u=uDAO.getUserInfo(e.getUserId());
+            model.addAttribute("exhi",e);
+            model.addAttribute("userInfo",u);
+            return "ExhibitionDetail";
+        }
+        catch (Exception e)
+        {
+            return "Login";
+        }
+
     }
 
     @RequestMapping(value = "getExhibition.action", method = RequestMethod.POST)

@@ -152,4 +152,19 @@ public class OrderDAO
         }
     }
 
+    public Order getOrderById(String orderId) throws Exception
+    {
+        getSession();
+        try
+        {
+            Order o=(Order)hsession.get(Order.class,orderId);
+            releaseSession();
+            return o;
+        }
+        catch (Exception e)
+        {
+            releaseSession(hsession);
+            throw e;
+        }
+    }
 }

@@ -3,10 +3,13 @@ package spring.controller;
 import com.google.gson.Gson;
 import dao.AO;
 import dao.NewsDAO;
+import dao.UserInfoDAO;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.portlet.ModelAndView;
 import po.News;
+import po.UserInfo;
 
 import javax.lang.model.element.NestingKind;
 import javax.servlet.http.HttpServletRequest;
@@ -169,6 +172,25 @@ public class NewsController {
         catch (Exception e)
         {
             return null;
+        }
+    }
+
+    @RequestMapping(value = "getNewsById",method = RequestMethod.GET)
+    public String getNewsById(@RequestParam("newsId") String newsId, Model model)
+    {
+        NewsDAO nDAO=new NewsDAO();
+        UserInfoDAO uiDAO=new UserInfoDAO();
+        try
+        {
+            News n=nDAO.getNewsById(newsId);
+            UserInfo u=uiDAO.getUserInfo(n.getUserId());
+            model.addAttribute("news",n);
+            model.addAttribute("userInfo",u);
+            return "NewsDetail";
+        }
+        catch (Exception e)
+        {
+            return "Login";
         }
     }
 

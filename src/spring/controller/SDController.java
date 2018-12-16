@@ -74,7 +74,7 @@ public class SDController {
         SupplyDemand temp = new Gson().fromJson(json, SupplyDemand.class);
         try
         {
-            if(new SupplyDemandDAO().delSupplyDemand(temp.getSdId()))
+            if(new SupplyDemandDAO().delSD(temp.getSdId()))
                 this.setMessage("删除成功");
             else
                 this.setMessage("删除失败");

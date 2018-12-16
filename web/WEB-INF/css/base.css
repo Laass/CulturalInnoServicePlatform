@@ -12,9 +12,30 @@
 .hideLi{
     display: none;
 }
-/*.hideDiv {*/
-    /*display: none;*/
-/*}*/
+.guidLi{
+    width:  120px;
+    letter-spacing: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+.subTitle{
+    display: inline-block;
+    margin-right: 8px;
+    float: right;
+    color: black;
+}
+.portrait{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-top: 10px;
+    float: right;
+}
+.portrait > img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
 
 /*资讯列表页css*/
 .newsList{
@@ -71,6 +92,28 @@ ul.MidNewsListContain > li{
 }
 ul.MidNewsListContain > li > a{
     color: black;
+}
+ul#lists{
+    list-style: none;
+    padding: 0 auto;
+    margin: 0 auto;
+    padding-left: 15px;
+}
+ul#lists > listOuter > li > a{
+    line-height: 30px;
+    font-size: 16px;
+    color: black;
+    height: 50px;
+}
+.listOuter{
+    width: 1070px;
+    padding: 10px;
+    margin-top: 10px;
+    /*background-color: #FAFAFA;*/
+    background-color: white;
+    padding: 10px;
+    padding-left: 25px;
+    border-bottom: 0.5px solid #eee;
 }
 
 /*产品list css*/

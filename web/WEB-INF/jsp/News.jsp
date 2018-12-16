@@ -17,109 +17,109 @@
     <script src="js/page.js"></script>
 
 
-    <style type="text/css">
-        .log{
-            height: 100px;
+    <%--<style type="text/css">--%>
+        <%--.log{--%>
+            <%--height: 100px;--%>
 
-            overflow: hidden;
-        }
-        .search{
-            width: 200px;
-            height: 20px;
-            float: right;
-            margin-right: 80px;
-        }
-        .newsList{
-            width: 300px;
-            height: 400px;
-            margin-left: 10px;
-            display: inline-block;
-            overflow: hidden;
-        }
-        .MidNewsList{
-            width: 355px;
-            height: 500px;
-            margin-right: 17px;
-            display: inline-block;
-            overflow: hidden;
-        }
-        .news{
-            width: 100%;
-            height: 80px;
-            margin-top: 10px;
-            /*	background-color: grey;*/
-            display: block;
-            overflow: hidden;
-        }
-        .newTitle{
-            width: 100%;
-            color: #1e50ae;
-            font-size: 13px;
-            height: 15px;
-        }
-        .MidNewsListTitle{
-            width: 100%;
-            height: 90px;
-            font-size: 28px;
-            font-weight: bold;
-            color: white;
-            background-color: #222222;
-            text-align: center;
-            padding-top: 15px;
-        }
-        .newsInfo{
-            width: 100%;
-            height: 25px;
-        }
-        ul.MidNewsListContain{
-            margin-top: 10px;
-            padding-left:8px;
-        }
-        ul.MidNewsListContain > li{
-            width: 100%;
-            line-height: 40px;
-            list-style: none;
-            border-bottom: 1px dashed #eee;
-        }
-        ul.MidNewsListContain > li > a{
-            color: black;
-        }
-        .product{
-            width: 200px;
-            height: 300px;
-            margin-right: 10px;
-            margin-top: 30px;
-            display: inline-block;
-            overflow: hidden;
-        }
-        .productImg{
-            width: 100%;
-            height: 150px;
-        }
-        .productImg > img{
-            width: 100%;
-            height: 150px;
-        }
-        .productTitle{
-            margin-top: 8px;
-            margin-bottom: 8px;
-        }
-        .productInfo{
-            font-size: 13px;
-        }
-    </style>
+            <%--overflow: hidden;--%>
+        <%--}--%>
+        <%--.search{--%>
+            <%--width: 200px;--%>
+            <%--height: 20px;--%>
+            <%--float: right;--%>
+            <%--margin-right: 80px;--%>
+        <%--}--%>
+        <%--.newsList{--%>
+            <%--width: 300px;--%>
+            <%--height: 400px;--%>
+            <%--margin-left: 10px;--%>
+            <%--display: inline-block;--%>
+            <%--overflow: hidden;--%>
+        <%--}--%>
+        <%--.MidNewsList{--%>
+            <%--width: 355px;--%>
+            <%--height: 500px;--%>
+            <%--margin-right: 17px;--%>
+            <%--display: inline-block;--%>
+            <%--overflow: hidden;--%>
+        <%--}--%>
+        <%--.news{--%>
+            <%--width: 100%;--%>
+            <%--height: 80px;--%>
+            <%--margin-top: 10px;--%>
+            <%--/*	background-color: grey;*/--%>
+            <%--display: block;--%>
+            <%--overflow: hidden;--%>
+        <%--}--%>
+        <%--.newTitle{--%>
+            <%--width: 100%;--%>
+            <%--color: #1e50ae;--%>
+            <%--font-size: 13px;--%>
+            <%--height: 15px;--%>
+        <%--}--%>
+        <%--.MidNewsListTitle{--%>
+            <%--width: 100%;--%>
+            <%--height: 90px;--%>
+            <%--font-size: 28px;--%>
+            <%--font-weight: bold;--%>
+            <%--color: white;--%>
+            <%--background-color: #222222;--%>
+            <%--text-align: center;--%>
+            <%--padding-top: 15px;--%>
+        <%--}--%>
+        <%--.newsInfo{--%>
+            <%--width: 100%;--%>
+            <%--height: 25px;--%>
+        <%--}--%>
+        <%--ul.MidNewsListContain{--%>
+            <%--margin-top: 10px;--%>
+            <%--padding-left:8px;--%>
+        <%--}--%>
+        <%--ul.MidNewsListContain > li{--%>
+            <%--width: 100%;--%>
+            <%--line-height: 40px;--%>
+            <%--list-style: none;--%>
+            <%--border-bottom: 1px dashed #eee;--%>
+        <%--}--%>
+        <%--ul.MidNewsListContain > li > a{--%>
+            <%--color: black;--%>
+        <%--}--%>
+        <%--.product{--%>
+            <%--width: 200px;--%>
+            <%--height: 300px;--%>
+            <%--margin-right: 10px;--%>
+            <%--margin-top: 30px;--%>
+            <%--display: inline-block;--%>
+            <%--overflow: hidden;--%>
+        <%--}--%>
+        <%--.productImg{--%>
+            <%--width: 100%;--%>
+            <%--height: 150px;--%>
+        <%--}--%>
+        <%--.productImg > img{--%>
+            <%--width: 100%;--%>
+            <%--height: 150px;--%>
+        <%--}--%>
+        <%--.productTitle{--%>
+            <%--margin-top: 8px;--%>
+            <%--margin-bottom: 8px;--%>
+        <%--}--%>
+        <%--.productInfo{--%>
+            <%--font-size: 13px;--%>
+        <%--}--%>
+    <%--</style>--%>
 </head>
 <body>
 <jsp:include page="headder.jsp"/>
 <div class="container-fluid">
     <div class="row">
-        <div style="width: 1100px;justify-content: center;margin-top: 30px;margin-left: 50px;">
+        <div style="width: 1100px;justify-content: center;margin:0 auto;margin-top: 80px;border: 1px solid #eee;">
             <ul id="lists">
                 <c:forEach items="${allNewsList}" var="news">
                     <li>
-                        <a href="#">
+                        <a href="/getNewsById?newsId=${news.newsId}" style="color: black;">
                                 ${news.title}
-                                ${news.establishTime}
+                                <div class="subTitle"> ${news.establishTime}</div>
                                 ${news.hits}
                         </a>
                     </li>

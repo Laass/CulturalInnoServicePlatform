@@ -8,12 +8,15 @@ $(document).ready(function(){
         var maxpage;
         var num = $(node).children(".card").length;
 
+        if(num==0)
+            return;
+
         if((num / maxlist) > parseInt(num / maxlist))
             maxpage = parseInt(num / maxlist) + 1;
         else
             maxpage = parseInt(num / maxlist);
 
-        if(parseInt(num)==0)
+        if(num==0)
             maxpage = 1;
 
         var startrows = (curpage-1) * maxlist;

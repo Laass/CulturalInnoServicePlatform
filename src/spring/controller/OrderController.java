@@ -5,14 +5,12 @@ import dao.OrderDAO;
 import dao.ProductDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.portlet.ModelAndView;
 import po.Order;
 import po.Product;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +45,7 @@ public class OrderController {
                 a.setSecond(p.getProName());
                 a.setThird(Integer.toString(o.getCount()));
                 a.setFourth(Double.toString(p.getPrice()));
+                a.setFifth(o.getEstablishTime().toString());
                 orderInfoList.add(a);
             }
             return orderInfoList;
@@ -73,5 +72,6 @@ public class OrderController {
         //return t;
         return null;
     }
+
 
 }

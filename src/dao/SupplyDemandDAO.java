@@ -35,64 +35,45 @@ public class SupplyDemandDAO
     }
 
 
-    /**
-     * 测试通过
-     * @param newSupply
-     * @return
-     */
-	public Supply addSupply(Supply newSupply) throws Exception
-	{
-        getSession();
-		try
-		{
-            SupplyDemand newSD=newSupply.toSupplyDemand();
-            hs.save(newSD);
+//    /**
+//     * 测试通过
+//     * @param newSupply
+//     * @return
+//     */
+//	public Supply addSupply(Supply newSupply) throws Exception
+//	{
+//        getSession();
+//		try
+//		{
+//            SupplyDemand newSD=newSupply.toSupplyDemand();
+//            hs.save(newSD);
+//
+//            releaseSession();
+//			return newSupply;
+//		}
+//		catch (Exception e)
+//		{
+//            releaseSession(hs);
+//            throw e;
+//		}
+////        return null;
+//	}
 
-            releaseSession();
-			return newSupply;
-		}
-		catch (Exception e)
-		{
-            releaseSession(hs);
-            throw e;
-		}
-//        return null;
-	}
-
-    /**
-     * 测试通过
-     * @param newDemand
-     * @return
-     */
-    public Demand addDemand(Demand newDemand) throws Exception
-    {
-        getSession();
-        try
-        {
-            SupplyDemand newSD=newDemand.toSupplyDemand();
-            hs.save(newSD);
-
-            releaseSession();
-            return newDemand;
-        }
-        catch (Exception e)
-        {
-            releaseSession(hs);
-            throw e;
-        }
-//        return null;
-    }
-
-//    //上面两个函数可以合成这一个函数
-//    public SupplyDemand addSD(SupplyDemand newSD) throws Exception
+//    /**
+//     * 测试通过
+//     * @param newDemand
+//     * @return
+//     */
+//    public Demand addDemand(Demand newDemand) throws Exception
 //    {
 //        getSession();
 //        try
 //        {
+//            SupplyDemand newSD=newDemand.toSupplyDemand();
 //            hs.save(newSD);
 //
 //            releaseSession();
-//            return newSD;
+//            return newDemand;
 //        }
 //        catch (Exception e)
 //        {
@@ -101,6 +82,25 @@ public class SupplyDemandDAO
 //        }
 ////        return null;
 //    }
+
+//    //上面两个函数可以合成这一个函数
+    public SupplyDemand addSD(SupplyDemand newSD) throws Exception
+    {
+        getSession();
+        try
+        {
+            hs.save(newSD);
+
+            releaseSession();
+            return newSD;
+        }
+        catch (Exception e)
+        {
+            releaseSession(hs);
+            throw e;
+        }
+//        return null;
+    }
 
 //    public Boolean delSupply(String supplyId)
 //    {
@@ -178,7 +178,7 @@ public class SupplyDemandDAO
      * @param Id
      * @return
      */
-    public Boolean delSupplyDemand(String Id) throws Exception
+    public Boolean delSD(String Id) throws Exception
     {
         getSession();
         try
@@ -243,6 +243,24 @@ public class SupplyDemandDAO
 //        return null;
     }
 
+    public List<SupplyDemand> getSDByTitle(String title) throws Exception
+    {
+        getSession();
+        try
+        {
+            Query getSD=hs.createQuery("from  SupplyDemand where title=?1");
+            getSD.setParameter(1,title);
+            List<SupplyDemand> sdList=getSD.list();
+            releaseSession();
+            return sdList;
+        }
+        catch(Exception e)
+        {
+            releaseSession(hs);
+            throw e;
+        }
+    }
+
     /**
      * 测试通过
      * @param supplyId
@@ -265,6 +283,22 @@ public class SupplyDemandDAO
             throw e;
         }
 //        return null;
+    }
+
+    public SupplyDemand getSDById(String id) throws Exception
+    {
+        getSession();
+        try
+        {
+            SupplyDemand sd=(SupplyDemand)hs.get(SupplyDemand.class,id);
+            releaseSession();
+            return sd;
+        }
+        catch(Exception e)
+        {
+            releaseSession();
+            throw e;
+        }
     }
 	
 	/**
@@ -299,6 +333,24 @@ public class SupplyDemandDAO
 //        return null;
     }
 
+    public List<SupplyDemand> getSDByKeyWord(String keyword) throws Exception
+    {
+        getSession();
+        try
+        {
+            Query getSDQuery=hs.createQuery("from SupplyDemand where title like ?1");
+            getSDQuery.setParameter(1,'%'+keyword+'%');
+            List<SupplyDemand> sdList=getSDQuery.list();
+            releaseSession();
+            return sdList;
+        }
+        catch(Exception e)
+        {
+            releaseSession(hs);
+            throw e;
+        }
+    }
+
     /**
      *测试通过
      * @return
@@ -326,6 +378,23 @@ public class SupplyDemandDAO
             throw e;
         }
 //        return null;
+    }
+
+    public List<SupplyDemand> getAllSD() throws Exception
+    {
+        getSession();
+        try
+        {
+            Query getAllSDQuery=hs.createQuery("from SupplyDemand ");
+            List<SupplyDemand> sdList=getAllSDQuery.list();
+            releaseSession();
+            return sdList;
+        }
+        catch(Exception e)
+        {
+            releaseSession(hs);
+            throw e;
+        }
     }
 	
 	/**
@@ -359,6 +428,25 @@ public class SupplyDemandDAO
             throw e;
         }
 //        return null;
+    }
+
+    public List<SupplyDemand> getSDByPage(int page) throws Exception
+    {
+        getSession();
+        try
+        {
+            Query getSDQuery=hs.createQuery("from SupplyDemand");
+            getSDQuery.setFirstResult((page-1)*pageCapacity);
+            getSDQuery.setMaxResults(pageCapacity);
+            List<SupplyDemand> sdList=getSDQuery.list();
+            releaseSession();
+            return sdList;
+        }
+        catch(Exception e)
+        {
+            releaseSession(hs);
+            throw e;
+        }
     }
 
     /**
@@ -395,6 +483,26 @@ public class SupplyDemandDAO
         }
 //        return null;
     }
+
+    public List<SupplyDemand> getUserSDByPage(String userId,int page) throws Exception
+    {
+        getSession();
+        try
+        {
+            Query getSDQuery=hs.createQuery("from SupplyDemand where userId=?1");
+            getSDQuery.setParameter(1,userId);
+            getSDQuery.setFirstResult((page-1)*pageCapacity);
+            getSDQuery.setMaxResults(pageCapacity);
+            List<SupplyDemand> sdList=getSDQuery.list();
+            releaseSession();
+            return sdList;
+        }
+        catch(Exception e)
+        {
+            releaseSession(hs);
+            throw e;
+        }
+    }
 	
 	/**
      *
@@ -426,6 +534,24 @@ public class SupplyDemandDAO
             throw e;
         }
 //        return null;
+    }
+
+    public List<SupplyDemand> getUserSD(String userId)
+    {
+        getSession();
+        try
+        {
+            Query getSDQuery=hs.createQuery("from SupplyDemand where userId=?1");
+            getSDQuery.setParameter(1,userId);
+            List<SupplyDemand> sdList=getSDQuery.list();
+            releaseSession();
+            return sdList;
+        }
+        catch(Exception e)
+        {
+            releaseSession(hs);
+            throw e;
+        }
     }
 
 	
@@ -647,48 +773,68 @@ public class SupplyDemandDAO
 //        return null;
     }
 
-    /**
-     * 测试通过
-     * @param validatedSupply
-     * @return
-     */
-    public Boolean setAsPass(Supply validatedSupply) throws Exception
+//    /**
+//     * 测试通过
+//     * @param validatedSupply
+//     * @return
+//     */
+//    public Boolean setAsPass(Supply validatedSupply) throws Exception
+//    {
+//        getSession();
+//        try
+//        {
+//            validatedSupply.setIsPass((byte)1);
+//            SupplyDemand sd=validatedSupply.toSupplyDemand();
+//            hs.update(sd);
+//
+//            releaseSession();
+//
+//            return true;
+//        }
+//        catch (Exception e)
+//        {
+//            releaseSession(hs);
+//            throw e;
+//        }
+////        return false;
+//    }
+
+//    /**
+//     * 测试通过
+//     * @param validatedDemand
+//     * @return
+//     */
+//    public Boolean setAsPass(Demand validatedDemand) throws Exception
+//    {
+//        getSession();
+//        try
+//        {
+//            validatedDemand.setIsPass((byte)1);
+//            SupplyDemand sd=validatedDemand.toSupplyDemand();
+//            hs.update(sd);
+//
+//            releaseSession();
+//
+//            return true;
+//        }
+//        catch(Exception e)
+//        {
+//            releaseSession(hs);
+//            throw e;
+//        }
+////        return null;
+//    }
+
+    //是否可以替换上面两个函数？
+    public Boolean setAsPass(SupplyDemand validatedSD) throws Exception
     {
         getSession();
         try
         {
-            validatedSupply.setIsPass((byte)1);
-            SupplyDemand sd=validatedSupply.toSupplyDemand();
-            hs.update(sd);
+            validatedSD.setIsPass((byte)1);
+            hs.update(validatedSD);
 
             releaseSession();
-
-            return true;
-        }
-        catch (Exception e)
-        {
-            releaseSession(hs);
-            throw e;
-        }
-//        return false;
-    }
-
-    /**
-     * 测试通过
-     * @param validatedDemand
-     * @return
-     */
-    public Boolean setAsPass(Demand validatedDemand) throws Exception
-    {
-        getSession();
-        try
-        {
-            validatedDemand.setIsPass((byte)1);
-            SupplyDemand sd=validatedDemand.toSupplyDemand();
-            hs.update(sd);
-
-            releaseSession();
-
             return true;
         }
         catch(Exception e)
@@ -698,23 +844,4 @@ public class SupplyDemandDAO
         }
 //        return null;
     }
-
-//    //是否可以替换上面两个函数？
-//    public Boolean setAsPass(SupplyDemand validatedSD)
-//    {
-//        getSession();
-//        try
-//        {
-//            validatedSD.setIsPass((byte)1);
-//            hs.update(validatedSD);
-//
-//            releaseSession();
-//            return true;
-//        }
-//        catch(Exception e)
-//        {
-//            he.printStackTrace();
-//        }
-//        return null;
-//    }
 }
