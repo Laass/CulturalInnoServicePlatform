@@ -31,12 +31,17 @@ public class ProductDAO
         SessionMgr.releaseConnect(hsession,ts);
     }
 
+    private void releaseSession(Session hsession)
+    {
+        SessionMgr.releaseConnect(hsession);
+    }
+
     /**
      * 测试通过
      * @param newSupply
      * @return
      */
-    public Product addProduct(Product newSupply)
+    public Product addProduct(Product newSupply) throws Exception
     {
         getSession();
         try
@@ -47,9 +52,9 @@ public class ProductDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            
-            return null;
+            releaseSession(hsession);
+            throw e;
+//            return null;
         }
     }
 
@@ -57,7 +62,7 @@ public class ProductDAO
      * 测试通过
      * @return
      */
-    public List<Product> getAllProducts()
+    public List<Product> getAllProducts() throws Exception
     {
        getSession();
         try
@@ -70,9 +75,9 @@ public class ProductDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
-            return null;
+            releaseSession(hsession);
+            throw e;
+//            return null;
         }
     }
 
@@ -83,7 +88,7 @@ public class ProductDAO
      * @param page 获取第几页的产品
      * @return List 产品列表
      */
-    public List<Product> getProductByPage(int page)
+    public List<Product> getProductByPage(int page) throws Exception
     {
        getSession();
         try
@@ -98,9 +103,9 @@ public class ProductDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
-            return null;
+            releaseSession(hsession);
+            throw e;
+//            return null;
         }
     }
 
@@ -111,7 +116,7 @@ public class ProductDAO
      * @param userId 企业用户的id
      * @return List 产品列表
      */
-    public List<Product> getUserProducts(String userId)
+    public List<Product> getUserProducts(String userId) throws Exception
     {
        getSession();
         try
@@ -126,9 +131,10 @@ public class ProductDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            releaseSession(hsession);
+            throw e;
         }
-        return null;
+//        return null;
     }
 
     /**
@@ -138,7 +144,7 @@ public class ProductDAO
      * @param page
      * @return
      */
-    public List<Product> getUserProductByPage(String userId,int page)
+    public List<Product> getUserProductByPage(String userId,int page) throws Exception
     {
         getSession();
         try
@@ -154,9 +160,10 @@ public class ProductDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            releaseSession(hsession);
+            throw e;
         }
-        return null;
+//        return null;
     }
 
     /**
@@ -166,7 +173,7 @@ public class ProductDAO
      * @param productId 要查找的产品的id
      * @return 指定id的产品
      */
-    public Product getProducById(String productId)
+    public Product getProducById(String productId) throws Exception
     {
        getSession();
         try
@@ -178,9 +185,9 @@ public class ProductDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
-            return null;
+            releaseSession(hsession);
+            throw e;
+//            return null;
         }
     }
 
@@ -190,7 +197,7 @@ public class ProductDAO
      *
      * @param keyword 要查找的关键字
      */
-    public List<Product> getProductByKeyword(String keyword)
+    public List<Product> getProductByKeyword(String keyword) throws Exception
     {
        getSession();
         try
@@ -204,9 +211,9 @@ public class ProductDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
-            return null;
+            releaseSession(hsession);
+            throw e;
+//            return null;
         }
     }
 
@@ -216,7 +223,7 @@ public class ProductDAO
      *
      * @param productName 要查找的产品名
      */
-    public List<Product> getProductByTitle(String productName)
+    public List<Product> getProductByTitle(String productName) throws Exception
     {
        getSession();
         try
@@ -231,9 +238,9 @@ public class ProductDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
-            return null;
+            releaseSession(hsession);
+            throw e;
+//            return null;
         }
     }
 
@@ -244,7 +251,7 @@ public class ProductDAO
      * @param ptype 要获取的产品类型
      * @return List 一类产品的列表
      */
-    public List<Product> getProductByType(String ptype)
+    public List<Product> getProductByType(String ptype) throws Exception
     {
        getSession();
         try
@@ -258,9 +265,9 @@ public class ProductDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
-            return null;
+            releaseSession(hsession);
+            throw e;
+//            return null;
         }
     }
 
@@ -269,7 +276,7 @@ public class ProductDAO
      * @param productId
      * @return
      */
-    public Boolean delProduct(String productId)
+    public Boolean delProduct(String productId) throws Exception
     {
        getSession();
         try
@@ -293,9 +300,9 @@ public class ProductDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
-            return false;
+            releaseSession(hsession);
+            throw e;
+//            return false;
         }
     }
 
@@ -304,7 +311,7 @@ public class ProductDAO
      * @param productId
      * @return
      */
-    public Boolean setAsPass(String productId)
+    public Boolean setAsPass(String productId) throws Exception
     {
        getSession();
         try
@@ -317,9 +324,9 @@ public class ProductDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
-            return false;
+            releaseSession(hsession);
+            throw e;
+//            return false;
         }
     }
 }

@@ -33,9 +33,16 @@ public class NewsController {
     {
         NewsDAO nDAO=new NewsDAO();
         System.out.println("allNewsListallNewsListallNewsList");
-        List<News> allNewsList=nDAO.getAllNews();
-        request.setAttribute("allNewsList",allNewsList);
-        return allNewsList;
+        try
+        {
+            List<News> allNewsList = nDAO.getAllNews();
+            request.setAttribute("allNewsList", allNewsList);
+            return allNewsList;
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
     }
 
     @RequestMapping(value = "/getAllPassedNews.action")
@@ -44,14 +51,21 @@ public class NewsController {
     public List<News> getAllPassedNews(HttpServletRequest request)
     {
         NewsDAO nDAO=new NewsDAO();
-        List<News> l=nDAO.getAllNews();
-        List<News> passedList=new ArrayList<>();
-        for(News n:l)
-            if(n.getIsPass()==(byte)1)
-                passedList.add(n);
-        System.out.println("allPassedNewsListallPassedNewsListallPassedNewsList");
-        request.setAttribute("allPassedNewsList",passedList);
-        return passedList;
+        try
+        {
+            List<News> l = nDAO.getAllNews();
+            List<News> passedList = new ArrayList<>();
+            for (News n : l)
+                if (n.getIsPass() == (byte) 1)
+                    passedList.add(n);
+            System.out.println("allPassedNewsListallPassedNewsListallPassedNewsList");
+            request.setAttribute("allPassedNewsList", passedList);
+            return passedList;
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
     }
 
     @RequestMapping(value = "/News.html")
@@ -66,21 +80,42 @@ public class NewsController {
     @RequestMapping(value = "/addNews.action")
     @ResponseBody
     public NewsController addNew(@RequestBody String json, HttpServletRequest request){
-        new NewsDAO().addNews(new Gson().fromJson(json, News.class));
-        return this;
+        try
+        {
+            new NewsDAO().addNews(new Gson().fromJson(json, News.class));
+            return this;
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
     }
 
     @RequestMapping(value = "/delNews.action")
     @ResponseBody
     public NewsController adelNew(@RequestBody String json, HttpServletRequest request){
-        new NewsDAO().delNews(new Gson().fromJson(json, News.class).getNewsId());
-        return this;
+        try
+        {
+            new NewsDAO().delNews(new Gson().fromJson(json, News.class).getNewsId());
+            return this;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     @RequestMapping(value = "/getNew.action")
     @ResponseBody
     public News getNew(@RequestBody String json, HttpServletRequest request){
-        return new NewsDAO().getNewsById(new Gson().fromJson(json, News.class).getNewsId());
+        try
+        {
+            return new NewsDAO().getNewsById(new Gson().fromJson(json, News.class).getNewsId());
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     @ModelAttribute("pageNewsList")
@@ -89,7 +124,14 @@ public class NewsController {
     public List getNewsByPage(@RequestParam("page")String page, HttpServletRequest request){
         //第一个参数存用户id，第二个参数存page
 //        AO temp = new Gson().fromJson(json, AO.class);
-        return new NewsDAO().getNewsByPage(Integer.parseInt(page));
+        try
+        {
+            return new NewsDAO().getNewsByPage(Integer.parseInt(page));
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     @ModelAttribute("searchNewsList")
@@ -98,10 +140,17 @@ public class NewsController {
         //第一个参数是模糊查询还是精确查询，第二个参数关键字
         AO temp = new Gson().fromJson(json, AO.class);
 
-        if(temp.getFirst().equals("模糊查询"))
-            return new NewsDAO().getNewsByKeyword(temp.getFirst());
-        else
-            return new NewsDAO().getNewsByTitle(temp.getFirst());
+        try
+        {
+            if(temp.getFirst().equals("模糊查询"))
+                return new NewsDAO().getNewsByKeyword(temp.getFirst());
+            else
+                return new NewsDAO().getNewsByTitle(temp.getFirst());
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     //NewsDAO的审核方法改为String参数
@@ -109,11 +158,18 @@ public class NewsController {
     @ResponseBody
     public NewsController passProduct(@RequestBody String json , HttpServletRequest request){
         News temp = new Gson().fromJson(json, News.class);
-        if(new NewsDAO().setAsPass(temp.getNewsId()))
-            this.setMessage("审核成功");
-        else
-            this.setMessage("审核失败");
-        return this;
+        try
+        {
+            if(new NewsDAO().setAsPass(temp.getNewsId()))
+                this.setMessage("审核成功");
+            else
+                this.setMessage("审核失败");
+            return this;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
 }

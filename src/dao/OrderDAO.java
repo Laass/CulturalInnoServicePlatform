@@ -26,12 +26,17 @@ public class OrderDAO
         SessionMgr.releaseConnect(hsession, ts);
     }
 
+    private void releaseSession(Session hsession)
+    {
+        SessionMgr.releaseConnect(hsession);
+    }
+
     /**
      * 测试通过
      * @param newOrder
      * @return
      */
-    public Order addOrder(Order newOrder)
+    public Order addOrder(Order newOrder) throws Exception
     {
         getSession();
         try
@@ -46,9 +51,10 @@ public class OrderDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            releaseSession(hsession);
+            throw e;
         }
-        return null;
+//        return null;
     }
 
     /**
@@ -57,7 +63,7 @@ public class OrderDAO
      * @param userId
      * @return
      */
-    public List<Order> getUserOrders(String userId)
+    public List<Order> getUserOrders(String userId) throws Exception
     {
         getSession();
         try
@@ -73,9 +79,9 @@ public class OrderDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-//			SessionMgr.releaseConnect(sf, hsession);
-            return null;
+            releaseSession(hsession);
+            throw e;
+//            return null;
         }
     }
 
@@ -86,7 +92,7 @@ public class OrderDAO
      * @param page
      * @return
      */
-    public List<Order> getUserOrdersByPage(String userId,int page)
+    public List<Order> getUserOrdersByPage(String userId,int page) throws Exception
     {
         getSession();
         try
@@ -104,9 +110,9 @@ public class OrderDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-//			SessionMgr.releaseConnect(sf, hsession);
-            return null;
+            releaseSession(hsession);
+            throw e;
+//            return null;
         }
     }
 
@@ -117,7 +123,7 @@ public class OrderDAO
      * @param page 页数
      * @return List
      */
-    public List getOrdersByPage(int page)
+    public List getOrdersByPage(int page) throws Exception
     {
        getSession();
         try
@@ -140,9 +146,9 @@ public class OrderDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-//			releaseSession();
-            return null;
+			releaseSession(hsession);
+			throw e;
+//            return null;
         }
     }
 

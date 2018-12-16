@@ -37,23 +37,37 @@ public class CollectionController{
     @ResponseBody
     public CollectionController addToCollection(@RequestBody String json){
 
-        Collection coll = new CollectionDAO().addToCollection(new Gson().fromJson(json, Collection.class));
+        try
+        {
+            Collection coll = new CollectionDAO().addToCollection(new Gson().fromJson(json, Collection.class));
 
-        if(coll != null)
-            this.setMessage("添加成功");
-        else
-            this.setMessage("添加失败");
-        return this;
+            if(coll != null)
+                this.setMessage("添加成功");
+            else
+                this.setMessage("添加失败");
+            return this;
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
     }
 
     @ModelAttribute("pageCollectionList")
     @RequestMapping(value = "/getCollectionByPage.action")
     @ResponseBody
     public List getCollectionByPage(@RequestBody String json){
-        //第一个参数存用户id，第二个参数存page
-        AO temp = new Gson().fromJson(json, AO.class);
-        List t = new CollectionDAO().getCollectionByPage(temp.getFirst(),Integer.parseInt(temp.getSecond()));
-        return t;
+        try
+        {
+            //第一个参数存用户id，第二个参数存page
+            AO temp = new Gson().fromJson(json, AO.class);
+            List t = new CollectionDAO().getCollectionByPage(temp.getFirst(),Integer.parseInt(temp.getSecond()));
+            return t;
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
     }
 
 }

@@ -10,6 +10,7 @@ import java.util.Objects;
 public class Product
 {
     private String proId;
+    private String userId;
     private String proName;
     private double price;
     private Integer hits;
@@ -28,6 +29,18 @@ public class Product
     public void setProId(String proId)
     {
         this.proId = proId;
+    }
+
+    @Basic
+    @Column(name = "userID")
+    public String getUserId()
+    {
+        return userId;
+    }
+
+    public void setUserId(String userId)
+    {
+        this.userId = userId;
     }
 
     @Basic

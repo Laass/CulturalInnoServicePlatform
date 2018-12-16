@@ -9,7 +9,7 @@ public enum ProductType
 
     public final String name;
 
-    private ProductType(String name)
+    ProductType(String name)
     {
         this.name=name;
     }

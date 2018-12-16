@@ -28,12 +28,17 @@ public class MessageDAO
         SessionMgr.releaseConnect(hsession, ts);
     }
 
+    private void releaseSession(Session hsession)
+    {
+        SessionMgr.releaseConnect(hsession);
+    }
+
     /**
      * 测试通过
      * @param newMessage
      * @return
      */
-    public Message addMessage(Message newMessage)
+    public Message addMessage(Message newMessage) throws Exception
     {
         getSession();
         try
@@ -46,9 +51,9 @@ public class MessageDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
-            return null;
+            releaseSession(hsession);
+            throw e;
+//            return null;
         }
     }
 
@@ -58,7 +63,7 @@ public class MessageDAO
      * @param messageId
      * @return
      */
-    public Boolean delMessage(String messageId)
+    public Boolean delMessage(String messageId) throws Exception
     {
         getSession();
         try
@@ -75,9 +80,9 @@ public class MessageDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
             releaseSession();
-            return false;
+            throw e;
+//            return false;
         }
     }
 
@@ -87,7 +92,7 @@ public class MessageDAO
      * @return
      */
     //
-    public Message getMessageInfo(String messageId)
+    public Message getMessageInfo(String messageId) throws Exception
     {
         getSession();
         try
@@ -105,9 +110,9 @@ public class MessageDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
             releaseSession();
-            return null;
+            throw e;
+//            return null;
         }
     }
 
@@ -120,7 +125,7 @@ public class MessageDAO
      * @param page
      * @return
      */
-    public List<Message> getMessageById(String originId, int page)
+    public List<Message> getMessageById(String originId, int page) throws Exception
     {
         getSession();
         try
@@ -147,9 +152,9 @@ public class MessageDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
             releaseSession();
-            return null;
+            throw e;
+//            return null;
         }
     }
 
@@ -159,7 +164,7 @@ public class MessageDAO
      * @param userId
      * @return
      */
-    public List<Message> getUserMessage(String userId)
+    public List<Message> getUserMessage(String userId) throws Exception
     {
         getSession();
         try
@@ -172,11 +177,12 @@ public class MessageDAO
 
             return list;
         }
-        catch (HibernateException he)
+        catch (Exception e)
         {
-            he.printStackTrace();
+            releaseSession(hsession);
+            throw e;
         }
-        return null;
+//        return null;
     }
 
     /**
@@ -186,7 +192,7 @@ public class MessageDAO
      * @param page
      * @return
      */
-    public List<Message> getUserMessageByPage(String userId,int page)
+    public List<Message> getUserMessageByPage(String userId,int page) throws Exception
     {
         getSession();
         try
@@ -201,10 +207,10 @@ public class MessageDAO
 
             return list;
         }
-        catch (HibernateException he)
+        catch (Exception e)
         {
-            he.printStackTrace();
+            throw e;
         }
-        return null;
+//        return null;
     }
 }

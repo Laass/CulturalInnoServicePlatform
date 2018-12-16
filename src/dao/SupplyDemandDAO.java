@@ -28,6 +28,11 @@ public class SupplyDemandDAO
     {
         SessionMgr.releaseConnect(hs,ts);
     }
+    
+    private void releaseSession(Session hs)
+    {
+        SessionMgr.releaseConnect(hs);
+    }
 
 
     /**
@@ -35,7 +40,7 @@ public class SupplyDemandDAO
      * @param newSupply
      * @return
      */
-	public Supply addSupply(Supply newSupply)
+	public Supply addSupply(Supply newSupply) throws Exception
 	{
         getSession();
 		try
@@ -48,9 +53,10 @@ public class SupplyDemandDAO
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+            releaseSession(hs);
+            throw e;
 		}
-        return null;
+//        return null;
 	}
 
     /**
@@ -58,7 +64,7 @@ public class SupplyDemandDAO
      * @param newDemand
      * @return
      */
-    public Demand addDemand(Demand newDemand)
+    public Demand addDemand(Demand newDemand) throws Exception
     {
         getSession();
         try
@@ -71,13 +77,14 @@ public class SupplyDemandDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 
 //    //上面两个函数可以合成这一个函数
-//    public SupplyDemand addSD(SupplyDemand newSD)
+//    public SupplyDemand addSD(SupplyDemand newSD) throws Exception
 //    {
 //        getSession();
 //        try
@@ -89,10 +96,10 @@ public class SupplyDemandDAO
 //        }
 //        catch (Exception e)
 //        {
-//            e.printStackTrace();
-//            releaseSession();
+//            releaseSession(hs);
+//            throw e;
 //        }
-//        return null;
+////        return null;
 //    }
 
 //    public Boolean delSupply(String supplyId)
@@ -123,7 +130,7 @@ public class SupplyDemandDAO
 //            releaseSession();
 //            return true;
 //        }
-//        catch(HibernateException he)
+//        catch(Exception e)
 //        {
 //            he.printStackTrace();
 //        }
@@ -158,7 +165,7 @@ public class SupplyDemandDAO
 //            releaseSession();
 //            return true;
 //        }
-//        catch(HibernateException he)
+//        catch(Exception e)
 //        {
 //            he.printStackTrace();
 //        }
@@ -171,7 +178,7 @@ public class SupplyDemandDAO
      * @param Id
      * @return
      */
-    public Boolean delSupplyDemand(String Id)
+    public Boolean delSupplyDemand(String Id) throws Exception
     {
         getSession();
         try
@@ -199,11 +206,12 @@ public class SupplyDemandDAO
             releaseSession();
             return true;
         }
-        catch(HibernateException he)
+        catch(Exception e)
         {
-            he.printStackTrace();
+            releaseSession(hs);
+            throw e;
         }
-        return false;
+//        return false;
     }
 	
 	/**
@@ -212,7 +220,7 @@ public class SupplyDemandDAO
 	 * @param supplyTitle 关键字
 	 * @return
 	 */
-    public List getSupplyByTitle(String supplyTitle)
+    public List getSupplyByTitle(String supplyTitle) throws Exception
     {
         getSession();
         try
@@ -227,11 +235,12 @@ public class SupplyDemandDAO
 
             return supplyList;
         }
-        catch(HibernateException he)
+        catch(Exception e)
         {
-            he.printStackTrace();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 
     /**
@@ -239,7 +248,7 @@ public class SupplyDemandDAO
      * @param supplyId
      * @return
      */
-    public Supply getSupplyById(String supplyId)
+    public Supply getSupplyById(String supplyId) throws Exception
     {
         getSession();
         try
@@ -250,11 +259,12 @@ public class SupplyDemandDAO
 
             return new Supply(sd);
         }
-        catch(HibernateException he)
+        catch(Exception e)
         {
-            he.printStackTrace();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 	
 	/**
@@ -263,7 +273,7 @@ public class SupplyDemandDAO
 	 * @param keyword
 	 * @return
 	 */
-    public List getSuppliesByKeyword(String keyword)
+    public List getSuppliesByKeyword(String keyword) throws Exception
     {
         getSession();
         try
@@ -281,18 +291,19 @@ public class SupplyDemandDAO
 
             return supplyList;
         }
-        catch(HibernateException he)
+        catch(Exception e)
         {
-            he.printStackTrace();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 
     /**
      *测试通过
      * @return
      */
-    public List<Supply> getAllSupplies()
+    public List<Supply> getAllSupplies() throws Exception
     {
         getSession();
         try
@@ -309,11 +320,12 @@ public class SupplyDemandDAO
 
             return supplyList;
         }
-        catch(HibernateException he)
+        catch(Exception e)
         {
-            he.printStackTrace();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 	
 	/**
@@ -322,7 +334,7 @@ public class SupplyDemandDAO
 	 * @param page 页数
 	 * @return List
 	 */
-    public List<Supply> getSuppliesByPage(int page)
+    public List<Supply> getSuppliesByPage(int page) throws Exception
     {
         getSession();
         try
@@ -343,9 +355,10 @@ public class SupplyDemandDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 
     /**
@@ -355,7 +368,7 @@ public class SupplyDemandDAO
      * @param page
      * @return
      */
-    public List<Supply> getUserSuppliesByPage(String userId,int page)
+    public List<Supply> getUserSuppliesByPage(String userId,int page) throws Exception
     {
         getSession();
         try
@@ -377,9 +390,10 @@ public class SupplyDemandDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 	
 	/**
@@ -388,7 +402,7 @@ public class SupplyDemandDAO
 	 * @param userId 用户Id
 	 * @return List
 	 */
-    public List<Supply> getUserSupplies(String userId)
+    public List<Supply> getUserSupplies(String userId) throws Exception
     {
         getSession();
         try
@@ -408,9 +422,10 @@ public class SupplyDemandDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 
 	
@@ -420,7 +435,8 @@ public class SupplyDemandDAO
 	 * @param demandTitle 要查找的需求的标题
 	 * @return 按标题精确查找到的需求列表
 	 */
-	public List<Demand> getDemandByTitle(String demandTitle) {
+	public List<Demand> getDemandByTitle(String demandTitle) throws Exception 
+    {
         getSession();
         try
         {
@@ -437,11 +453,12 @@ public class SupplyDemandDAO
 
             return demandList;
         }
-        catch(HibernateException he)
+        catch(Exception e)
         {
-            he.printStackTrace();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
 	}
 
     /**
@@ -449,7 +466,7 @@ public class SupplyDemandDAO
      * @param demandId
      * @return
      */
-    public Demand getDemandById(String demandId)
+    public Demand getDemandById(String demandId) throws Exception
     {
         getSession();
         try
@@ -460,11 +477,12 @@ public class SupplyDemandDAO
 
             return new Demand(sd);
         }
-        catch(HibernateException he)
+        catch(Exception e)
         {
-            he.printStackTrace();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 	
 	/**
@@ -473,7 +491,7 @@ public class SupplyDemandDAO
 	 * @param keyword 查找的关键字
 	 * @return 标题中含有关键字的需求列表
 	 */
-    public List<Demand> getDemandsByKeyWord(String keyword)
+    public List<Demand> getDemandsByKeyWord(String keyword) throws Exception
     {
         getSession();
         try
@@ -491,18 +509,19 @@ public class SupplyDemandDAO
 
             return demandList;
         }
-        catch(HibernateException he)
+        catch(Exception e)
         {
-            he.printStackTrace();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 
     /**
      *
      * @return
      */
-	public List<Demand> getAllDemands()
+	public List<Demand> getAllDemands() throws Exception
     {
         getSession();
         try
@@ -519,11 +538,12 @@ public class SupplyDemandDAO
 
             return demandList;
         }
-        catch (HibernateException he)
+        catch (Exception e)
         {
-            he.printStackTrace();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 	
 	/**
@@ -533,7 +553,7 @@ public class SupplyDemandDAO
 	 * @param page 页数
 	 * @return List
 	 */
-    public List<Demand> getDemandsByPage(int page)
+    public List<Demand> getDemandsByPage(int page) throws Exception
     {
         getSession();
         try
@@ -554,9 +574,10 @@ public class SupplyDemandDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 
     /**
@@ -566,7 +587,7 @@ public class SupplyDemandDAO
      * @param page
      * @return
      */
-    public List<Demand> getUserDemandsByPage(String userId,int page)
+    public List<Demand> getUserDemandsByPage(String userId,int page) throws Exception
     {
         getSession();
         try
@@ -588,9 +609,10 @@ public class SupplyDemandDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 	
 	/**
@@ -599,7 +621,7 @@ public class SupplyDemandDAO
 	 * @param userId 用户Id
 	 * @return List
 	 */
-    public List<Demand> getUserDemands(String userId)
+    public List<Demand> getUserDemands(String userId) throws Exception
     {
         getSession();
         try
@@ -619,9 +641,10 @@ public class SupplyDemandDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 
     /**
@@ -629,7 +652,7 @@ public class SupplyDemandDAO
      * @param validatedSupply
      * @return
      */
-    public Boolean setAsPass(Supply validatedSupply)
+    public Boolean setAsPass(Supply validatedSupply) throws Exception
     {
         getSession();
         try
@@ -642,11 +665,12 @@ public class SupplyDemandDAO
 
             return true;
         }
-        catch (HibernateException he)
+        catch (Exception e)
         {
-            he.printStackTrace();
+            releaseSession(hs);
+            throw e;
         }
-        return false;
+//        return false;
     }
 
     /**
@@ -654,7 +678,7 @@ public class SupplyDemandDAO
      * @param validatedDemand
      * @return
      */
-    public Boolean setAsPass(Demand validatedDemand)
+    public Boolean setAsPass(Demand validatedDemand) throws Exception
     {
         getSession();
         try
@@ -667,11 +691,12 @@ public class SupplyDemandDAO
 
             return true;
         }
-        catch(HibernateException he)
+        catch(Exception e)
         {
-            he.printStackTrace();
+            releaseSession(hs);
+            throw e;
         }
-        return null;
+//        return null;
     }
 
 //    //是否可以替换上面两个函数？
@@ -686,7 +711,7 @@ public class SupplyDemandDAO
 //            releaseSession();
 //            return true;
 //        }
-//        catch(HibernateException he)
+//        catch(Exception e)
 //        {
 //            he.printStackTrace();
 //        }

@@ -140,10 +140,17 @@ public class ExhibitionController {
     @ResponseBody
     public ExhibitionController passProduct(@RequestBody String json , HttpServletRequest request){
         Exhibition temp = new Gson().fromJson(json, Exhibition.class);
-        if(new ProductDAO().setAsPass(temp.getExId()))
-            this.setMessage("审核成功");
-        else
-            this.setMessage("审核失败");
-        return this;
+        try
+        {
+            if (new ProductDAO().setAsPass(temp.getExId()))
+                this.setMessage("审核成功");
+            else
+                this.setMessage("审核失败");
+            return this;
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
     }
 }

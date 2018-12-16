@@ -6,6 +6,7 @@
 
     <class name="po.Product" table="product" schema="service_platform_db">
         <id name="proId" column="proID"/>
+        <property name="userId" column="userID"/>
         <property name="proName" column="proName"/>
         <property name="price" column="price"/>
         <property name="hits" column="hits"/>

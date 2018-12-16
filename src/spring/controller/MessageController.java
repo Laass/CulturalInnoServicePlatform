@@ -29,7 +29,14 @@ public class MessageController {
     @ResponseBody
     public Message getMessageInfo(@RequestBody String json){
         Message temp = new Gson().fromJson(json, Message.class);
-        return new MessageDAO().getMessageInfo(temp.getMesId());
+        try
+        {
+            return new MessageDAO().getMessageInfo(temp.getMesId());
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
     }
 
     @ModelAttribute("pageMessageList")
@@ -38,8 +45,15 @@ public class MessageController {
     public List getMessageByPage(@RequestBody String json){
         //第一个参数为id，第二个为页数
         AO temp = new Gson().fromJson(json, AO.class);
-        List t = new MessageDAO().getMessageById(temp.getFirst(), Integer.parseInt(temp.getSecond()));
-        return t;
+        try
+        {
+            List t = new MessageDAO().getMessageById(temp.getFirst(), Integer.parseInt(temp.getSecond()));
+            return t;
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
     }
 
     @RequestMapping(value = "/addMessage.action")
@@ -47,22 +61,37 @@ public class MessageController {
     public MessageController addMessage(@RequestBody String json){
         //第一个参数为id，第二个为页数
         Message temp = new Gson().fromJson(json, Message.class);
-        if(new MessageDAO().addMessage(temp) != null)
-            this.setMessage("添加成功");
-        else
-            this.setMessage("添加失败");
-        return this;
+       try
+       {
+           if(new MessageDAO().addMessage(temp) != null)
+               this.setMessage("添加成功");
+           else
+               this.setMessage("添加失败");
+           return this;
+       }
+       catch(Exception e)
+       {
+           return null;
+       }
     }
 
     @RequestMapping(value = "/delMessage.action")
     @ResponseBody
     public MessageController delMessage(@RequestBody String json){
         Message temp = new Gson().fromJson(json, Message.class);
-        if(new MessageDAO().delMessage(temp.getMesId()) != null)
-            this.setMessage("添加成功");
-        else
-            this.setMessage("添加失败");
-        return this;
+        try
+        {
+            if(new MessageDAO().delMessage(temp.getMesId()) != null)
+                this.setMessage("添加成功");
+            else
+                this.setMessage("添加失败");
+            return this;
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
+
     }
 
 }

@@ -36,9 +36,16 @@ public class ProductController {
     {
         ProductDAO pDAO=new ProductDAO();
         System.out.println("allProductListallProductListallProductListallProductList");
-        List<Product> l=pDAO.getAllProducts();
-        request.setAttribute("allProductList",l);
-        return l;
+        try
+        {
+            List<Product> l=pDAO.getAllProducts();
+            request.setAttribute("allProductList",l);
+            return l;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     @RequestMapping(value = "/getAllPassedProduct.action")
@@ -47,14 +54,21 @@ public class ProductController {
     public List<Product> getAllPassedProduct(HttpServletRequest request)
     {
         ProductDAO pDAO =new ProductDAO();
-        List<Product> list=pDAO.getAllProducts();
-        List<Product> passedList=new ArrayList<>();
-        System.out.println("allPassedProductListallPassedProductListallPassedProductList");
-        for(Product p:list)
-            if(p.getIsPass()==(byte)1)
-                passedList.add(p);
-        request.setAttribute("passedList",passedList);
-        return passedList;
+        try
+        {
+            List<Product> list=pDAO.getAllProducts();
+            List<Product> passedList=new ArrayList<>();
+            System.out.println("allPassedProductListallPassedProductListallPassedProductList");
+            for(Product p:list)
+                if(p.getIsPass()==(byte)1)
+                    passedList.add(p);
+            request.setAttribute("passedList",passedList);
+            return passedList;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     @RequestMapping(value = "/Product.html")
@@ -124,7 +138,14 @@ public class ProductController {
     public List getProductByPage(@RequestParam("page")String page){
         //第一个参数存用户id，第二个参数存page
 //        AO temp = new Gson().fromJson(json, AO.class);
-        return new ProductDAO().getProductByPage(Integer.parseInt(page));
+        try
+        {
+            return new ProductDAO().getProductByPage(Integer.parseInt(page));
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     @ModelAttribute("typeProductList")
@@ -133,7 +154,14 @@ public class ProductController {
     public List getProductByType(@RequestBody String json){
         //第一个参数存type，第二个参数存userid（可无，如果没有就是场频也的分类展示，有就是收藏夹的货比三家）
         AO temp = new Gson().fromJson(json, AO.class);
-        return new ProductDAO().getProductByType(temp.getFirst());
+        try
+        {
+            return new ProductDAO().getProductByType(temp.getFirst());
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     @ModelAttribute("userProductList")
@@ -141,7 +169,14 @@ public class ProductController {
     @ResponseBody
     public List getUserProduct(@RequestBody String json){
         User u = new Gson().fromJson(json, User.class);
-        return new ProductDAO().getUserProducts(u.getUserId());
+        try
+        {
+            return new ProductDAO().getUserProducts(u.getUserId());
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     @RequestMapping(value = "/searchProduct.action", method = RequestMethod.POST)
@@ -150,39 +185,67 @@ public class ProductController {
         //第一个参数是模糊查询还是精确查询，第二个参数关键字
         AO temp = new Gson().fromJson(json, AO.class);
 
-        if(temp.getFirst().equals("模糊查询"))
-            return new ProductDAO().getProductByKeyword(temp.getSecond());
-        else
-            return new ProductDAO().getProductByTitle(temp.getSecond());
+        try
+        {
+            if(temp.getFirst().equals("模糊查询"))
+                return new ProductDAO().getProductByKeyword(temp.getSecond());
+            else
+                return new ProductDAO().getProductByTitle(temp.getSecond());
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     @RequestMapping(value = "/addProduct.action", method = RequestMethod.POST)
     @ResponseBody
     public Product addProduct(@RequestBody String json , HttpServletRequest request){
         Product temp = new Gson().fromJson(json, Product.class);
-        return new ProductDAO().addProduct(temp);
+        try
+        {
+            return new ProductDAO().addProduct(temp);
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     @RequestMapping(value = "/delProduct.action", method = RequestMethod.POST)
     @ResponseBody
     public ProductController delProduct(@RequestBody String json , HttpServletRequest request){
         Product temp = new Gson().fromJson(json, Product.class);
-        if(new ProductDAO().delProduct(temp.getProId()))
-            this.setMessage("删除成功");
-        else
-            this.setMessage("删除失败");
-        return this;
+        try
+        {
+            if(new ProductDAO().delProduct(temp.getProId()))
+                this.setMessage("删除成功");
+            else
+                this.setMessage("删除失败");
+            return this;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     @RequestMapping(value = "/passProduct.action", method = RequestMethod.POST)
     @ResponseBody
     public ProductController passProduct(@RequestBody String json , HttpServletRequest request){
         Product temp = new Gson().fromJson(json, Product.class);
-        if(new ProductDAO().setAsPass(temp.getProId()))
-            this.setMessage("审核成功");
-        else
-            this.setMessage("审核失败");
-        return this;
+        try
+        {
+            if(new ProductDAO().setAsPass(temp.getProId()))
+                this.setMessage("审核成功");
+            else
+                this.setMessage("审核失败");
+            return this;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     @RequestMapping(value = "/purchaseProduct.action", method = RequestMethod.POST)

@@ -27,12 +27,17 @@ public class ImageDAO
         SessionMgr.releaseConnect(hsession, ts);
     }
 
+    private void releaseSession(Session hsession)
+    {
+        SessionMgr.releaseConnect(hsession);
+    }
+
     /**
      * 测试通过
      * @param newImage
      * @return
      */
-    public Boolean addImage(Image newImage)
+    public Boolean addImage(Image newImage) throws Exception
     {
         getSession();
         try
@@ -45,9 +50,9 @@ public class ImageDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
-            return false;
+            releaseSession(hsession);
+            throw e;
+//            return false;
         }
     }
 
@@ -57,7 +62,7 @@ public class ImageDAO
      *
      * @param id 用户或文章的id
      */
-    public List<Image> getImageByOriginId(String id)
+    public List<Image> getImageByOriginId(String id) throws Exception
     {
         getSession();
         try
@@ -73,9 +78,9 @@ public class ImageDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
             releaseSession();
-            return null;
+            throw e;
+//            return null;
         }
     }
 

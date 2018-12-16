@@ -46,10 +46,17 @@ public class SDController {
         //第一个参数是模糊查询还是精确查询，第二个参数关键字
         AO temp = new Gson().fromJson(json, AO.class);
 
-        if(temp.getFirst().equals("模糊查询"))
-            return new SupplyDemandDAO().getDemandsByKeyWord(temp.getSecond());
-        else
-            return new SupplyDemandDAO().getDemandByTitle(temp.getSecond());
+        try
+        {
+            if(temp.getFirst().equals("模糊查询"))
+                return new SupplyDemandDAO().getDemandsByKeyWord(temp.getSecond());
+            else
+                return new SupplyDemandDAO().getDemandByTitle(temp.getSecond());
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     @RequestMapping(value = "/addSupplyDemand.action", method = RequestMethod.POST)
@@ -65,11 +72,18 @@ public class SDController {
     @ResponseBody
     public SDController deSupplyDemand(@RequestBody String json , HttpServletRequest request){
         SupplyDemand temp = new Gson().fromJson(json, SupplyDemand.class);
-        if(new SupplyDemandDAO().delSupplyDemand(temp.getSdId()))
-            this.setMessage("删除成功");
-        else
-            this.setMessage("删除失败");
-        return this;
+        try
+        {
+            if(new SupplyDemandDAO().delSupplyDemand(temp.getSdId()))
+                this.setMessage("删除成功");
+            else
+                this.setMessage("删除失败");
+            return this;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     //暂时未确定

@@ -31,13 +31,18 @@ public class NewsDAO
         SessionMgr.releaseConnect(hsession, ts);
     }
 
+    private void releaseSession(Session hsession)
+    {
+        SessionMgr.releaseConnect(hsession);
+    }
+
     /**
      * 测试通过
      * 获取一条资讯
      *
      * @param newsId 资讯的id
      */
-    public News getNewsById(String newsId)
+    public News getNewsById(String newsId) throws Exception
     {
         getSession();
         try
@@ -49,9 +54,9 @@ public class NewsDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
-            return null;
+            releaseSession(hsession);
+            throw e;
+//            return null;
         }
     }
 
@@ -59,7 +64,7 @@ public class NewsDAO
      * 测试通过
      * @return
      */
-    public List<News> getAllNews()
+    public List<News> getAllNews() throws Exception
     {
         getSession();
         try
@@ -72,9 +77,9 @@ public class NewsDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
-            return null;
+            releaseSession(hsession);
+            throw e;
+//            return null;
         }
     }
 
@@ -83,7 +88,7 @@ public class NewsDAO
      * @param title
      * @return
      */
-    public List<News> getNewsByTitle(String title)
+    public List<News> getNewsByTitle(String title) throws Exception
     {
         getSession();
         try
@@ -97,9 +102,9 @@ public class NewsDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
-            return null;
+            releaseSession(hsession);
+            throw e;
+//            return null;
         }
     }
 
@@ -108,7 +113,7 @@ public class NewsDAO
      * @param keyword
      * @return
      */
-    public List<News> getNewsByKeyword(String keyword)
+    public List<News> getNewsByKeyword(String keyword) throws Exception
     {
         getSession();
         try
@@ -122,9 +127,9 @@ public class NewsDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
-            return null;
+            releaseSession(hsession);
+            throw e;
+//            return null;
         }
     }
 
@@ -135,7 +140,7 @@ public class NewsDAO
      * @param page 获取第几页的资讯
      * @return List 资讯列表
      */
-    public List<News> getNewsByPage(int page)
+    public List<News> getNewsByPage(int page) throws Exception
     {
         getSession();
         try
@@ -151,9 +156,9 @@ public class NewsDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
-            return null;
+            releaseSession(hsession);
+            throw e;
+//            return null;
         }
     }
 
@@ -164,7 +169,7 @@ public class NewsDAO
      * @param userId 企业用户Id
      * @return List 资讯列表
      */
-    public List<News> getNewsByUserId(String userId)
+    public List<News> getNewsByUserId(String userId) throws Exception
     {
         getSession();
         try
@@ -178,9 +183,9 @@ public class NewsDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
-            return null;
+            releaseSession(hsession);
+            throw e;
+//            return null;
         }
     }
 
@@ -191,7 +196,7 @@ public class NewsDAO
      * @param page
      * @return
      */
-    public List<News> getUserNewsByPage(String userId,int page)
+    public List<News> getUserNewsByPage(String userId,int page) throws Exception
     {
         getSession();
         try
@@ -207,9 +212,9 @@ public class NewsDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
-            return null;
+            releaseSession(hsession);
+            throw e;
+//            return null;
         }
     }
 
@@ -218,7 +223,7 @@ public class NewsDAO
      * @param newNews
      * @return
      */
-    public News addNews(News newNews)
+    public News addNews(News newNews) throws Exception
     {
         getSession();
         try
@@ -229,10 +234,10 @@ public class NewsDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
+            releaseSession(hsession);
+            throw e;
         }
-        return null;
+//        return null;
     }
 
     /**
@@ -240,7 +245,7 @@ public class NewsDAO
      * @param newsId
      * @return
      */
-    public Boolean delNews(String newsId)
+    public Boolean delNews(String newsId) throws Exception
     {
         getSession();
         try
@@ -267,9 +272,9 @@ public class NewsDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
             releaseSession();
-            return false;
+            throw e;
+//            return false;
         }
     }
 
@@ -278,7 +283,7 @@ public class NewsDAO
      * @param validatedNews
      * @return
      */
-    public Boolean setAsPass(News validatedNews)
+    public Boolean setAsPass(News validatedNews) throws Exception
     {
         getSession();
         try
@@ -294,9 +299,9 @@ public class NewsDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
-            return false;
+            releaseSession(hsession);
+            throw e;
+//            return false;
         }
     }
 
@@ -305,7 +310,7 @@ public class NewsDAO
      * @param newsId
      * @return
      */
-    public Boolean setAsPass(String newsId)
+    public Boolean setAsPass(String newsId) throws Exception
     {
         getSession();
         try
@@ -319,8 +324,7 @@ public class NewsDAO
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            releaseSession();
+            releaseSession(hsession);
             return false;
         }
     }
