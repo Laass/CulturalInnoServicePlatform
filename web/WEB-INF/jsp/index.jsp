@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: user0
@@ -16,258 +17,105 @@
   <!-- <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  -->
   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/base.css">
   <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
   <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
-
-  <style type="text/css">
-    .log{
-      height: 100px;
-
-      overflow: hidden;
-    }
-    .search{
-      width: 200px;
-      height: 20px;
-      float: right;
-      margin-right: 80px;
-    }
-    .newsList{
-      width: 300px;
-      height: 400px;
-      margin-left: 10px;
-      display: inline-block;
-      overflow: hidden;
-    }
-    .MidNewsList{
-      width: 355px;
-      height: 500px;
-      margin-right: 17px;
-      display: inline-block;
-      overflow: hidden;
-    }
-    .news{
-      width: 100%;
-      height: 80px;
-      margin-top: 10px;
-      /*	background-color: grey;*/
-      display: block;
-      overflow: hidden;
-    }
-    .newTitle{
-      width: 100%;
-      color: #1e50ae;
-      font-size: 13px;
-      height: 15px;
-    }
-    .MidNewsListTitle{
-      width: 100%;
-      height: 90px;
-      font-size: 28px;
-      font-weight: bold;
-      color: white;
-      background-color: #222222;
-      text-align: center;
-      padding-top: 15px;
-    }
-    .newsInfo{
-      width: 100%;
-      height: 25px;
-    }
-    ul.MidNewsListContain{
-      margin-top: 10px;
-      padding-left:8px;
-    }
-    ul.MidNewsListContain > li{
-      width: 100%;
-      line-height: 40px;
-      list-style: none;
-      border-bottom: 1px dashed #eee;
-    }
-    ul.MidNewsListContain > li > a{
-      color: black;
-    }
-    .product{
-      width: 200px;
-      height: 300px;
-      margin-right: 10px;
-      margin-top: 30px;
-      display: inline-block;
-      overflow: hidden;
-    }
-    .productImg{
-      width: 100%;
-      height: 150px;
-    }
-    .productImg > img{
-      width: 100%;
-      height: 150px;
-    }
-    .productTitle{
-      margin-top: 8px;
-      margin-bottom: 8px;
-    }
-    .productInfo{
-      font-size: 13px;
-    }
-  </style>
 </head>
 <body>
-<jsp:include page="headder.jsp"/>
 <div class="container-fluid">
+    <jsp:include page="headder.jsp"/>
+    <div class="row" style="margin-top: 5px;justify-content: center;">
+        <div id="demo" class="carousel slide" data-ride="carousel" style="width: 800px;display: inline-block;margin-top: 45px;">
 
-  <div class="row" style="margin-top: 5px;justify-content: center;">
-    <div id="demo" class="carousel slide" data-ride="carousel" style="width: 800px;display: inline-block;margin-top: 45px;">
+            <!-- 指示符 -->
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
 
-      <!-- 指示符 -->
-      <ul class="carousel-indicators">
-        <li data-target="#demo" data-slide-to="0" class="active"></li>
-        <li data-target="#demo" data-slide-to="1"></li>
-        <li data-target="#demo" data-slide-to="2"></li>
-      </ul>
+            <!-- 轮播图片 -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg">
+                </div>
+                <div class="carousel-item">
+                    <img src="http://static.runoob.com/images/mix/img_nature_wide.jpg">
+                </div>
+                <div class="carousel-item">
+                    <img src="http://static.runoob.com/images/mix/img_mountains_wide.jpg">
+                </div>
+            </div>
 
-      <!-- 轮播图片 -->
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg">
+            <!-- 左右切换按钮 -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+
         </div>
-        <div class="carousel-item">
-          <img src="http://static.runoob.com/images/mix/img_nature_wide.jpg">
+        <div class="newsList">
+            <h3>资讯信息</h3>
+            <c:forEach items="${latestNewsList}" var="news">
+            <div class="news">
+                <div lass="newTitle"><a href="/getNewsById?newsId=${news.newsId}">${news.title}</a></div>
+                <div class="newsInfo">${news.content}</div>
+            </div>
+            </c:forEach>
         </div>
-        <div class="carousel-item">
-          <img src="http://static.runoob.com/images/mix/img_mountains_wide.jpg">
-        </div>
-      </div>
-
-      <!-- 左右切换按钮 -->
-      <a class="carousel-control-prev" href="#demo" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </a>
-      <a class="carousel-control-next" href="#demo" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </a>
-
     </div>
-    <div class="newsList">
-      <h3>资讯信息</h3>
-      <div class="news">
-        <div lass="newTitle">title</div>
-        <div class="newsInfo">sfdsfghjk,jhgfbdvdcxskmjnhbgfvdcsxmjnhbgvfcd</div>
-      </div>
-      <div class="news">
-        <div lass="newTitle">title</div>
-        <div class="newsInfo">sfdsfghjk,jhgfbdvdcxskmjnhbgfvdcsxmjnhbgvfcd</div>
-      </div>
-      <div class="news">
-        <div lass="newTitle">title</div>
-        <div class="newsInfo">sfdsfghjk,jhgfbdvdcxskmjnhbgfvdcsxmjnhbgvfcd</div>
-      </div>
-      <div class="news">
-        <div lass="newTitle">title</div>
-        <div class="newsInfo">sfdsfghjk,jhgfbdvdcxskmjnhbgfvdcsxmjnhbgvfcd</div>
-      </div>
-    </div>
-  </div>
 
 </div>
 <div class="row" style="margin-top: 10px;justify-content: center;">
   <div class="MidNewsList">
-    <div class="MidNewsListTitle">供应</div>
+    <div class="MidNewsListTitle"><a style="text-decoration: none; color: white;" href="SupplyAndDemand.html">供应</a></div>
     <ul class="MidNewsListContain">
-      <li><a href="#">萨凡吃过昆明受到各方沟通汇报给别人</a></li>
-      <li><a href="#">萨凡吃过昆明受到各方沟通汇报给别人</a></li>
-      <li><a href="#">萨凡吃过昆明受到各方沟通汇报给别人</a></li>
-      <li><a href="#">萨凡吃过昆明受到各方沟通汇报给别人</a></li>
-      <li><a href="#">萨凡吃过昆明受到各方沟通汇报给别人</a></li>
-      <li><a href="#">萨凡吃过昆明受到各方沟通汇报给别人</a></li>
+        <c:forEach items="${latestSupplyList}" var="supply">
+      <li><a href="/getSDInfo?sdId=${supply.sdId}">${supply.title}</a></li>
+        </c:forEach>
     </ul>
   </div>
   <div class="MidNewsList">
-    <div class="MidNewsListTitle">需求</div>
+      <div class="MidNewsListTitle"><a style="text-decoration: none; color: white;" href="SupplyAndDemand.html">需求</a></div>
     <ul class="MidNewsListContain">
-      <li><a href="#">萨凡吃过昆明受到各方沟通汇报给别人</a></li>
-      <li><a href="#">萨凡吃过昆明受到各方沟通汇报给别人</a></li>
-      <li><a href="#">萨凡吃过昆明受到各方沟通汇报给别人</a></li>
-      <li><a href="#">萨凡吃过昆明受到各方沟通汇报给别人</a></li>
-      <li><a href="#">萨凡吃过昆明受到各方沟通汇报给别人</a></li>
-      <li><a href="#">萨凡吃过昆明受到各方沟通汇报给别人</a></li>
+        <c:forEach items="${latestDemandList}" var="demand">
+      <li><a href="/getSDInfo?sdId=${demand.sdId}">${demand.title}</a></li>
+        </c:forEach>
     </ul>
   </div>
   <div class="MidNewsList">
-    <div class="MidNewsListTitle">展会</div>
+      <div class="MidNewsListTitle"><a style="text-decoration: none; color: white;" href="Exhibition.html">展会</a></div>
     <ul class="MidNewsListContain">
-      <li><a href="#">萨凡吃过昆明受到各方沟通汇报给别人</a></li>
-      <li><a href="#">萨凡吃过昆明受到各方沟通汇报给别人</a></li>
-      <li><a href="#">萨凡吃过昆明受到各方沟通汇报给别人</a></li>
-      <li><a href="#">萨凡吃过昆明受到各方沟通汇报给别人</a></li>
-      <li><a href="#">萨凡吃过昆明受到各方沟通汇报给别人</a></li>
-      <li><a href="#">萨凡吃过昆明受到各方沟通汇报给别人</a></li>
+        <c:forEach items="${latestExhibitionList}" var="exhi">
+      <li><a href="/getExhibitionInfo?exhiId=${exhi.exId}">${exhi.theme}</a></li>
+        </c:forEach>
     </ul>
   </div>
 </div>
 <div class="row" style="font-size: 28px;font-weight: bold;justify-content: center;width: 100%;">
+    <a style="text-decoration: none; color: black;" href="Product.html">
   文化创意产品
+    </a>
 </div>
 <div class="row" style="justify-content: center;">
   <div style="width: 1100px;">
+      <c:forEach items="${latestProductList}" var="product">
     <div class="product">
       <div class="productImg">
-        <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg">
+        <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg" alt="${product.proName}">
       </div>
-      <div class="productTitle"><a href="#">如果v</a></div>
+      <div class="productTitle"><a href="/getProductById?productId=${product.proId}">${product.proName}</a></div>
       <div class="productInfo">
-        发表v额你v让你帮忙开个宝马了什么v了打开v梅兰芳的地方免不了的什么vOK缅甸菲律宾们都
+        ${product.info}
       </div>
     </div>
-    <div class="product">
-      <div class="productImg">
-        <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg">
-      </div>
-      <div class="productTitle"><a href="#">如果v</a></div>
-      <div class="productInfo">
-        发表v额你v让你帮忙开个宝马了什么v了打开v梅兰芳的地方免不了的什么vOK缅甸菲律宾们都
-      </div>
-    </div>
-    <div class="product">
-      <div class="productImg">
-        <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg">
-      </div>
-      <div class="productTitle"><a href="#">如果v</a></div>
-      <div class="productInfo">
-        发表v额你v让你帮忙开个宝马了什么v了打开v梅兰芳的地方免不了的什么vOK缅甸菲律宾们都
-      </div>
-    </div>
-    <div class="product">
-      <div class="productImg">
-        <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg">
-      </div>
-      <div class="productTitle"><a href="#">如果v</a></div>
-      <div class="productInfo">
-        发表v额你v让你帮忙开个宝马了什么v了打开v梅兰芳的地方免不了的什么vOK缅甸菲律宾们都
-      </div>
-    </div>
-    <div class="product">
-      <div class="productImg">
-        <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg">
-      </div>
-      <div class="productTitle"><a href="#">如果v</a></div>
-      <div class="productInfo">
-        发表v额你v让你帮忙开个宝马了什么v了打开v梅兰芳的地方免不了的什么vOK缅甸菲律宾们都
-      </div>
-    </div>
-    <div class="product">
-      <div class="productImg">
-        <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg">
-      </div>
-      <div class="productTitle"><a href="#">如果v</a></div>
-      <div class="productInfo">
-        发表v额你v让你帮忙开个宝马了什么v了打开v梅兰芳的地方免不了的什么vOK缅甸菲律宾们都发表v额你v让你帮忙开个宝马了什么v了打开v梅兰芳的地方免不了的什么vOK缅甸菲律宾们都
-      </div>
-    </div>
+      </c:forEach>
   </div>
 </div>
+<a href="/getUserInfo.action">获取用户详细信息</a>
 <jsp:include page="footer.jsp"/>
-<a href="/getUserInfo.action">获取详细信息</a>
 </body>
 </html>

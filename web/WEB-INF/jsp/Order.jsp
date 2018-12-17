@@ -81,8 +81,9 @@
                 <div class="card-header">订单编号:${order.first}</div>
                 <div class="card-body">
                     <img src="http://static.runoob.com/images/mix/img_avatar.png" alt="${order.second}" style="width: 100px;height: 100px;float: left;">
-                    <div class="orderTitle"><a href="" ${order.second}</div>
-                    <p class="text-right" style="margin-right: 30px;position: relative;bottom: -20px;">购买数量:${order.third} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp价格：<span style="display: inline-block;color: #FF0000">${order.fourth}</span></p>
+                    <div class="orderTitle">${order.second}</div>
+                    <p class="text-right" style="margin-right: 30px;position: relative;bottom: -20px;">购买数量：${order.third} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp价格：
+                        <span style="display: inline-block;color: #FF0000">${order.fourth}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;购买时间：${order.fifth}</p>
                 </div>
                 <div class="card-footer">
                     <button type="button" class="btn btn-light btn-outline-secondary btn-lg float-right">评价</button>

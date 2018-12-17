@@ -4,9 +4,9 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="po.Image" table="image" schema="service_platform_db">
+    <class name="po.Image" table="image" schema="service_platform_db2">
         <id name="imageId" column="imageID"/>
         <property name="originId" column="originID"/>
-        <property name="photo" column="photo"/>
+        <property name="storeLocation" column="storeLocation"/>
     </class>
 </hibernate-mapping>

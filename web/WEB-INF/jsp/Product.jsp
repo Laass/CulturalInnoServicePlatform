@@ -57,12 +57,16 @@
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link active show" id="v-pills-calligraphy-tab" data-toggle="pill"
                    href="#v-pills-calligraphy" role="tab" aria-controls="v-pills-hocalligraphyme" aria-selected="true">书法</a>
+
                 <a class="nav-link" id="v-pills-Painting-tab" data-toggle="pill" href="#v-pills-Painting" role="tab"
                    aria-controls="v-pills-Painting" aria-selected="false">绘画</a>
+
                 <a class="nav-link" id="v-pills-Instrument-tab" data-toggle="pill" href="#v-pills-Instrument" role="tab"
                    aria-controls="v-pills-Instrument" aria-selected="false">乐器</a>
+
                 <a class="nav-link" id="v-pills-Dress-tab" data-toggle="pill" href="#v-pills-Dress" role="tab"
                    aria-controls="v-pills-Dress" aria-selected="false">服饰</a>
+
             </div>
         </div>
         <!-- 对应标签导航显示的东西 -->
@@ -193,7 +197,7 @@
         </div>
     </div>
 
-    <jsp:include page="headder.jsp"/>
+    <jsp:include page="footer.jsp"/>
 </div>
 </body>
 </html>

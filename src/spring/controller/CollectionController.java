@@ -1,8 +1,7 @@
 package spring.controller;
 
 import com.google.gson.Gson;
-import dao.AO;
-import dao.CollectionDAO;
+import dao.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,8 +9,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.portlet.ModelAndView;
-import po.Collection;
+import po.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -28,18 +33,118 @@ public class CollectionController{
     }
 
     @RequestMapping(value = "/Collection.html")
-    public ModelAndView initCollectionPage(Model model){
-        return new ModelAndView("Collection","command",this);
+    public ModelAndView initCollectionPage(HttpSession session,Model model){
+        User u=(User)session.getAttribute("currentUser");
+        CollectionDAO cDAO=new CollectionDAO();
+        ExhibitionDAO eDAO=new ExhibitionDAO();
+        NewsDAO nDAO=new NewsDAO();
+        ProductDAO pDAO=new ProductDAO();
+        SupplyDemandDAO sdDAO=new SupplyDemandDAO();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try
+        {
+            List<Collection> allList=cDAO.getUserCollection(u.getUserId());
+//            List<Collection> exhiCollList=new ArrayList<>(),newsCollList=new ArrayList<>(),productCollList=new ArrayList<>(),demandCollList=new ArrayList<>(),supplyCollList=new ArrayList<>();
+            List<AO> exhiInfoList=new ArrayList<>();
+            List<AO> newsInfoList=new ArrayList<>();
+            List<AO> productInfoList=new ArrayList<>();
+            List<AO> supplyInfoList=new ArrayList<>();
+            List<AO> demandInfoList=new ArrayList<>();
+            for(Collection c:allList)
+            {
+                if(c.getOriginType().equals(CollectionType.EXHIBITION.name))
+                {
+//                    exhiCollList.add(c);
+                    Exhibition e=eDAO.getExhibitionById(c.getOriginId());
+                    AO a=new AO();
+                    a.setFirst(e.getTheme());
+                    a.setSecond(df.format(e.getEstablishTime()));
+                    a.setThird(df.format(c.getEstablishTime()));
+                    a.setFourth(c.getOriginId());
+                    exhiInfoList.add(a);
+                }
+                else
+                    if(c.getOriginType().equals(CollectionType.NEWS.name))
+                    {
+//                        newsCollList.add(c);
+                        News n=nDAO.getNewsById(c.getOriginId());
+                        AO a=new AO();
+                        a.setFirst(n.getTitle());
+                        a.setSecond(df.format(n.getEstablishTime()));
+                        a.setThird(df.format(c.getEstablishTime()));
+                        a.setFourth(c.getOriginId());
+                        newsInfoList.add(a);
+                    }
+                    else
+                        if(c.getOriginType().equals(CollectionType.PRODUCT.name))
+                        {
+//                            productCollList.add(c);
+                            Product p=pDAO.getProducById(c.getOriginId());
+                            AO a=new AO();
+                            a.setFirst(p.getProName());
+                            a.setSecond(df.format(c.getEstablishTime()));
+                            a.setThird(df.format(c.getEstablishTime()));
+                            a.setFourth(c.getOriginId());
+                            productInfoList.add(a);
+                        }
+                        else
+                            if(c.getOriginType().equals(CollectionType.SUPPLY.name))
+                            {
+//                                supplyCollList.add(c);
+                                Supply s=sdDAO.getSupplyById(c.getOriginId());
+                                AO a=new AO();
+                                a.setFirst(s.getTitle());
+                                a.setSecond(df.format(s.getStartTime()));
+                                a.setThird(df.format(s.getEndTime()));
+                                a.setFourth(df.format(c.getEstablishTime()));
+                                a.setFifth(c.getOriginId());
+                                supplyInfoList.add(a);
+                            }
+                            else
+                            {
+//                                demandCollList.add(c);
+                                Demand d=sdDAO.getDemandById(c.getOriginId());
+                                AO a=new AO();
+                                a.setFirst(d.getTitle());
+                                a.setSecond(df.format(d.getStartTime()));
+                                a.setThird(df.format(d.getEndTime()));
+                                a.setFourth(df.format(c.getEstablishTime()));
+                                a.setFifth(c.getOriginId());
+                                demandInfoList.add(a);
+                            }
+
+            }
+//            model.addAttribute("exhiList",exhiCollList);
+//            model.addAttribute("newsList",newsCollList);
+//            model.addAttribute("productList",productCollList);
+//            model.addAttribute("supplyList",supplyCollList);
+//            model.addAttribute("demandList",demandCollList);
+            model.addAttribute("exhiInfoList",exhiInfoList);
+            model.addAttribute("newsInfoList",newsInfoList);
+            model.addAttribute("productInfoList",productInfoList);
+            model.addAttribute("supplyInfoList",supplyInfoList);
+            model.addAttribute("demandInfoList",demandInfoList);
+            return new ModelAndView("Collection","command",this);
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
 
     @RequestMapping(value = "/addToCollection.action")
     @ResponseBody
-    public CollectionController addToCollection(@RequestBody String json){
+    public CollectionController addToCollection(@RequestBody String json, HttpServletRequest request){
 
         try
         {
             Collection coll = new CollectionDAO().addToCollection(new Gson().fromJson(json, Collection.class));
+            User user = (User)request.getSession().getAttribute("currentUser");
+            coll.setUserId(user.getUserId());
+            Date dnow = new Date();
+            coll.setEstablishTime(new Timestamp(dnow.getTime()));
+            coll = new CollectionDAO().addToCollection(coll);
 
             if(coll != null)
                 this.setMessage("添加成功");

@@ -251,17 +251,25 @@ public class ProductController {
     @RequestMapping(value = "/purchaseProduct.action", method = RequestMethod.POST)
     @ResponseBody
     public ProductController purchaseProduct(@RequestBody String json , HttpServletRequest request){
-        //第一个参数为用户Id，第二个参数为产品Id,第三个参数为场频数量
+        //第一个参数为用户Id，第二个参数为产品Id,第三个参数为产品数量
         AO temp = new Gson().fromJson(json, AO.class);
-        try
-        {
-            if (new UserDAO().purchaseProduct(temp.getFirst(), temp.getSecond(), Integer.parseInt(temp.getThird())))
-                this.setMessage("订单成功");
+        User user = (User)request.getSession().getAttribute("currentUser");
+
+        if(user != null) {
+            temp.setFirst(user.getUserId());
+            try {
+                if (new UserDAO().purchaseProduct(temp.getFirst(), temp.getSecond(), Integer.parseInt(temp.getThird())))
+                    this.setMessage("Success");
+                else
+                    this.setMessage("fail");
+            } catch (Exception e) {
+                e.printStackTrace();
+                this.setMessage("Fail");
+            }
         }
-        catch(Exception e)
-        {
+        else
             this.setMessage("订单失败");
-        }
+
         return this;
     }
 

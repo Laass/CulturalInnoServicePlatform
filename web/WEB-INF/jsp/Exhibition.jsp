@@ -23,48 +23,6 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <script src="js/page.js"></script>
 
-
-    <%--<style type="text/css">--%>
-        <%--.log{--%>
-            <%--height: 100px;--%>
-
-            <%--overflow: hidden;--%>
-        <%--}--%>
-        <%--.search{--%>
-            <%--width: 200px;--%>
-            <%--height: 20px;--%>
-            <%--float: right;--%>
-            <%--margin-right: 80px;--%>
-        <%--}--%>
-        <%--ul.essayList{--%>
-            <%--width: 1200px;--%>
-            <%--list-style-type:square--%>
-
-        <%--}--%>
-        <%--ul.essayList > li > a{--%>
-            <%--/*	--%>
-                <%--overflow: hidden;--%>
-                <%--text-overflow: ellipsis;--%>
-                <%--white-space: nowrap;*/--%>
-            <%--width: 100%;--%>
-            <%--vertical-align: top;--%>
-            <%--color: black;--%>
-            <%--display: inline-block;--%>
-            <%--line-height: 30px;--%>
-        <%--}--%>
-        <%--.title{--%>
-            <%--width: 87%;--%>
-            <%--overflow: hidden;--%>
-            <%--text-overflow: ellipsis;--%>
-            <%--white-space: nowrap;--%>
-            <%--display: inline-block;--%>
-        <%--}--%>
-        <%--.newsTime{--%>
-            <%--display: inline-block;--%>
-            <%--float: right;--%>
-        <%--}--%>
-    <%--</style>--%>
-
 </head>
 <body>
 <div class="container-fluid">
@@ -75,9 +33,9 @@
         <h3 style="margin-left: 90px;margin-top: 30px;">展会信息</h3>
     </div>
 
-    <div class="row" style="justify-content: center;">
-        <div style="width: 1200px;justify-content: center;margin-top: 30px;">
-            <ul class="essayList" id="lists">
+    <div class="" style="justify-content: center;">
+        <div style="justify-content: center;margin-top: 30px;margin-left:90px;">
+            <ul class="essayList" id="lists" style="list-style-type: disc;">
                 <c:forEach items="${eInfoList}" var="exhiInfo">
                     <li>
                         <a href="/getExhibitionInfo?exhiId=${exhiInfo.fifth}">

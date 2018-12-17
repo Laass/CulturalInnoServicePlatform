@@ -11,6 +11,7 @@ import po.Order;
 import po.Product;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class OrderController {
     {
         OrderDAO oDAO=new OrderDAO();
         ProductDAO pDAO=new ProductDAO();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try
         {
             List<Order> orderList=oDAO.getUserOrders("13051205197");
@@ -40,12 +42,13 @@ public class OrderController {
             for(Order o:orderList)
             {
                 Product p=pDAO.getProducById(o.getProId());
+                String time = df.format(o.getEstablishTime());
                 AO a=new AO();
                 a.setFirst(o.getOrderId());
                 a.setSecond(p.getProName());
                 a.setThird(Integer.toString(o.getCount()));
                 a.setFourth(Double.toString(p.getPrice()));
-                a.setFifth(o.getEstablishTime().toString());
+                a.setFifth(time);
                 orderInfoList.add(a);
             }
             return orderInfoList;

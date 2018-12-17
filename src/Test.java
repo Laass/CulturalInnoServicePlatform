@@ -336,7 +336,7 @@ public class Test
 //        }
 //        System.out.println(ProductType.MUSINSTRU.getName());
 //        System.out.println(ProductType.MUSINSTRU.toString());
-        String supplyTitle="supplyTitle";
-        System.out.println(hs.createQuery("from SupplyDemand where title= :supplyTitle").setParameter("supplyTitle",supplyTitle).list());
+//        String supplyTitle="supplyTitle";
+//        System.out.println(hs.createQuery("from SupplyDemand where title= :supplyTitle").setParameter("supplyTitle",supplyTitle).list());
     }
 }

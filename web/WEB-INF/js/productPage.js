@@ -23,7 +23,6 @@ $(document).ready(function(){
         var endrows = curpage * maxlist - 1;
         endrows = (endrows > num)? num : endrows;
 
-        debugger;
         if((startrows  >= 0 && endrows <= num) && startrows<endrows)
             for (var i = 0; i < num; ++i){
                 var irow = lidtcontain[i];

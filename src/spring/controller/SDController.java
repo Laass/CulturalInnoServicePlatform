@@ -1,13 +1,13 @@
 package spring.controller;
 
 import com.google.gson.Gson;
-import dao.AO;
-import dao.SupplyDemandDAO;
+import dao.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.portlet.ModelAndView;
 import po.SupplyDemand;
+import po.UserInfo;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -26,8 +26,20 @@ public class SDController {
     }
 
     @RequestMapping(value = "/SupplyAndDemand.html")
-    public ModelAndView initSDPage(){
-        return new ModelAndView("SupplyDemand","command",this);
+    public ModelAndView initSDPage(Model model){
+        SupplyDemandDAO sdDAO=new SupplyDemandDAO();
+        try
+        {
+            List<Supply> supplyList=sdDAO.getAllSupplies();
+            List<Demand> demandList=sdDAO.getAllDemands();
+            model.addAttribute("supplyList",supplyList);
+            model.addAttribute("demandList",demandList);
+            return new ModelAndView("SupplyDemand","command",this);
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     @ModelAttribute("supplyList")
@@ -38,6 +50,25 @@ public class SDController {
 //        AO temp = new Gson().fromJson(json, AO.class);
 //        return new SupplyDemandDAO().getSuppliesByPage();
         return null;
+    }
+
+    @RequestMapping(value = "/getSDInfo",method = RequestMethod.GET)
+    public String getSDInfo(@RequestParam("sdId")String sdId, Model model)
+    {
+        SupplyDemandDAO sdDAO=new SupplyDemandDAO();
+        UserInfoDAO uiDAO=new UserInfoDAO();
+        try
+        {
+            SupplyDemand sd=sdDAO.getSDById(sdId);
+            UserInfo ui=uiDAO.getUserInfo(sd.getUserId());
+            model.addAttribute("sd",sd);
+            model.addAttribute("ui",ui);
+            return "SupplyDemandDetail";
+        }
+        catch (Exception e)
+        {
+            return "login";
+        }
     }
 
     @RequestMapping(value = "/searchSupplyDemand.action", method = RequestMethod.POST)

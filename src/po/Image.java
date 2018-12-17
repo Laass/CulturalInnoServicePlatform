@@ -11,8 +11,7 @@ public class Image
 {
     private String imageId;
     private String originId;
-//    private String storeLocation;
-    private byte[] photo;
+    private String storeLocation;
 
     @Id
     @Column(name = "imageID")
@@ -38,29 +37,18 @@ public class Image
         this.originId = originId;
     }
 
-//    @Basic
-//    @Column(name = "storeLocation")
-//    public String getStoreLocation()
-//    {
-//        return storeLocation;
-//    }
-//
-//    public void setStoreLocation(String storeLocation)
-//    {
-//        this.storeLocation = storeLocation;
-//    }
-
     @Basic
-    @Column(name = "photo")
-    public byte[] getPhoto()
+    @Column(name = "storeLocation")
+    public String getStoreLocation()
     {
-        return photo;
+        return storeLocation;
     }
 
-    public void setPhoto(byte[] photo)
+    public void setStoreLocation(String storeLocation)
     {
-        this.photo = photo;
+        this.storeLocation = storeLocation;
     }
+
     @Override
     public boolean equals(Object o)
     {
@@ -69,13 +57,12 @@ public class Image
         Image image = (Image) o;
         return Objects.equals(imageId, image.imageId) &&
                 Objects.equals(originId, image.originId) &&
-                Objects.equals(photo, image.photo);
+                Objects.equals(storeLocation, image.storeLocation);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(imageId, originId, photo);
+        return Objects.hash(imageId, originId, storeLocation);
     }
-
 }

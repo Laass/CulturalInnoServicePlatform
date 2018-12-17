@@ -4,23 +4,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
-import dao.UserDAO;
-import dao.UserInfoDAO;
+import dao.*;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.portlet.ModelAndView;
 import org.springframework.stereotype.Service;
 
-import po.User;
-import po.UserInfo;
+import po.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @SessionAttributes("registeredUser")
@@ -38,18 +36,61 @@ public class LoginController {
         return new ModelAndView("Login","command",this);
     }
 
-    @RequestMapping(value = "login.action", method = RequestMethod.POST)
+    @RequestMapping(value = "login.action",method = RequestMethod.POST)
     public String validateLogin(@ModelAttribute("user")User user, HttpServletRequest request,HttpSession session, Model model)
     {
         System.out.println(user.getUserId());
+
         session.setAttribute("currentUser",user);
         UserDAO ud = new UserDAO();
+        int displayNum=6;
         try
         {
             if( ud.validateUser(user.getUserId(),user.getPassword()) )
             {
                 this.message="登录成功";
                 model.addAttribute("message",message);
+
+                //获取资讯
+                NewsDAO nDAO=new NewsDAO();
+                List<News> allNewsList=nDAO.getAllNews();
+                List<News> latestNewsList=new ArrayList<>();
+                for(int i=allNewsList.size()-displayNum+3;i<allNewsList.size();i++)
+                    latestNewsList.add(allNewsList.get(i));
+                model.addAttribute("latestNewsList",latestNewsList);
+
+                //获取供应
+                SupplyDemandDAO sdDAO=new SupplyDemandDAO();
+                List<Supply> allSupplyList=sdDAO.getAllSupplies();
+                List<Supply> latestSupplyList=new ArrayList<>();
+                for(int i=allSupplyList.size()-displayNum+1;i<allSupplyList.size();i++)
+                    latestSupplyList.add(allSupplyList.get(i));
+                model.addAttribute("latestSupplyList",latestSupplyList);
+
+                //获取需求
+                List<Demand> allDemandList=sdDAO.getAllDemands();
+                List<Demand> latestDemandList=new ArrayList<>();
+                for (int i=allDemandList.size()-displayNum+1;i<allDemandList.size();i++)
+                    latestDemandList.add(allDemandList.get(i));
+                model.addAttribute("latestDemandList",latestDemandList);
+
+                //获取展会
+                ExhibitionDAO eDAO=new ExhibitionDAO();
+                List<Exhibition> allExhibitionList=eDAO.getAllExhibition();
+                List<Exhibition> latestExhibitionList=new ArrayList<>();
+                for(int i=allExhibitionList.size()-displayNum+1;i<allExhibitionList.size();i++)
+                    latestExhibitionList.add(allExhibitionList.get(i));
+                model.addAttribute("latestExhibitionList",latestExhibitionList);
+
+                //获取产品
+                ProductDAO pDAO=new ProductDAO();
+                List<Product> allProductList=pDAO.getAllProducts();
+                List<Product> latestProductList=new ArrayList<>();
+                for(int i=allProductList.size()-displayNum+1;i<allProductList.size();i++)
+                    latestProductList.add(allProductList.get(i));
+                model.addAttribute("latestProductList",latestProductList);
+
+
                 return "index";
             }
         }
@@ -58,7 +99,7 @@ public class LoginController {
             this.message = "用户名/密码错误";
             model.addAttribute("message",message);
         }
-        return null;
+        return "Login";
     }
 
     @RequestMapping(value = "/Register.html")
@@ -133,6 +174,12 @@ public class LoginController {
         {
             return "redirect:/Login.html";
         }
+    }
+
+    @RequestMapping(value = "testEditor",method = RequestMethod.GET)
+    public String testEditor()
+    {
+        return "TestEditor";
     }
 
 }
