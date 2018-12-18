@@ -144,4 +144,39 @@ $(document).ready(function(){
         }
     })
 
+    $("#comment").click(function () {
+        promptStu($(this));
+    });
+
+    //弹对话框添加留言
+    function promptStu(node){
+        //返回用户输入的文本，如果用户选择取消返回null
+        //第二个参数是设定默认值，可以是空字符”“，缺失第二个参数部分浏览器可能显示undefined
+        var ans = prompt("请输入要留言",'');
+        if(ans){
+            debugger;
+            var temp = {
+                originId : $(node).parent().parent().children("#proId").text(),
+                content : ans
+            }
+            commentProduct(temp);
+        }
+    }
+
+    function commentProduct(temp) {
+        $.ajax({
+            type : "POST",
+            contentType : 'application/json;charset=UTF-8',
+            url : "addMessage.action",
+            data : JSON.stringify(temp),
+            dataType : 'json',
+            success : function(data){
+                alert(data.message);
+            },
+            error : function(){
+                alert("error");
+            }
+        });
+    }
+
 });
