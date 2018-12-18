@@ -59,10 +59,11 @@ public class ImageDAO
     /**
      * 测试通过
      * 返回用户或文章的图片
-     *
+     * 从表头开始获取 获取num个
      * @param id 用户或文章的id
+     * @param num 指定获取个数 -1为获取全部
      */
-    public List<Image> getImageByOriginId(String id) throws Exception
+    public List<Image> getImageByOriginId(String id,int num) throws Exception
     {
         getSession();
         try
@@ -70,11 +71,39 @@ public class ImageDAO
 
             Query hquery = hsession.createQuery("from Image im where im.originId=?1");
             hquery.setParameter(1, id);
+            if(num>-1)
+                hquery.setMaxResults(num);
             List<Image> list = hquery.list();
 
             releaseSession();
 
             return list;
+        }
+        catch (Exception e)
+        {
+            releaseSession();
+            throw e;
+//            return null;
+        }
+    }
+
+    public Image getFirstImageOfOriginId(String id) throws Exception
+    {
+        getSession();
+        try
+        {
+
+            Query hquery = hsession.createQuery("from Image im where im.originId=?1");
+            hquery.setParameter(1, id);
+            hquery.setMaxResults(1);
+            List<Image> list = hquery.list();
+
+            releaseSession();
+
+            if(list.size()>0)
+                return list.get(0);
+            else
+                return null;
         }
         catch (Exception e)
         {

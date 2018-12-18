@@ -6,10 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.portlet.ModelAndView;
+import po.Message;
 import po.SupplyDemand;
 import po.UserInfo;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -61,8 +64,21 @@ public class SDController {
         {
             SupplyDemand sd=sdDAO.getSDById(sdId);
             UserInfo ui=uiDAO.getUserInfo(sd.getUserId());
+            MessageDAO mDAO=new MessageDAO();
+            List<Message> mList=mDAO.getMessageById(sd.getSdId(),-1);
+            List<AO> umList=new ArrayList<>();
+            SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            for(Message m:mList)
+            {
+                AO a=new AO();
+                a.setFirst(ui.getNickName());
+                a.setSecond(m.getContent());
+                a.setThird(df.format(m.getEstablishTime()));
+                umList.add(a);
+            }
             model.addAttribute("sd",sd);
             model.addAttribute("ui",ui);
+            model.addAttribute("umList",umList);
             return "SupplyDemandDetail";
         }
         catch (Exception e)
@@ -94,7 +110,6 @@ public class SDController {
     @ResponseBody
     public SupplyDemand addSupplyDemand(@RequestBody String json , HttpServletRequest request){
         SupplyDemand temp = new Gson().fromJson(json, SupplyDemand.class);
-        //合并不合并？？？
         return null;
         //return new SupplyDemandDAO().addDemand(temp);
     }

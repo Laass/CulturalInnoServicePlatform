@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: user0
@@ -26,7 +27,7 @@
         <div style="display: block;text-align: center;"><h2>${sd.title}</h2></div>
         <div style="display: block;">
             <div class="essayInfo"  style="display: block;text-align: center;">
-                <small>发布人:${ui.nickName}</small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <small>发布人:${ui.nickName}</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <small>发布时间：${sd.startTime}</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <small>终止时间：${sd.endTime}</small>
             </div>
@@ -34,6 +35,21 @@
     </div>
     <div class="row essayContain" style="margin: 0 auto;">
         <p>${sd.content}</p>
+    </div>
+
+    <hr>
+
+    <div class="tab-pane" id="nav-profile" role="tabpanel"
+         aria-labelledby="nav-profile-tab"><br>
+
+        <c:forEach items="${umList}" var="um">
+            <div class="commentinfo">
+                <h5 class="mt-0">${um.first}</h5>
+                <p>${um.second}</p>
+                <p style="color: grey;font-size:13px;">${um.third}</p>
+            </div>
+        </c:forEach>
+
     </div>
     <jsp:include page="footer.jsp"/>
 </div>

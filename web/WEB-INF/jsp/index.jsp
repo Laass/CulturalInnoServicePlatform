@@ -62,7 +62,7 @@
             <c:forEach items="${latestNewsList}" var="news">
             <div class="news">
                 <div lass="newTitle"><a href="/getNewsById?newsId=${news.newsId}">${news.title}</a></div>
-                <div class="newsInfo">${news.content}</div>
+                <%--<div class="newsInfo">${news.content}</div>--%>
             </div>
             </c:forEach>
         </div>
@@ -102,15 +102,16 @@
 </div>
 <div class="row" style="justify-content: center;">
   <div style="width: 1100px;">
-      <c:forEach items="${latestProductList}" var="product">
+      <c:forEach items="${pList}" var="p">
     <div class="product">
       <div class="productImg">
-        <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg" alt="${product.proName}">
+        <img src="${p.fourth}" alt="${product.proName}" style="height: 100%;">
       </div>
-      <div class="productTitle"><a href="/getProductById?productId=${product.proId}">${product.proName}</a></div>
-      <div class="productInfo">
-        ${product.info}
-      </div>
+      <div class="productTitle"><a href="/getProductById?productId=${p.second}">${p.first}</a></div>
+        <p>￥${p.fifth}&nbsp;&nbsp;&nbsp;点击量：${p.sixth}</p>
+      <%--<div class="productInfo">
+        ${p.third}
+      </div>--%>
     </div>
       </c:forEach>
   </div>

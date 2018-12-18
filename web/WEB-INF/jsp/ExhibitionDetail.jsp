@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: user0
@@ -34,6 +35,21 @@
     </div>
     <div class="row essayContain" style="margin: 0 auto;">
         <p>${exhi.content}</p>
+    </div>
+
+    <hr>
+
+    <div class="tab-pane" id="nav-profile" role="tabpanel"
+         aria-labelledby="nav-profile-tab"><br>
+
+        <c:forEach items="${umList}" var="um">
+            <div class="commentinfo">
+                <h5 class="mt-0">${um.first}</h5>
+                <p>${um.second}</p>
+                <p style="color: grey;font-size:13px;">${um.third}</p>
+            </div>
+        </c:forEach>
+
     </div>
 
     <jsp:include page="footer.jsp"/>

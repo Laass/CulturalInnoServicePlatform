@@ -139,15 +139,21 @@
                 <!-- 轮播图片 -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg">
+                        <img src="${imageList[0].storeLocation}">
                     </div>
+                    <c:forEach items="${imageList}" var="image" begin="1">
                     <div class="carousel-item">
-                        <img src="http://static.runoob.com/images/mix/img_nature_wide.jpg">
+                        <img src="${image.storeLocation}">
                     </div>
-                    <div class="carousel-item">
-                        <img
-                                src="http://static.runoob.com/images/mix/img_mountains_wide.jpg">
-                    </div>
+                    </c:forEach>
+                    <%--<div class="carousel-item">--%>
+                        <%--<img src="${image.storeLocation}">--%>
+                    <%--</div>--%>
+                    <%----%>
+                    <%--<div class="carousel-item">--%>
+                        <%--<img--%>
+                                <%--src="http://static.runoob.com/images/mix/img_mountains_wide.jpg">--%>
+                    <%--</div>--%>
                 </div>
 
                 <!-- 左右切换按钮 -->
@@ -206,9 +212,10 @@
             <!-- 产品详情  -->
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                  aria-labelledby="nav-home-tab"><br>
+                <h3>商品介绍</h3>
                 ${product.info}
                 <div class="commentinfo" style="margin-top: 20px;margin-bottom: 10px;"></div>
-                <h3>商品介绍</h3>
+
             </div>
 
             <!-- 产品评论  -->

@@ -5,8 +5,8 @@ public enum CollectionType
     EXHIBITION("exhibition"),
     NEWS("news"),
     PRODUCT("product"),
-    DEMAND("demand"),
-    SUPPLY("supply");
+    SUPPLYDEMAND("supplydemand");
+
 
 
     public final String name;

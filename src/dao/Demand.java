@@ -15,10 +15,10 @@ public class Demand extends SupplyDemand
         setUserId(sd.getUserId());
         setTitle(sd.getTitle());
         setContent(sd.getContent());
-        setStartTime(getStartTime());
-        setEndTime(getEndTime());
-        setHits(getHits());
-        setIsPass(getIsPass());
+        setStartTime(sd.getStartTime());
+        setEndTime(sd.getEndTime());
+        setHits(sd.getHits());
+        setIsPass(sd.getIsPass());
         setType("D");
     }
     public SupplyDemand toSupplyDemand()

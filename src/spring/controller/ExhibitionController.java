@@ -6,10 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.portlet.ModelAndView;
-import po.Exhibition;
-import po.Product;
-import po.User;
-import po.UserInfo;
+import po.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
@@ -76,12 +73,26 @@ public class ExhibitionController {
     {
         ExhibitionDAO eDAO=new ExhibitionDAO();
         UserInfoDAO uDAO=new UserInfoDAO();
+        MessageDAO mDAO=new MessageDAO();
+        UserInfoDAO uiDAO=new UserInfoDAO();
+        SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try
         {
             Exhibition e=eDAO.getExhibitionById(exhiId);
             UserInfo u=uDAO.getUserInfo(e.getUserId());
+            List<Message> mList=mDAO.getMessageById(e.getExId(),-1);
+            List<AO> umList=new ArrayList<>();
+            for(Message m:mList)
+            {
+                AO a=new AO();
+                a.setFirst(uiDAO.getUserInfo(m.getUserId()).getNickName());
+                a.setSecond(m.getContent());
+                a.setThird(df.format(m.getEstablishTime()));
+                umList.add(a);
+            }
             model.addAttribute("exhi",e);
             model.addAttribute("userInfo",u);
+            model.addAttribute("umList",umList);
             return "ExhibitionDetail";
         }
         catch (Exception e)

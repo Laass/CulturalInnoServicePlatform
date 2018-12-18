@@ -6,10 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.portlet.ModelAndView;
-import po.Message;
-import po.Product;
-import po.User;
-import po.UserInfo;
+import po.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.swing.text.ParagraphView;
@@ -79,26 +76,63 @@ public class ProductController {
         List<Product> paintList=new ArrayList<>();
         List<Product> musicList=new ArrayList<>();
         List<Product> garmentList=new ArrayList<>();
-        for(Product p:passedList)
+        List<AO> calliInfoList=new ArrayList<>();
+        List<AO> paintInfoList=new ArrayList<>();
+        List<AO> musicInfoList=new ArrayList<>();
+        List<AO> garmentInfoList=new ArrayList<>();
+        ImageDAO iDAO=new ImageDAO();
+        try
         {
-
-            if(p.getProductType().equals(ProductType.CALLIGRAPHY.name))
-                calliList.add(p);
-            else
-                if(p.getProductType().equals(ProductType.PAINTING.name))
-                    paintList.add(p);
+            for(Product p:passedList)
+            {
+                Image i=iDAO.getFirstImageOfOriginId(p.getProId());
+                AO a=new AO();
+                a.setFirst(p.getProName());
+                a.setSecond(p.getProId());
+                a.setThird(p.getProductType());
+                a.setFourth(Double.toString(p.getPrice()));
+                a.setFifth(p.getHits().toString());
+                if(i!=null)
+                    a.setSixth(i.getStoreLocation());
+                if(p.getProductType().equals(ProductType.CALLIGRAPHY.name))
+                {
+                    calliList.add(p);
+                    calliInfoList.add(a);
+                }
                 else
-                    if(p.getProductType().equals(ProductType.MUSINSTRU.name))
-                        musicList.add(p);
+                    if(p.getProductType().equals(ProductType.PAINTING.name))
+                    {
+                        paintList.add(p);
+                        paintInfoList.add(a);
+                    }
+                    else
+                        if(p.getProductType().equals(ProductType.MUSINSTRU.name))
+                        {
+                            musicList.add(p);
+                            musicInfoList.add(a);
+                        }
                         else
+                        {
                             garmentList.add(p);
+                            garmentInfoList.add(a);
+                        }
+            }
+            System.out.println("ProductProductProduct");
+            model.addAttribute("calliList",calliList);
+            model.addAttribute("paintList",paintList);
+            model.addAttribute("musicList",musicList);
+            model.addAttribute("garmentList",garmentList);
+            model.addAttribute("calliInfoList",calliInfoList);
+            model.addAttribute("paintInfoList",paintInfoList);
+            model.addAttribute("musicInfoList",musicInfoList);
+            model.addAttribute("garmentInfoList",garmentInfoList);
+            return new ModelAndView("Product","command",this);
         }
-        System.out.println("ProductProductProduct");
-        model.addAttribute("calliList",calliList);
-        model.addAttribute("paintList",paintList);
-        model.addAttribute("musicList",musicList);
-        model.addAttribute("garmentList",garmentList);
-        return new ModelAndView("Product","command",this);
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @RequestMapping(value = "getProductById", method = RequestMethod.GET)
@@ -113,6 +147,8 @@ public class ProductController {
             List<Message> msgList = mDAO.getMessageById(p.getProId(), -1);//不分页获取产品的所有评论
             List<AO> umList = new ArrayList<>();//存储用户名和留言
             UserInfoDAO uiDAO = new UserInfoDAO();
+            ImageDAO iDAO=new ImageDAO();
+            List<Image> iList=iDAO.getImageByOriginId(p.getProId(),999);
             for (Message m : msgList)
             {
                 UserInfo ui = uiDAO.getUserInfo(m.getUserId());
@@ -123,6 +159,7 @@ public class ProductController {
             }
             model.addAttribute("product", p);
             model.addAttribute("umList", umList);
+            model.addAttribute("imageList",iList);
 //        return new ModelAndView("ProductDetail","command",this);
             return "ProductDetail";
         }
