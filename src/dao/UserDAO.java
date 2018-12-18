@@ -180,7 +180,7 @@ public class UserDAO
             releaseSession(hs);
             throw e;
         }
-        return false;
+        return true;
     }
 
     /**

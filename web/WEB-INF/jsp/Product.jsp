@@ -24,53 +24,28 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <script src="js/productPage.js"></script>
 
-
-    <style type="text/css">
-        .log {
-            height: 100px;
-
-            overflow: hidden;
-        }
-
-        .search {
-            width: 200px;
-            height: 20px;
-            float: right;
-            margin-right: 80px;
-        }
-
-        .productTitle {
-            font-size: 13px;
-        }
-
-        .productInfo {
-            font-size: 13px;
-        }
-    </style>
 </head>
 <body>
 <div class="container-fluid">
     <jsp:include page="headder.jsp"/>
+
     <div class="row" style="justify-content: center;margin-top: 30px;">
         <!-- 标签导航 -->
         <div class="col-3 center-block">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link active show" id="v-pills-calligraphy-tab" data-toggle="pill"
-                   href="#v-pills-calligraphy" role="tab" aria-controls="v-pills-hocalligraphyme" aria-selected="true">书法</a>
-
+                   href="#v-pills-calligraphy" role="tab" aria-controls="v-pills-calligraphy" aria-selected="true">书法</a>
                 <a class="nav-link" id="v-pills-Painting-tab" data-toggle="pill" href="#v-pills-Painting" role="tab"
                    aria-controls="v-pills-Painting" aria-selected="false">绘画</a>
-
                 <a class="nav-link" id="v-pills-Instrument-tab" data-toggle="pill" href="#v-pills-Instrument" role="tab"
                    aria-controls="v-pills-Instrument" aria-selected="false">乐器</a>
-
                 <a class="nav-link" id="v-pills-Dress-tab" data-toggle="pill" href="#v-pills-Dress" role="tab"
                    aria-controls="v-pills-Dress" aria-selected="false">服饰</a>
-
             </div>
         </div>
         <!-- 对应标签导航显示的东西 -->
         <div class="col-8 center-block">
+            <div class="curColumn" style="display: none;">${ptype}</div>
             <div class="tab-content" id="v-pills-tabContent">
                 <%--书法部分--%>
                 <div class="tab-pane fade active show" id="v-pills-calligraphy" role="tabpanel"
@@ -82,11 +57,11 @@
                                  alt="${product.first}" style="height: 180px;">
                             <div class="card-body" style="width: 100%;height: 150px;">
                                 <h4 class="card-title"
-                                    style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 100%;"><a href="/getProductById?productId=${product.second}">${product.first}</a></h4>
+                                    style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 100%;"><a href="getProductById?productId=${product.second}">${product.first}</a></h4>
                                 <a href="" class="card-text productTitle"
                                    style="width: 100%;height:80px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;">${product.third}</a>
-                                <h5 style="display: inline-block;color: #FF0000">$${product.fourth}</h5>
-                                <small class="text-muted text-right" style="float:right;margin-top: 5px;">
+                                <h5 style="display: inline-block;color: #FF0000;margin-top:-5px;">$${product.fourth}</h5>
+                                <small class="text-muted text-right" style="float:right;">
                                     点击量：${product.fifth}</small>
                             </div>
                         </div>
@@ -113,16 +88,17 @@
                                  alt="${product.first}" style="height: 180px;">
                             <div class="card-body" style="width: 100%;height: 150px;">
                                 <h4 class="card-title"
-                                    style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 100%;"><a href="/getProductById?productId=${product.second}">${product.first}</a></h4>
+                                    style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 100%;"><a href="getProductById?productId=${product.second}">${product.first}</a></h4>
                                 <a href="" class="card-text productTitle"
                                    style="width: 100%;height:80px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;">${product.third}</a>
-                                <h5 style="display: inline-block;color: #FF0000">$${product.fourth}</h5>
-                                <small class="text-muted text-right" style="float:right;margin-top: 5px;">
+                                <h5 style="display: inline-block;color: #FF0000;margin-top: -5px;">$${product.fourth}</h5>
+                                <small class="text-muted text-right" style="float:right;">
                                     点击量：${product.fifth}</small>
                             </div>
                         </div>
                         <!-- 一个产品结尾 -->
                     </c:forEach>
+
 
                     <!-- 分页 -->
                     <div class="row" style="justify-content: center;margin-top: 30px;">
@@ -143,11 +119,11 @@
                                  alt="${product.first}" style="height: 180px;">
                             <div class="card-body" style="width: 100%;height: 150px;">
                                 <h4 class="card-title"
-                                    style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 100%;"><a href="/getProductById?productId=${product.second}">${product.first}</a></h4>
+                                    style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 100%;"><a href="getProductById?productId=${product.second}">${product.first}</a></h4>
                                 <a href="" class="card-text productTitle"
                                    style="width: 100%;height:80px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;">${product.third}</a>
-                                <h5 style="display: inline-block;color: #FF0000">$${product.fourth}</h5>
-                                <small class="text-muted text-right" style="float:right;margin-top: 5px;">
+                                <h5 style="display: inline-block;color: #FF0000;margin-top: -5px;">$${product.fourth}</h5>
+                                <small class="text-muted text-right" style="float:right;">
                                     点击量：${product.fifth}</small>
                             </div>
                         </div>
@@ -172,11 +148,11 @@
                                  alt="${product.first}" style="height: 180px; width:auto;margin: 0 auto;">
                             <div class="card-body" style="width: 100%;height: 150px;">
                                 <h4 class="card-title"
-                                    style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 100%;"><a href="/getProductById?productId=${product.second}">${product.first}</a></h4>
+                                    style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 100%;"><a href="getProductById?productId=${product.second}">${product.first}</a></h4>
                                 <a href="" class="card-text productTitle"
                                    style="width: 100%;height:80px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;">${product.third}</a>
-                                <h5 style="display: inline-block;color: #FF0000">$${product.fourth}</h5>
-                                <small class="text-muted text-right" style="float:right;margin-top: 5px;">
+                                <h5 style="display: inline-block;color: #FF0000;margin-top: -5px;">$${product.fourth}</h5>
+                                <small class="text-muted text-right" style="float:right;">
                                     点击量：${product.fifth}</small>
                             </div>
                         </div>
@@ -198,7 +174,8 @@
     </div>
 
     <jsp:include page="footer.jsp"/>
+
 </div>
+
 </body>
 </html>
-

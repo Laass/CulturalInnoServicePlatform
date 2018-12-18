@@ -11,30 +11,6 @@
 <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
-<script>
-    $(document).ready(function ()
-    {
-        $("#toCalli").click(function ()
-        {
-            $(location).attr("href","/Product.html#v-pills-calligraphy");
-        });
-
-        $("#toPainting").click(function ()
-        {
-            $(location).attr('href',"/Product.html#v-pills-Painting-tab");
-        });
-
-        $("#toMusic").click(function ()
-        {
-            $(location).attr("href","/Product.html#v-pills-Instrument");
-        });
-
-        $("#toGarment").click(function()
-        {
-            $(location).attr("href","/Product.html#v-pills-Dress");
-        });
-    })
-</script>
 <html>
 <body>
 <div class="log" >
@@ -45,8 +21,7 @@
     </div>
 </div>
 <div class="row">
-    <nav class="navbar navbar-expand-sm navbar-dark"
-         style="height:70px;background-color: #1e50ae;font-weight: bold;width:100%;">
+    <nav class="navbar navbar-expand-sm navbar-dark" style="height:70px;background-color: #1e50ae;font-weight: bold;width:100%;">
         <!-- Brand/logo -->
         <%--<a class="navbar-brand" href="#">Logo</a>--%>
 
@@ -54,41 +29,37 @@
         <ul class="navbar-nav">
             <li class="nav-item guidLi">
                 <a class="nav-link" href="SupplyAndDemand.html" style="color: #FCFCFC;">供求</a>
-            </li>
-            <div style="color: white;margin-top: 3px;font-size: 26px;">/</div>
+            </li><div style="color: white;margin-top: 3px;font-size: 26px;">/</div>
             <li class="nav-item guidLi">
                 <a class="nav-link" href="Exhibition.html" style="color: #FCFCFC;padding-right: 0px;">展会</a>
-            </li>
-            <div style="color: white;margin-top: 3px;font-size: 26px;">/</div>
+            </li><div style="color: white;margin-top: 3px;font-size: 26px;">/</div>
             <li class="nav-item guidLi">
                 <a class="nav-link" href="News.html" style="color: #FCFCFC;padding-right: 0px;">资讯</a>
-            </li>
-            <div style="color: white;margin-top: 3px;font-size: 26px;">/</div>
-            <li class="nav-item dropdown guidLi" style="letter-spacing: 15px;">
-                <a class="nav-link dropdown-toggle" href="Product.html" id="navbardrop" data-toggle="dropdown"
-                   style="color: #FCFCFC;padding-right: 0px;">
+            </li><div style="color: white;margin-top: 3px;font-size: 26px;">/</div>
+            <li class="nav-item dropdown guidLi">
+                <a class="nav-link dropdown-toggle" href="Product.html" id="navbardrop" data-toggle="dropdown" style="color: #FCFCFC;padding-right: 0px;">
                     产品
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" id="toCalli" href="#">书法</a>
-                    <a class="dropdown-item" id="toPainting" href="#">绘画</a>
-                    <a class="dropdown-item" id="toMusic" href="#">乐器</a>
-                    <a class="dropdown-item" id="toGarment" href="#">服饰</a>
+                    <a class="dropdown-item" href="Product?ptype=call">书画</a>
+                    <a class="dropdown-item" href="Product?ptype=draw">绘画</a>
+                    <a class="dropdown-item" href="Product?ptype=ins">乐器</a>
+                    <a class="dropdown-item" href="Product?ptype=dress">服饰</a>
                 </div>
             </li>
         </ul>
-        <form class="navbar-form navbar-right" style="margin-left: 600px;">
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon">
-                        <i class="glyphicon glyphicon-search"></i>
-                    </div>
-                    <input type="text" class="form-control" style="display: inline-block;margin-top: 15px;margin-right: 10px;font-family: arial,pingfang sc,stheiti,microsoft yahei,sans-serif;" placeholder="新闻/供求/商品..."/>
-                    <button type="button" class="btn btn-default" style="display: inline-block;margin-top: 15px;font-family: arial,pingfang sc,stheiti,microsoft yahei,sans-serif;">搜索</button>
-                </div>
+
+        <div class="btn-group" role="group" style="margin-left: 620px;">
+            <img src="images/flogo.PNG" style="float: right;width: 48px;height: 30px;" class="dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="dropdown-menu dropdown-menu-right" style="justify-content: center;">
+                <button class="dropdown-item" type="button"><a href="Order.html">订单</a></button>
+                <button class="dropdown-item" type="button"><a href="Collection.html">收藏夹</a></button>
             </div>
-        </form>
+        </div>
+        <a href="search.html"><img src="images/search.png" style="width: 25px;height: 25px;margin-left: 20px;"></a>
     </nav>
 </div>
+
+
 </body>
 </html>

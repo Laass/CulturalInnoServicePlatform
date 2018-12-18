@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.hibernate.HibernateException;
 import org.hibernate.query.Query;
@@ -43,6 +44,7 @@ public class MessageDAO
         getSession();
         try
         {
+            newMessage.setMesId(UUID.randomUUID().toString().replace("-",""));
             hsession.save(newMessage);
 
             releaseSession();

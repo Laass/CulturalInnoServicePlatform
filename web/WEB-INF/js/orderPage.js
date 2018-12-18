@@ -9,6 +9,10 @@ $(document).ready(function ()
         var maxpage;
         var num = $(node).children(".card").length;
 
+        if(num == 0)
+            return;
+
+
         if((num / maxlist) > parseInt(num / maxlist))
             maxpage = parseInt(num / maxlist) + 1;
         else

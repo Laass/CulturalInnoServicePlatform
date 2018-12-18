@@ -2,12 +2,14 @@ package spring.controller;
 
 import com.google.gson.Gson;
 import dao.AO;
+import dao.MessageDAO;
 import dao.NewsDAO;
 import dao.UserInfoDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.portlet.ModelAndView;
+import po.Message;
 import po.News;
 import po.UserInfo;
 
@@ -186,6 +188,19 @@ public class NewsController {
             UserInfo u=uiDAO.getUserInfo(n.getUserId());
             model.addAttribute("news",n);
             model.addAttribute("userInfo",u);
+
+            MessageDAO mDAO = new MessageDAO();
+            List<Message> mList = mDAO.getMessageById(newsId,-1);
+            List<AO> umList = new ArrayList<>();//存储用户名和留言
+            for (Message m : mList)
+            {
+                UserInfo ui = uiDAO.getUserInfo(m.getUserId());
+                AO a = new AO();
+                a.setFirst(ui.getNickName());
+                a.setSecond(m.getContent());
+                umList.add(a);
+            }
+            model.addAttribute("umList", umList);
             return "NewsDetail";
         }
         catch (Exception e)

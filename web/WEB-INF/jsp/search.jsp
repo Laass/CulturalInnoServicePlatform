@@ -14,30 +14,38 @@
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <script src="js/page.js"></script>
+    <script src="js/base.js"></script>
     <link rel="stylesheet" href="css/base.css">
 
 </head>
 <body>
 <div class="container-fluid">
     <jsp:include page="headder.jsp"/>
-
+        <form class="navbar-form navbar-right" style="margin-top: 50px;">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </div>
+                    <input type="text" class="form-control" placeholder="搜索" name="keyword"/>
+                    <select id="selectType">
+                        <option value="Exhibition">展会</option>
+                        <option value="News">资讯</option>
+                        <option value="SD">供求</option>
+                        <option value="PRODUCT">产品</option>
+                    </select>
+                    <select id="selectMethod">
+                        <option value="MH">模糊查询</option>
+                        <option value="ACU">精确查询</option>
+                    </select>
+                    <button id="search" type="button" class="btn btn-default" style="display: inline-block;">搜索</button>
+                </div>
+            </div>
+        </form>
     <div class="row">
         <div style="width: 1100px;justify-content: center;margin:0 auto;margin-top: 80px;border: 1px solid #eee;">
-            <ul id="lists" class="essayList">
-                <c:forEach items="${allNewsList}" var="news">
-                    <div class="listOuter">
-                        <li>
-                            <a href="getNewsById?newsId=${news.newsId}" style="color: black;">
-                                    ${news.title}
-                                <div class="subTitle"> ${news.establishTime}</div>
-                                    <%--<div style="display: inline-block;font-size: 12px;color: #eeeeee">点击量:</div><div class="subTitle">${news.hits}</div>--%>
-                            </a>
-                                <%----%>
-                        </li>
-                            <%--<hr style="border: 0.5px solid #eee;padding-top：13px;margin-bottom: -3px;">--%>
-                    </div>
+            <ul id="lists">
 
-                </c:forEach>
             </ul>
         </div>
     </div>

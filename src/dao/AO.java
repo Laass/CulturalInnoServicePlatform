@@ -7,6 +7,7 @@ public class AO {
     private String fourth;
     private String fifth;
     private String sixth;
+    private String seventh;
 
     public String getFirst() {
         return first;
@@ -56,5 +57,15 @@ public class AO {
     public void setSixth(String sixth)
     {
         this.sixth = sixth;
+    }
+
+    public String getSeventh()
+    {
+        return seventh;
+    }
+
+    public void setSeventh(String seventh)
+    {
+        this.seventh = seventh;
     }
 }

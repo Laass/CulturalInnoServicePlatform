@@ -33,21 +33,23 @@
         <h3 style="margin-left: 90px;margin-top: 30px;">展会信息</h3>
     </div>
 
-    <div class="" style="justify-content: center;">
-        <div style="justify-content: center;margin-top: 30px;margin-left:90px;">
-            <ul class="essayList" id="lists" style="list-style-type: disc;">
+    <div class="row">
+        <div style="width: 1100px;justify-content: center;margin:0 auto;margin-top: 60px;border: 1px solid #eee;">
+            <ul id="lists" class="essayList">
                 <c:forEach items="${eInfoList}" var="exhiInfo">
-                    <li>
-                        <a href="/getExhibitionInfo?exhiId=${exhiInfo.fifth}">
-                            <span class="title">
-                                ${exhiInfo.first}
-                            </span>
-                            <span>${exhiInfo.second}</span>
-                            <span class="newsTime">
-                            ${exhiInfo.third}
-                            </span>
-                        </a>
-                    </li>
+                    <div class="listOuter">
+                        <li>
+                            <a href="getExhibitionInfo?exhiId=${exhiInfo.fifth}" style="color: black;">
+                                <span class="title">
+                                        ${exhiInfo.first}
+                                </span>
+                                <span>${exhiInfo.second}</span>
+                                <span class="newsTime">
+                                        ${exhiInfo.third}
+                                </span>
+                            </a>
+                        </li>
+                    </div>
                 </c:forEach>
             </ul>
         </div>

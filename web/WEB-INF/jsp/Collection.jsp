@@ -137,28 +137,26 @@
             <div class="tab-content" id="nav-tabContent">
 
                 <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                    asdfasdf${productInfoList[0].first}
-                    <%--<c:forEach items="${productInfoList}" var="productInfo">--%>
-                    <%--<div class="card" style="width: 1200px;">--%>
-                        <%--<div class="card-body" style="height: 120px;padding: 10px;padding-left: 30px;">--%>
-                            <%--<div class="card-title lead">${productInfo.first}</div>--%>
-                            <%--<p class="card-text">${productInfo.second}${productInfo.thrid}</p>--%>
-                            <%--<a href="getProductById?productId=${newsInfo.fourth}" class="card-link" style="float: right;">查看详情</a>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--</c:forEach>--%>
-                    fdsafdsa
+                   <%-- <c:forEach items="${productInfoList}" var="productInfo">
+                    <div class="card" style="width: 1200px;">
+                        <div class="card-body" style="height: 120px;padding: 10px;padding-left: 30px;">
+                            <div class="card-title lead">${productInfo.first}</div>
+                            <p class="card-text">${productInfo.second}${productInfo.thrid}</p>
+                            <a href="getProductById?productId=${productInfo.fourth}" class="card-link" style="float: right;">查看详情</a>
+                        </div>
+                    </div>
+                    </c:forEach>--%>
+                       <c:forEach items="${productInfoList}" var="exhiInfo">
+                           <div class="card" style="width: 1200px;">
+                               <div class="card-body" style="height: 120px;padding: 10px;padding-left: 30px;">
+                                   <div class="card-title lead">${exhiInfo.first}</div>
+                                   <p class="card-text">${exhiInfo.second}${exhiInfo.third}</p>
+                                   <a href="getProductById?productId=${exhiInfo.fourth}" class="card-link" style="float: right;">查看详情</a>
+                               </div>
+                           </div>
+                       </c:forEach>
                 </div>
 
-                    <%--<div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">--%>
-                        <%--<div class="card" style="width: 1200px;">--%>
-                            <%--<div class="card-body" style="height: 120px;padding: 10px;padding-left: 30px;">--%>
-                                <%--<div class="card-title lead">产品</div>--%>
-                                <%--<p class="card-text">内容：关于资讯的介绍描述</p>--%>
-                                <%--<a href="#" class="card-link" style="float: right;">查看详情</a>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
 
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                     <c:forEach items="${exhiInfoList}" var="exhiInfo">
@@ -183,15 +181,6 @@
                         </div>
                     </div>
                     </c:forEach>
-                    <%--<c:forEach items="${demandInfoList}" var="demandInfo">--%>
-                        <%--<div class="card" style="width: 1200px;">--%>
-                            <%--<div class="card-body" style="height: 120px;padding: 10px;padding-left: 30px;">--%>
-                                <%--<div class="card-title lead">${demandInfo.first}${demandInfo.fourth}</div>--%>
-                                <%--<p class="card-text">${demandInfo.second}${demandInfo.third}</p>--%>
-                                <%--<a href="/getProductById?productId=${demandInfo.fifth}" class="card-link" style="float: right;">查看详情</a>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</c:forEach>--%>
                 </div>
 
                 <div class="tab-pane fade" id="nav-News" role="tabpanel" aria-labelledby="nav-News-tab">
@@ -204,20 +193,6 @@
                         </div>
                     </div>
                     </c:forEach>
-                    <%--<div class="card" style="width: 1200px;">--%>
-                        <%--<div class="card-body" style="height: 120px;padding: 10px;padding-left: 30px;">--%>
-                            <%--<div class="card-title lead">资讯标题</div>--%>
-                            <%--<p class="card-text">内容：关于资讯的介绍描述</p>--%>
-                            <%--<a href="#" class="card-link" style="float: right;">查看详情</a>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="card" style="width: 1200px;">--%>
-                        <%--<div class="card-body" style="height: 120px;padding: 10px;padding-left: 30px;">--%>
-                            <%--<div class="card-title lead">资讯标题</div>--%>
-                            <%--<p class="card-text">内容：关于资讯的介绍描述</p>--%>
-                            <%--<a href="#" class="card-link" style="float: right;">查看详情</a>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
                 </div>
             </div>
         </div>

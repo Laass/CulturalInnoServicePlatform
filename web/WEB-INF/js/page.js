@@ -8,12 +8,15 @@ $(document).ready(function(){
         var maxpage;//所有内容可以填充的最多页面数
         var num = $("#lists").children().length;//内容条数
 
+        if(num == 0)
+            return;
+
         if((num / maxlist) > parseInt(num / maxlist))//如果最后一个页面没有被填满
             maxpage = parseInt(num / maxlist) + 1;//页面数=被填满的页面数+1
         else
             maxpage = parseInt(num / maxlist);//页面数=被填满的页面数
 
-        if(maxpage == null)
+        if(maxpage == 0)
             maxpage = 1;
 
         var startrows = (curpage-1) * maxlist;//所有内容的第stratrows个是这个页面的第一条

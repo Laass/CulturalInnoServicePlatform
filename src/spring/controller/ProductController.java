@@ -70,6 +70,109 @@ public class ProductController {
 
     @RequestMapping(value = "/Product.html")
     public ModelAndView initProductPage(Model model,HttpServletRequest request){
+//        getAllPassedProduct(request);
+//        List<Product> passedList=(List<Product>)request.getAttribute("passedList");
+//        List<Product> calliList=new ArrayList<>();
+//        List<Product> paintList=new ArrayList<>();
+//        List<Product> musicList=new ArrayList<>();
+//        List<Product> garmentList=new ArrayList<>();
+//        List<AO> calliInfoList=new ArrayList<>();
+//        List<AO> paintInfoList=new ArrayList<>();
+//        List<AO> musicInfoList=new ArrayList<>();
+//        List<AO> garmentInfoList=new ArrayList<>();
+//        ImageDAO iDAO=new ImageDAO();
+//        try
+//        {
+//            for(Product p:passedList)
+//            {
+//                Image i=iDAO.getFirstImageOfOriginId(p.getProId());
+//                AO a=new AO();
+//                a.setFirst(p.getProName());
+//                a.setSecond(p.getProId());
+//                a.setThird(p.getProductType());
+//                a.setFourth(Double.toString(p.getPrice()));
+//                a.setFifth(p.getHits().toString());
+//                if(i!=null)
+//                    a.setSixth(i.getStoreLocation());
+//                if(p.getProductType().equals(ProductType.CALLIGRAPHY.name))
+//                {
+//                    calliList.add(p);
+//                    calliInfoList.add(a);
+//                }
+//                else
+//                    if(p.getProductType().equals(ProductType.PAINTING.name))
+//                    {
+//                        paintList.add(p);
+//                        paintInfoList.add(a);
+//                    }
+//                    else
+//                        if(p.getProductType().equals(ProductType.MUSINSTRU.name))
+//                        {
+//                            musicList.add(p);
+//                            musicInfoList.add(a);
+//                        }
+//                        else
+//                        {
+//                            garmentList.add(p);
+//                            garmentInfoList.add(a);
+//                        }
+//            }
+//            System.out.println("ProductProductProduct");
+//            model.addAttribute("calliList",calliList);
+//            model.addAttribute("paintList",paintList);
+//            model.addAttribute("musicList",musicList);
+//            model.addAttribute("garmentList",garmentList);
+//            model.addAttribute("calliInfoList",calliInfoList);
+//            model.addAttribute("paintInfoList",paintInfoList);
+//            model.addAttribute("musicInfoList",musicInfoList);
+//            model.addAttribute("garmentInfoList",garmentInfoList);
+        if(!getProducts(model,request))
+            return null;
+        return new ModelAndView("Product","command",this);
+//        }
+//        catch (Exception e)
+//        {
+//            e.printStackTrace();
+//            return null;
+//        }
+    }
+
+    @RequestMapping(value = "/Product",method = RequestMethod.GET)
+    public ModelAndView initProductType(@RequestParam("ptype") String type,Model model,HttpServletRequest request){
+//        getAllPassedProduct(request);
+//        List<Product> passedList=(List<Product>)request.getAttribute("passedList");
+//        List<Product> calliList=new ArrayList<>();
+//        List<Product> paintList=new ArrayList<>();
+//        List<Product> musicList=new ArrayList<>();
+//        List<Product> garmentList=new ArrayList<>();
+//        for(Product p:passedList)
+//        {
+//
+//            if(p.getProductType().equals(ProductType.CALLIGRAPHY.name))
+//                calliList.add(p);
+//            else
+//            if(p.getProductType().equals(ProductType.PAINTING.name))
+//                paintList.add(p);
+//            else
+//            if(p.getProductType().equals(ProductType.MUSINSTRU.name))
+//                musicList.add(p);
+//            else
+//                garmentList.add(p);
+//        }
+//        System.out.println("ProductProductProduct");
+//        model.addAttribute("calliList",calliList);
+//        model.addAttribute("paintList",paintList);
+//        model.addAttribute("musicList",musicList);
+//        model.addAttribute("garmentList",garmentList);
+        if(!getProducts(model,request))
+            return null;
+        model.addAttribute("ptype",type);
+        return new ModelAndView("Product","command",this);
+
+    }
+
+    private Boolean getProducts(Model model,HttpServletRequest request)
+    {
         getAllPassedProduct(request);
         List<Product> passedList=(List<Product>)request.getAttribute("passedList");
         List<Product> calliList=new ArrayList<>();
@@ -83,55 +186,53 @@ public class ProductController {
         ImageDAO iDAO=new ImageDAO();
         try
         {
-            for(Product p:passedList)
+            for (Product p : passedList)
             {
-                Image i=iDAO.getFirstImageOfOriginId(p.getProId());
-                AO a=new AO();
+                Image i = iDAO.getFirstImageOfOriginId(p.getProId());
+                AO a = new AO();
                 a.setFirst(p.getProName());
                 a.setSecond(p.getProId());
                 a.setThird(p.getProductType());
                 a.setFourth(Double.toString(p.getPrice()));
                 a.setFifth(p.getHits().toString());
-                if(i!=null)
+                if (i != null)
                     a.setSixth(i.getStoreLocation());
-                if(p.getProductType().equals(ProductType.CALLIGRAPHY.name))
+                if (p.getProductType().equals(ProductType.CALLIGRAPHY.name))
                 {
                     calliList.add(p);
                     calliInfoList.add(a);
                 }
+                else if (p.getProductType().equals(ProductType.PAINTING.name))
+                {
+                    paintList.add(p);
+                    paintInfoList.add(a);
+                }
+                else if (p.getProductType().equals(ProductType.MUSINSTRU.name))
+                {
+                    musicList.add(p);
+                    musicInfoList.add(a);
+                }
                 else
-                    if(p.getProductType().equals(ProductType.PAINTING.name))
-                    {
-                        paintList.add(p);
-                        paintInfoList.add(a);
-                    }
-                    else
-                        if(p.getProductType().equals(ProductType.MUSINSTRU.name))
-                        {
-                            musicList.add(p);
-                            musicInfoList.add(a);
-                        }
-                        else
-                        {
-                            garmentList.add(p);
-                            garmentInfoList.add(a);
-                        }
+                {
+                    garmentList.add(p);
+                    garmentInfoList.add(a);
+                }
             }
             System.out.println("ProductProductProduct");
-            model.addAttribute("calliList",calliList);
-            model.addAttribute("paintList",paintList);
-            model.addAttribute("musicList",musicList);
-            model.addAttribute("garmentList",garmentList);
-            model.addAttribute("calliInfoList",calliInfoList);
-            model.addAttribute("paintInfoList",paintInfoList);
-            model.addAttribute("musicInfoList",musicInfoList);
-            model.addAttribute("garmentInfoList",garmentInfoList);
-            return new ModelAndView("Product","command",this);
+            model.addAttribute("calliList", calliList);
+            model.addAttribute("paintList", paintList);
+            model.addAttribute("musicList", musicList);
+            model.addAttribute("garmentList", garmentList);
+            model.addAttribute("calliInfoList", calliInfoList);
+            model.addAttribute("paintInfoList", paintInfoList);
+            model.addAttribute("musicInfoList", musicInfoList);
+            model.addAttribute("garmentInfoList", garmentInfoList);
+            return true;
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            return null;
+            return false;
         }
     }
 
