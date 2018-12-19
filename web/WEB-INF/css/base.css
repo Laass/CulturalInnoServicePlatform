@@ -170,3 +170,7 @@ ul.essayList > li > a{
     padding-left: 20px;
     display: inline-block;
 }
+/*订单css*/
+.card{
+    margin-top:10px;
+}

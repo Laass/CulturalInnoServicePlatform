@@ -144,7 +144,7 @@ $(document).ready(function(){
         }
     })
 
-    $("#comment").click(function () {
+    $(".comment").click(function () {
         promptStu($(this));
     });
 
@@ -156,7 +156,7 @@ $(document).ready(function(){
         if(ans){
             debugger;
             var temp = {
-                originId : $(node).parent().parent().children("#proId").text(),
+                originId : $(node).parent().parent().children(".proId").text(),
                 content : ans
             }
             commentProduct(temp);

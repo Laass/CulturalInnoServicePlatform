@@ -86,9 +86,9 @@
                         <p class="text-right" style="margin-right: 30px;position: relative;bottom: -20px;">购买数量：${order.third} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp价格：
                             <span style="display: inline-block;color: #FF0000">${order.fourth}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;购买时间：${order.fifth}</p>
                     </div>
-                    <div id="proId" style="display: none;">${order.seventh}</div>
+                    <div class="proId" style="display: none;">${order.seventh}</div>
                     <div class="card-footer">
-                        <button type="button" id="comment" class="btn btn-light btn-outline-secondary btn-lg float-right">评价</button>
+                        <button type="button" class="comment btn btn-light btn-outline-secondary btn-lg float-right">评价</button>
                     </div>
                 </div>
                 <!-- 一个订单的结尾 -->
