@@ -24,6 +24,7 @@ public class ImageDAO
 
     private void releaseSession()
     {
+        hsession.flush();
         SessionMgr.releaseConnect(hsession, ts);
     }
 
@@ -77,11 +78,14 @@ public class ImageDAO
 
             releaseSession();
 
-            return list;
+            if(list==null||list.size()==0)
+                return null;
+            else
+                return list;
         }
         catch (Exception e)
         {
-            releaseSession();
+            releaseSession(hsession);
             throw e;
 //            return null;
         }
@@ -107,7 +111,7 @@ public class ImageDAO
         }
         catch (Exception e)
         {
-            releaseSession();
+            releaseSession(hsession);
             throw e;
 //            return null;
         }
@@ -129,4 +133,24 @@ public class ImageDAO
 //			return false;
 //		}
 //	}
+
+    public Boolean deleteImage(String originId) throws Exception
+    {
+        getSession();
+        try
+        {
+            Query q=hsession.createQuery("from Image where originId=?1");
+            q.setParameter(1,originId);
+            List<Image> toDel=q.list();
+            for(Image i:toDel)
+                hsession.delete(i);
+            releaseSession();
+            return true;
+        }
+        catch (Exception e)
+        {
+            releaseSession(hsession);
+            throw e;
+        }
+    }
 }

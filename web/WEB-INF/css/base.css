@@ -1,6 +1,7 @@
 /*页尾页头默认css*/
 .log{
     height: 100px;
+
     overflow: hidden;
 }
 .search{
@@ -25,19 +26,17 @@
     color: black;
 }
 .portrait{
-    width: 70px;
-    height: 70px;
-    border-radius: 70%;
-    margin-top: 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-top: 8px;
+    margin-right: 10px;
     float: right;
 }
 .portrait > img{
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-}
-.carousel-item{
-    height: 500px;
 }
 
 /*资讯列表页css*/
@@ -57,7 +56,7 @@
 }
 .news{
     width: 100%;
-    /*height: 80px;*/
+    height: 80px;
     margin-top: 10px;
     /*	background-color: grey;*/
     display: block;
@@ -122,18 +121,18 @@ ul#lists > listOuter > li > a{
 /*产品list css*/
 .product{
     width: 200px;
-    /*height: 300px;*/
+    height: 300px;
     margin-right: 10px;
     margin-top: 30px;
     display: inline-block;
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
 .productImg{
     width: 100%;
     height: 150px;
 }
 .productImg > img{
-    /*width: 100%;*/
+    width: 100%;
     height: 150px;
 }
 .productTitle{
@@ -146,6 +145,7 @@ ul#lists > listOuter > li > a{
 
 
 ul.essayList{
+    width: 1200px;
     list-style-type:square
 
 }
@@ -170,7 +170,8 @@ ul.essayList > li > a{
     padding-left: 20px;
     display: inline-block;
 }
+
 /*订单css*/
-.card{
-    margin-top:10px;
+.card {
+    margin-top: 10px;
 }

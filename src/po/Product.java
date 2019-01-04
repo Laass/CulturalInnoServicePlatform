@@ -148,4 +148,21 @@ public class Product
     {
         return Objects.hash(proId, proName, price, hits, purchase, isPass, productType, info);
     }
+
+    public Product(String proId, String userId, String proName, double price, Integer hits, Integer purchase, byte isPass, String productType, String info)
+    {
+        this.proId = proId;
+        this.userId = userId;
+        this.proName = proName;
+        this.price = price;
+        this.hits = hits;
+        this.purchase = purchase;
+        this.isPass = isPass;
+        this.productType = productType;
+        this.info = info;
+    }
+
+    public Product()
+    {
+    }
 }

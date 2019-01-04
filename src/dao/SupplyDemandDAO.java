@@ -828,10 +828,11 @@ public class SupplyDemandDAO
     //是否可以替换上面两个函数？
     public Boolean setAsPass(SupplyDemand validatedSD) throws Exception
     {
-        getSession();
         try
         {
+            validatedSD=getSDById(validatedSD.getSdId());
             validatedSD.setIsPass((byte)1);
+            getSession();
             hs.update(validatedSD);
 
             releaseSession();

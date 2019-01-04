@@ -43,6 +43,7 @@ public class Supply extends SupplyDemand
     {
         setIsPass((byte)1);
     }
+
 //    private String sId;
 //    private String userId;
 //    private String title;

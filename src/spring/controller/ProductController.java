@@ -237,7 +237,6 @@ public class ProductController {
     }
 
     @RequestMapping(value = "getProductById", method = RequestMethod.GET)
-//    @ResponseBody
     public String getProductById(@RequestParam("productId") String productId,Model model)
     {
         try
@@ -261,7 +260,6 @@ public class ProductController {
             model.addAttribute("product", p);
             model.addAttribute("umList", umList);
             model.addAttribute("imageList",iList);
-//        return new ModelAndView("ProductDetail","command",this);
             return "ProductDetail";
         }
         catch (Exception e)
@@ -368,6 +366,23 @@ public class ProductController {
         }
     }
 
+    @RequestMapping(value = "/Manage/deleteProduct.action")
+    @ResponseBody
+    public ProductController deleteProduct(@RequestBody String json, HttpServletRequest request){
+        try {
+            if (new ProductDAO().delProduct(new Gson().fromJson(json, AO.class).getFirst()))
+                this.message = "Delete Success!";
+            else
+                this.message = "Delete Fail!";
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }finally {
+            return this;
+        }
+    }
+
     @RequestMapping(value = "/passProduct.action", method = RequestMethod.POST)
     @ResponseBody
     public ProductController passProduct(@RequestBody String json , HttpServletRequest request){
@@ -410,5 +425,4 @@ public class ProductController {
 
         return this;
     }
-
 }

@@ -3,17 +3,12 @@ package spring.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
 import dao.*;
-import org.hibernate.HibernateException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.portlet.ModelAndView;
-import org.springframework.stereotype.Service;
 
 import po.*;
 
@@ -133,7 +128,9 @@ public class LoginController {
                 }
                 model.addAttribute("pList",pList);
 
-
+                List<Image> i=new ImageDAO().getImageByOriginId(user.getUserId(),1);
+                if(i!=null)
+                    model.addAttribute("imgLocation",i.get(0).getStoreLocation());
                 return "index";
             }
         }
@@ -204,14 +201,18 @@ public class LoginController {
         try
         {
             UserInfo currentUserInfo = uiDAO.getUserInfo(currentUser.getUserId());
-            model.addAttribute("userId", currentUserInfo.getUserId());
-            model.addAttribute("nickName", currentUserInfo.getNickName());
-            model.addAttribute("realName", currentUserInfo.getRealName());
-            model.addAttribute("intro", currentUserInfo.getIntro());
-            model.addAttribute("email", currentUserInfo.getEmail());
-            model.addAttribute("address", currentUserInfo.getAddress());
-            model.addAttribute("qq", currentUserInfo.getQq());
-            model.addAttribute("tel", currentUserInfo.getTel());
+            boolean unExist=currentUserInfo==null;
+            model.addAttribute("userId", unExist?"":currentUserInfo.getUserId());
+            model.addAttribute("nickName", unExist?"":currentUserInfo.getNickName());
+            model.addAttribute("realName", unExist?"":currentUserInfo.getRealName());
+            model.addAttribute("intro", unExist?"":currentUserInfo.getIntro());
+            model.addAttribute("email", unExist?"":currentUserInfo.getEmail());
+            model.addAttribute("address", unExist?"":currentUserInfo.getAddress());
+            model.addAttribute("qq", unExist?"":currentUserInfo.getQq());
+            model.addAttribute("tel", unExist?"":currentUserInfo.getTel());
+            List<Image> i=new ImageDAO().getImageByOriginId(currentUser.getUserId(),1);
+            if(i!=null)
+                model.addAttribute("imgLocation",i.get(0).getStoreLocation());
             return "UserInfo";
         }
         catch(Exception e)
@@ -220,10 +221,69 @@ public class LoginController {
         }
     }
 
-    @RequestMapping(value = "testEditor",method = RequestMethod.GET)
-    public String testEditor()
+//    @RequestMapping(value = {"editEssay"},method = RequestMethod.GET)
+//    public String testEditor()
+//    {
+//        return "EditEssay";
+//    }
+
+    @RequestMapping(value="editUserInfo",method = RequestMethod.POST)
+    @ResponseBody
+    public String editUserInfo(String nickName,String realName,String intro,
+                               String email,String address,String qq,String tel,
+                               HttpSession session)
     {
-        return "TestEditor";
+        User u=(User)session.getAttribute("currentUser");
+        if(u==null)
+            return "Login Required";
+        UserInfo ui=new UserInfo(
+                u.getUserId(),
+                nickName,
+                realName,
+                intro,
+                email,
+                address,
+                qq,
+                tel
+        );
+        UserInfoDAO uiDAO=new UserInfoDAO();
+        try
+        {
+            if(uiDAO.getUserInfo(u.getUserId())!=null)
+                uiDAO.modifyUserInfo(ui);
+            else
+                uiDAO.addUserInfo(ui);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return "error";
+        }
+        return "success";
     }
+
+    public static String getPortraitLoc(HttpSession session)
+    {
+        User u=(User)session.getAttribute("currentUser");
+        if(u!=null)
+        {
+            List<Image> pics= null;
+            try
+            {
+                pics = new ImageDAO().getImageByOriginId(u.getUserId(),1);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                return null;
+            }
+            if(pics!=null)
+            {
+                return pics.get(0).getStoreLocation();
+            }
+        }
+        return null;
+    }
+
 
 }

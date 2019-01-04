@@ -68,4 +68,19 @@ public class AO {
     {
         this.seventh = seventh;
     }
+
+    public AO(String first, String second, String third, String fourth, String fifth, String sixth, String seventh)
+    {
+        this.first = first;
+        this.second = second;
+        this.third = third;
+        this.fourth = fourth;
+        this.fifth = fifth;
+        this.sixth = sixth;
+        this.seventh = seventh;
+    }
+
+    public AO()
+    {
+    }
 }

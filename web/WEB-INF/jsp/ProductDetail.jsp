@@ -106,8 +106,6 @@
         }
 
 
-
-
         .comments {
             width: 100%;
             height: 30px;
@@ -118,11 +116,7 @@
         .commentinfo {
             border-bottom:1px solid #eee;
         }
-
-
     </style>
-
-
 </head>
 
 <body>
@@ -138,15 +132,17 @@
                 <!-- 轮播图片 -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg">
+                        <img src="${imageList[0].storeLocation}" style="height: 100%;">
                     </div>
+                    <c:forEach items="${imageList}" var="image" begin="1">
                     <div class="carousel-item">
-                        <img src="http://static.runoob.com/images/mix/img_nature_wide.jpg">
+                        <img src="${image.storeLocation}" style="height: 100%;">
                     </div>
-                    <div class="carousel-item">
-                        <img
-                                src="http://static.runoob.com/images/mix/img_mountains_wide.jpg">
-                    </div>
+                    </c:forEach>
+                    <%--<div class="carousel-item">--%>
+                        <%--<img--%>
+                                <%--src="http://static.runoob.com/images/mix/img_mountains_wide.jpg">--%>
+                    <%--</div>--%>
                 </div>
 
                 <!-- 左右切换按钮 -->
@@ -173,16 +169,11 @@
                         <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal">立即购买</button>
                         <button id="enshrine" type="button" class="btn btn-danger">收藏</button>
                     </div>
-
-
-
                 </div>
             </div>
         </div>
 
     </div>
-
-
 
     <div class="bottom">
         <nav>
@@ -241,7 +232,7 @@
 
                 <!-- 模态框主体 -->
                 <div class="modal-body">
-                    <img src="http://static.runoob.com/images/mix/img_avatar.png" style="width:400px;height: 400px;">
+                    <img src="${imageList[0].storeLocation}" style="width:400px;height: 100%;">
                     <div class="input-group mb-3" style="width: 200px;margin-top: 120px;float: right;margin-right: 20px;">
                         <div class="input-group-prepend">
                             <span class="input-group-text" >购买数量：</span>
@@ -249,7 +240,7 @@
                         <input id="purchaseNum" type="text" class="form-control" value="1" name="purchasenum">
                     </div>
                     <h4 style="float: right;margin-right: 20px;">单价：<div id="singlePrice" style="display: inline-block;">${product.price}</div></h4>
-                    <h3 style="margin-top: 60px;float: right;margin-right: -160px;">总价：<div id="priceSum" style="display: inline-block">${product.price}</div></h3>
+                    <h3 style="margin-top: 60px;float: right;margin-right: -160px;">总价：<div id="priceSum" style="display: inline-block;margin-right: 20px;">${product.price}</div></h3>
                 </div>
 
                 <!-- 模态框底部 -->

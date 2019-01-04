@@ -122,4 +122,19 @@ public class News
     {
         return Objects.hash(newsId, userId, title, content, establishTime, hits, isPass);
     }
+
+    public News(String newsId, String userId, String title, String content, Timestamp establishTime, Integer hits, byte isPass)
+    {
+        this.newsId = newsId;
+        this.userId = userId;
+        this.title = title;
+        this.content = content;
+        this.establishTime = establishTime;
+        this.hits = hits;
+        this.isPass = isPass;
+    }
+
+    public News()
+    {
+    }
 }

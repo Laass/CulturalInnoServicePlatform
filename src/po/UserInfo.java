@@ -135,4 +135,20 @@ public class UserInfo
     {
         return Objects.hash(userId, nickName, realName, intro, email, address, qq, tel);
     }
+
+    public UserInfo(String userId, String nickName, String realName, String intro, String email, String address, String qq, String tel)
+    {
+        this.userId = userId;
+        this.nickName = nickName;
+        this.realName = realName;
+        this.intro = intro;
+        this.email = email;
+        this.address = address;
+        this.qq = qq;
+        this.tel = tel;
+    }
+
+    public UserInfo()
+    {
+    }
 }

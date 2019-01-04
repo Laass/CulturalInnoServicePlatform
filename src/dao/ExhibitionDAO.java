@@ -304,10 +304,11 @@ public class ExhibitionDAO
      */
     public boolean setAsPass(Exhibition validatedExhibition) throws Exception
     {
-        getSession();
         try
         {
+            validatedExhibition=getExhibitionById(validatedExhibition.getExId());
             validatedExhibition.setIsPass((byte)1);
+            getSession();
             hs.update(validatedExhibition);
 
             releaseSession();

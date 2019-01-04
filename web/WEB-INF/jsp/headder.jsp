@@ -13,11 +13,17 @@
 <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <html>
 <body>
+<%
+    String picLoc=(String)request.getAttribute("imgLocation");
+    if(picLoc==null||picLoc.trim().equals(""))
+        picLoc="/images/portrait/defaultPortrait.jpg";
+    request.setAttribute("picLoc",picLoc);
+%>
 <div class="log" >
     <a href="" style="display: inline-block;"><img style="margin-top: -10px;margin-left: 30px;width:70px;height: 70px;" src="images/leaf.png"></a>
     <h1 style="width: auto;display: inline-block;margin-top:20px;margin-left:30px;">文化创意产业公共服务平台</h1>
     <div class="portrait">
-        <a href="jsp/index.html" class="portrait"><img style="margin-top: -5px;" src="http://static.runoob.com/images/mix/img_fjords_wide.jpg"></a>
+        <a href="jsp/index.html" class="portrait"><img style="margin-top: -5px;" src="${picLoc}" alt="暂无头像"></a>
     </div>
 </div>
 <div class="row">

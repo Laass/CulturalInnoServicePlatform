@@ -122,4 +122,24 @@ public class Exhibition
     {
         return Objects.hash(exId, userId, theme, content, establishTime, hits, isPass);
     }
+
+    public Exhibition(String exId, String userId, String theme, String content, Timestamp establishTime, Integer hits, byte isPass)
+    {
+        this.exId = exId;
+        this.userId = userId;
+        this.theme = theme;
+        this.content = content;
+        this.establishTime = establishTime;
+        this.hits = hits;
+        this.isPass = isPass;
+    }
+
+    public Exhibition(String exId)
+    {
+        this.exId = exId;
+    }
+
+    public Exhibition()
+    {
+    }
 }

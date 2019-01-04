@@ -10,6 +10,7 @@
         <property name="connection.username">root</property>
         <property name="connection.password">mysql</property>
         <property name="show_sql">true</property>
+        <property name="hibernate.cache.use_second_level_cache">false</property>
 
         <mapping resource="po/Collection.hbm.xml"/>
         <mapping class="po.Collection"/>

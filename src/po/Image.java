@@ -65,4 +65,15 @@ public class Image
     {
         return Objects.hash(imageId, originId, storeLocation);
     }
+
+    public Image(String imageId, String originId, String storeLocation)
+    {
+        this.imageId = imageId;
+        this.originId = originId;
+        this.storeLocation = storeLocation;
+    }
+
+    public Image()
+    {
+    }
 }

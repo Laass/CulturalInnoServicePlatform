@@ -152,4 +152,20 @@ public class SupplyDemand
         return Objects.hash(sdId, userId, title, content, startTime, endTime, hits, isPass, type);
     }
 
+    public SupplyDemand(String sdId, String userId, String title, String content, Timestamp startTime, Timestamp endTime, Integer hits, byte isPass, String type)
+    {
+        this.sdId = sdId;
+        this.userId = userId;
+        this.title = title;
+        this.content = content;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.hits = hits;
+        this.isPass = isPass;
+        this.type = type;
+    }
+
+    public SupplyDemand()
+    {
+    }
 }

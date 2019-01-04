@@ -114,6 +114,23 @@ public class SDController {
         //return new SupplyDemandDAO().addDemand(temp);
     }
 
+    @RequestMapping(value = "/Manage/deleteSD.action")
+    @ResponseBody
+    public SDController deleteSD(@RequestBody String json, HttpServletRequest request){
+        try {
+            if (new SupplyDemandDAO().delSD(new Gson().fromJson(json, AO.class).getFirst()))
+                this.message = "Delete Success!";
+            else
+                this.message = "Delete Fail!";
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }finally {
+            return this;
+        }
+    }
+
     @RequestMapping(value = "/delSupplyDemand.action", method = RequestMethod.POST)
     @ResponseBody
     public SDController deSupplyDemand(@RequestBody String json , HttpServletRequest request){
@@ -133,16 +150,16 @@ public class SDController {
     }
 
     //暂时未确定
-//    @RequestMapping(value = "/passSD.action", method = RequestMethod.POST)
-//    @ResponseBody
-//    public SDController passSD(@RequestBody String json , HttpServletRequest request){
-//        SupplyDemand temp = new Gson().fromJson(json, SupplyDemand.class);
-//        if(new SupplyDemandDAO().setAsPass())
-//            this.setMessage("删除成功");
-//        else
-//            this.setMessage("删除失败");
-//        return this;
-//    }
+    @RequestMapping(value = "/passSD.action", method = RequestMethod.POST)
+    @ResponseBody
+    public SDController passSD(@RequestBody String json , HttpServletRequest request) throws Exception {
+        SupplyDemand temp = new Gson().fromJson(json, SupplyDemand.class);
+        if(new SupplyDemandDAO().setAsPass(temp))
+            this.setMessage("审核通过");
+        else
+            this.setMessage("审核失败");
+        return this;
+    }
 
 
 }

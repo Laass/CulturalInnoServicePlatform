@@ -1,22 +1,22 @@
 package spring.controller;
 
 import com.google.gson.Gson;
-import dao.AO;
-import dao.MessageDAO;
-import dao.NewsDAO;
-import dao.UserInfoDAO;
+import dao.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.portlet.ModelAndView;
-import po.Message;
-import po.News;
-import po.UserInfo;
+import po.*;
 
 import javax.lang.model.element.NestingKind;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class NewsController {
@@ -123,6 +123,23 @@ public class NewsController {
         }
     }
 
+    @RequestMapping(value = "/Manage/deleteNew.action")
+    @ResponseBody
+    public NewsController deleteNew(@RequestBody String json, HttpServletRequest request){
+        try {
+            if (new NewsDAO().delNews(new Gson().fromJson(json, AO.class).getFirst()))
+                this.message = "Delete Success!";
+            else
+                this.message = "Delete Fail!";
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }finally {
+            return this;
+        }
+    }
+
     @ModelAttribute("pageNewsList")
     @RequestMapping(value = "/getNewByPage.action")
     @ResponseBody
@@ -208,5 +225,4 @@ public class NewsController {
             return "Login";
         }
     }
-
 }
