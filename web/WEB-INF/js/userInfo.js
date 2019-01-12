@@ -2,10 +2,12 @@ $("document").ready(function ()
 {
     var imgChanged=false;
     $("#submit").attr("disabled","disabled");
+    $("#delPortrait").attr("disabled","disabled");
     $("#enableEdit").click(function ()
     {
         $("form input").removeAttr("readonly");
         $("#submit").removeAttr("disabled");
+        $("#delPortrait").removeAttr("disabled");
         $("#enableEdit").attr("disabled","disabled");
         return false;//禁用表单的提交
     });
@@ -63,6 +65,7 @@ $("document").ready(function ()
                 $("form input").attr("readonly","readonly");
                 $("#submit").attr("disabled","disabled");
                 $("#enableEdit").removeAttr("disabled");
+                $("#delPortrait").attr("disabled","disabled");
                 alert("返回信息："+data+"\n状态："+status);
             }
         );
@@ -78,4 +81,8 @@ $("document").ready(function ()
             url=window.webkitURL.createObjectURL(file);
         return url;
     }
+    $("#delPortrait").click(function ()
+    {
+        window.location.href="Manage/delPortrait";
+    })
 });

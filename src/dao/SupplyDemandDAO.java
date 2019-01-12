@@ -845,4 +845,19 @@ public class SupplyDemandDAO
         }
 //        return null;
     }
+
+    public Boolean update(SupplyDemand s) throws Exception
+    {
+        try
+        {
+            hs.update(s);
+            releaseSession();
+            return true;
+        }
+        catch(Exception e)
+        {
+            releaseSession(hs);
+            throw e;
+        }
+    }
 }

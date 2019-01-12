@@ -328,4 +328,20 @@ public class NewsDAO
             return false;
         }
     }
+
+    public Boolean update(News n) throws Exception
+    {
+        getSession();
+        try
+        {
+            hsession.update(n);
+            releaseSession();
+            return true;
+        }
+        catch(Exception e)
+        {
+            releaseSession(hsession);
+            return false;
+        }
+    }
 }

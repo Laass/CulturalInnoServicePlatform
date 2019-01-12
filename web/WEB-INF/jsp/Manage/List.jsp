@@ -28,6 +28,9 @@
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+
+    </script>
 </head>
 
 <body>
@@ -59,7 +62,10 @@
 
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <span class="x-right" style="line-height:40px"><span id="listType"><c:out value="${listType}"/></span>共有数据：<c:out value = "${listNum}"/></span>
+        <span class="x-right" style="line-height:40px">
+            <span id="listType"><c:out value="${listType}"/></span>
+            共有数据：<c:out value="${listNum}"/>
+        </span>
     </xblock>
 
     <table class="layui-table">
@@ -73,7 +79,7 @@
             <th>发布时间</th>
             <th>点击量</th>
             <th>审核状态</th>
-            <th >操作</th>
+            <th>操作</th>
         </tr>
         </thead>
 
@@ -94,6 +100,7 @@
                         <c:if test="${sessionScope.currentUser.type == '15'}">
                             <span class="layui-btn layui-btn-normal layui-btn-mini checkButton">审核</span>
                         </c:if>
+                        <span class="layui-btn layui-btn-normal layui-btn-mini editBtn">编辑</span>
                     </td>
                 </tr>
             </c:forEach>

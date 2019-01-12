@@ -206,4 +206,35 @@ $(document).ready(function(){
         }
     });
 
+    $(".editBtn").click(function ()
+    {
+        var essayId;
+        var essayType;
+        switch($("#listType").text())
+        {
+            case "News":
+                essayId=$(this).parent().parent().children(".id").text();
+                essayType="News";
+                break;
+            case "Exhibition":
+                essayId=$(this).parent().parent().children(".id").text();
+                essayType="Exh";
+                break;
+            case "SD":
+                essayId = $(this).parent().parent().children(".id").text();
+                essayType="SD";
+                break;
+            case "PRODUCT":
+                essayId = $(this).parent().parent().children(".id").text();
+                essayType="Product";
+                break;
+        }
+        // window.location.href="goToEdit?essayId="+essayId+"&essayType="+essayType;
+        window.location.href="goToEdit?essayIdAndType="+essayId+" "+essayType;
+        // $.post("goToEdit",
+        //     {
+        //         essayType:essayType,
+        //         essayId:essayId
+        //     });
+    });
 });

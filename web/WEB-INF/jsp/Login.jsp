@@ -19,6 +19,24 @@
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function ()
+        {
+            $("#loginForm").attr("action","");
+            $("#phone").blur(function ()
+            {
+                var phone=$("#phone").val();
+                var phoneCri=/^[\d]{3,11}$/;
+                if(phoneCri.test(phone))
+                {
+                    $("#loginForm").attr("action","/login.action");
+                    $("#invalidPhone").css("display","none");
+                }
+                else
+                    $("#invalidPhone").css("display","block");
+            });
+        })
+    </script>
 </head>
 <body style="background-color: #eee;">
 <div class="container">
@@ -26,10 +44,11 @@
         <h2>Login</h2>
         <hr/>
         ${message}
-        <form style="width: 300px;" method="post" action="/login.action">
+        <form style="width: 300px;" method="post" action="/login.action" id="loginForm">
             <div class="form-group">
-                <label for="email">Phone:</label>
-                <input type="text" class="form-control" name="userId" id="email" placeholder="Enter Phone">
+                <label for="phone">Phone:</label>
+                <input type="text" class="form-control" name="userId" id="phone" placeholder="Enter Phone">
+                <p class="help-block" style="color: crimson;display: none" id="invalidPhone">电话号码格式错误</p>
             </div>
             <div class="form-group">
                 <label for="pwd">Password:</label>
@@ -40,7 +59,7 @@
                     <input class="form-check-input" type="checkbox"> Remember me
                 </label>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" id="submit">Submit</button>
         </form>
     </div>
 </div>

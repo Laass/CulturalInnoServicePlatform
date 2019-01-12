@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: user0
@@ -56,6 +57,22 @@
                     }
                 );
             });
+            $("#edit").click(function ()
+            {
+                var essayType=$("#essayType").text()
+                $.post("editEssay",
+                    {
+                        essayTitle:$("#essayTitle").val(),
+                        essayContent:editor.txt.html(),
+                        essayId:$("#essayId").text(),
+                        essayType:essayType
+                    },
+                    function (data, status)
+                    {
+                        alert(status);
+                        window.location.href="toList?listName="+essayType;
+                    });
+            });
         });
     </script>
     <style>
@@ -68,10 +85,20 @@
 <body>
 <div class="form-group betterFont">
     <label for="essayTitle" style="font-size: 20px;font-weight: bold;">文章标题</label>
-    <input type="text" class="form-control" id="essayTitle" style="width: 50%">
+    <c:if test="${requestScope.essay!=null}">
+        <input type="text" class="form-control" id="essayTitle" value="${requestScope.essay.first}" style="width: 50%">
+    </c:if>
+    <c:if test="${requestScope.essay==null}">
+        <input type="text" class="form-control" id="essayTitle" style="width: 50%">
+    </c:if>
 </div>
 <div id="editor">
-    <p>欢迎使用<b>wangEditor</b>富文本编辑器</p>
+    <c:if test="${requestScope.essay!=null}">
+        ${requestScope.essay.second}
+    </c:if>
+    <c:if test="${requestScope.essay==null}">
+        <p>欢迎使用<b>wangEditor</b>富文本编辑器</p>
+    </c:if>
 </div>
 <script type="text/javascript">
     var E=window.wangEditor;
@@ -100,6 +127,7 @@
     editor.customConfig.showLinkImg=false;
     editor.create();
 </script>
+<c:if test="${requestScope.essay==null}">
 <div class="radio betterFont">
     <span>请选择文章类型:</span>
     <label class="radio-inline"><input type="radio" class="essayType" name="essayType" value="exhi" checked>展会信息</label>
@@ -132,7 +160,14 @@
         todayBtn:true
     });
 </script>
+</c:if>
+<c:if test="${requestScope.essay!=null}">
+    <span id="essayId" hidden>${requestScope.essay.third}</span>
+    <span id="essayType" hidden>${requestScope.essayType}</span>
+    <button type="button" class="btn btn-primary" id="edit">提交</button>
+</c:if>
+<c:if test="${requestScope.essay==null}">
 <button type="button" class="btn btn-primary" id="submit">提交</button>
-
+</c:if>
 </body>
 </html>

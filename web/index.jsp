@@ -26,27 +26,47 @@
   <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
   <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script>
+      $(document).ready(function ()
+      {
+          $("#loginForm").attr("action","");
+          $("#phone").blur(function ()
+          {
+              var phone=$("#phone").val();
+              var phoneCri=/^[\d]{5,11}$/;
+              if(phoneCri.test(phone))
+              {
+                  $("#loginForm").attr("action","/login.action");
+                  $("#invalidPhone").css("display","none");
+              }
+              else
+                  $("#invalidPhone").css("display","block");
+          });
+      })
+  </script>
 </head>
 <body style="background-color: #eee;">
 <div class="container">
   <div style="width: 500px;height:400px;margin-top: 130px;margin-left: auto;margin-right:auto ;background-color: white;padding:90px;opacity: 0.8;border-radius: 5%;padding-top: 30px;">
     <h2>Login</h2>
     <hr/>
-    <form style="width: 300px;" method="post" action="/login.action">
+    ${message}
+    <form style="width: 300px;" method="post" action="/login.action" id="loginForm">
       <div class="form-group">
-        <label for="email">Phone:</label>
-        <input type="text" class="form-control" name="userId" id="email" placeholder="Enter Phone">
+        <label for="phone">Phone:</label>
+        <input type="text" class="form-control" name="userId" id="phone" placeholder="Enter Phone">
+        <p class="help-block" style="color: crimson;display: none" id="invalidPhone">电话号码格式错误</p>
       </div>
       <div class="form-group">
         <label for="pwd">Password:</label>
         <input type="password" class="form-control" name="password" id="pwd" placeholder="Enter password">
       </div>
-      <div class="form-check" style="margin-bottom: 20px;">
+      <div class="form-check" style="margin-bottom: 15px;">
         <label class="form-check-label">
           <input class="form-check-input" type="checkbox"> Remember me
         </label>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary" id="submit">Submit</button>
     </form>
   </div>
 </div>

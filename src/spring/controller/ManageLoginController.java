@@ -1,6 +1,7 @@
 package spring.controller;
 
 import dao.*;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -80,6 +81,22 @@ public class ManageLoginController {
             model.addAttribute("productNumbers", new ProductDAO().getAllProducts().size());
         }
         return new ModelAndView("ManageWelcome", "command", this);
+    }
+
+    @RequestMapping(value = "delPortrait")
+    public ModelAndView delPortrait(HttpServletRequest request,HttpSession session,Model model)
+    {
+        User u=(User)session.getAttribute("currentUser");
+        try
+        {
+            new ImageDAO().deleteImage(u.getUserId());
+            return new ModelAndView("ManageWelcome", "command", this);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return new ModelAndView("ManageLogin","command",this);
     }
 
 }

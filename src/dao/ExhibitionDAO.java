@@ -323,5 +323,20 @@ public class ExhibitionDAO
 //        return false;
     }
 
+    public boolean update(Exhibition e) throws Exception
+    {
+        getSession();
+        try
+        {
+            hs.update(e);
+            releaseSession();
+            return true;
+        }
+        catch(Exception exc)
+        {
+            releaseSession(hs);
+            throw exc;
+        }
+    }
 	
 }

@@ -329,4 +329,20 @@ public class ProductDAO
 //            return false;
         }
     }
+
+    public Boolean update(Product p) throws Exception
+    {
+        getSession();
+        try
+        {
+            hsession.update(p);
+            releaseSession();
+            return true;
+        }
+        catch(Exception e)
+        {
+            releaseSession(hsession);
+            throw e;
+        }
+    }
 }

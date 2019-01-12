@@ -83,4 +83,11 @@ public class AO {
     public AO()
     {
     }
+
+    public AO(String first, String second, String third)
+    {
+        this.first = first;
+        this.second = second;
+        this.third = third;
+    }
 }

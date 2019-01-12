@@ -125,6 +125,7 @@
             <input id="choosePortrait" name="file" type="file" style="display: none;"/>
             <button type="submit" class="btn btn-primary" id="enableEdit">修改信息</button>
             <button type="button" class="btn btn-warning" id="submit">提交修改</button>
+            <button type="button" class="btn btn-danger" id="delPortrait">删除头像</button>
         </form>
     </div>
 </div>
