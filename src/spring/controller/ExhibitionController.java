@@ -201,6 +201,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.portlet.ModelAndView;
 import po.Exhibition;
+import po.Message;
 import po.User;
 import po.UserInfo;
 
@@ -245,16 +246,19 @@ public class ExhibitionController {
             List<AO> eInfoList=new ArrayList<>();
             for(Exhibition e:eList)
             {
-                UserInfo ui=uiDAO.getUserInfo(e.getUserId());
-                AO a=new AO();
-                a.setFirst(e.getTheme());
-                a.setSecond(ui.getNickName());
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String time = df.format(e.getEstablishTime());
-                a.setThird(time);
-                a.setFourth(e.getContent());
-                a.setFifth(e.getExId());
-                eInfoList.add(a);
+                if(e.getIsPass() == 1)
+                {
+                    UserInfo ui = uiDAO.getUserInfo(e.getUserId());
+                    AO a = new AO();
+                    a.setFirst(e.getTheme());
+                    a.setSecond(ui.getNickName());
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String time = df.format(e.getEstablishTime());
+                    a.setThird(time);
+                    a.setFourth(e.getContent());
+                    a.setFifth(e.getExId());
+                    eInfoList.add(a);
+                }
             }
             model.addAttribute("eInfoList",eInfoList);
             return new ModelAndView("Exhibition","command",this);
@@ -275,6 +279,23 @@ public class ExhibitionController {
             UserInfo u=uDAO.getUserInfo(e.getUserId());
             model.addAttribute("exhi",e);
             model.addAttribute("userInfo",u);
+
+            List<AO> umList=new ArrayList<>();
+            MessageDAO mDAO=new MessageDAO();
+            List<Message> mList=mDAO.getMessageById(e.getExId(),-1);
+            UserInfoDAO uiDAO=new UserInfoDAO();
+            for(Message m:mList)
+            {
+                UserInfo uitemp = uiDAO.getUserInfo(m.getUserId());
+                AO a = new AO();
+                if(uitemp != null)
+                    a.setFirst(uitemp.getNickName());
+                else
+                    a.setFirst(m.getUserId());
+                a.setSecond(m.getContent());
+                umList.add(a);
+            }
+            model.addAttribute("umList",umList);
             return "ExhibitionDetail";
         }
         catch (Exception e)

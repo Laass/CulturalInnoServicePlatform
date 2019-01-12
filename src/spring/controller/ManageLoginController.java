@@ -1,7 +1,6 @@
 package spring.controller;
 
 import dao.*;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,25 +24,22 @@ public class ManageLoginController {
         this.message = message;
     }
 
-    @RequestMapping(value = "/ManageLogin.html")
-    public ModelAndView initManageLogin(HttpServletRequest request){
+    @RequestMapping(value = "/ManageLogin.html", method = RequestMethod.GET)
+    public String initManageLogin(@RequestParam("flag")String flag, HttpServletRequest request, HttpSession session){
         request.setAttribute("message",message);
-        return new ModelAndView("ManageLogin","command",this);
+        if(session.getAttribute("currentUser")!=null && flag.equals("in"))
+        {
+            return "Manage/ManageIndex";
+        }
+        return"Manage/ManageLogin";
     }
 
     @RequestMapping(value = "login.action",method = RequestMethod.POST)
     public String validateLogin(@ModelAttribute("user") User user, HttpServletRequest request, HttpSession session, Model model)
     {
-        if(session.getAttribute("currentUser")!=null)
-        {
-            this.message="登录成功";
-            model.addAttribute("message",message);
-            return "Manage/ManageIndex";
-        }
-
         System.out.println(user.getUserId());
 
-        session.setAttribute("currentUser",user);
+
         UserDAO ud = new UserDAO();
         int displayNum=6;
         try
@@ -51,6 +47,8 @@ public class ManageLoginController {
             if( ud.validateUser(user.getUserId(),user.getPassword()) )
             {
                 this.message="登录成功";
+                user = ud.getUser(user.getUserId());
+                session.setAttribute("currentUser",user);
                 model.addAttribute("message",message);
 
                 return "Manage/ManageIndex";
@@ -62,13 +60,13 @@ public class ManageLoginController {
             this.message = "用户名/密码错误";
             model.addAttribute("message",message);
         }
-        return "Login";
+        return "Manage/ManageLogin";
     }
 
     @RequestMapping(value = "ManageWelcome.html")
     public ModelAndView initManageWelcomPage(HttpServletRequest request, HttpSession session, Model model) throws Exception{
         User user = (User)request.getSession().getAttribute("currentUser");
-        if(user.getType() != 0) {
+        if(user.getType() >= 16) {
             model.addAttribute("sdNumbers", new SupplyDemandDAO().getUserSD(user.getUserId()).size());
             model.addAttribute("newsNumbers", new NewsDAO().getNewsByUserId(user.getUserId()).size());
             model.addAttribute("exhibitionNumbers", new ExhibitionDAO().getExhibitionByUserId(user.getUserId()).size());
@@ -97,6 +95,29 @@ public class ManageLoginController {
             e.printStackTrace();
         }
         return new ModelAndView("ManageLogin","command",this);
+    }
+
+    @RequestMapping(value = "editPasswd")
+    @ResponseBody
+    public ManageLoginController editPasswd(String userId,String password,HttpSession session)
+    {
+        try
+        {
+            new UserDAO().updatePasswd(userId,password);
+            this.setMessage("密码修改成功");
+            return this;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @RequestMapping(value = "goToEditPasswd")
+    public String goToEditPasswd()
+    {
+        return "Manage/EditPasswd";
     }
 
 }

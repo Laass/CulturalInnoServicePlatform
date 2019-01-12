@@ -12,6 +12,7 @@ import org.springframework.web.portlet.ModelAndView;
 
 import po.*;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,12 +32,17 @@ public class LoginController {
         return new ModelAndView("Login","command",this);
     }
 
+    @RequestMapping(value = "/index.html")
+    public ModelAndView initIndex(Model model) throws Exception {
+        intiIndexData(model, 6);
+        return new ModelAndView("index");
+    }
+
     @RequestMapping(value = "login.action",method = RequestMethod.POST)
-    public String validateLogin(@ModelAttribute("user")User user, HttpServletRequest request,HttpSession session, Model model)
+    public String validateLogin(@ModelAttribute("user")User user, HttpServletRequest request,HttpSession session, Model model) throws Exception
     {
         System.out.println(user.getUserId());
 
-        session.setAttribute("currentUser",user);
         UserDAO ud = new UserDAO();
         int displayNum=6;
         try
@@ -45,92 +51,10 @@ public class LoginController {
             {
                 this.message="登录成功";
                 model.addAttribute("message",message);
+                session.setAttribute("currentUser",new UserDAO().getUser(user.getUserId()));
+                intiIndexData(model, displayNum);
 
-                //获取资讯
-                NewsDAO nDAO=new NewsDAO();
-                List<News> allNewsList=nDAO.getAllNews();
-                List<News> latestNewsList=new ArrayList<>();
-                if(allNewsList.size()<=displayNum)
-                    latestNewsList=allNewsList;
-                else
-                    for(int i=allNewsList.size()-displayNum-1;i<allNewsList.size();i++)
-                        latestNewsList.add(allNewsList.get(i));
-                System.out.println("latestNewsList.size="+latestNewsList.size());
-                model.addAttribute("latestNewsList",latestNewsList);
 
-                //获取供应
-                SupplyDemandDAO sdDAO=new SupplyDemandDAO();
-                List<Supply> allSupplyList=sdDAO.getAllSupplies();
-                List<Supply> latestSupplyList=new ArrayList<>();
-                if(allSupplyList.size()<=displayNum)
-                    latestSupplyList=allSupplyList;
-                else
-                    for(int i=allSupplyList.size()-displayNum+1;i<allSupplyList.size();i++)
-                        latestSupplyList.add(allSupplyList.get(i));
-
-                model.addAttribute("latestSupplyList",latestSupplyList);
-
-                //获取需求
-                List<Demand> allDemandList=sdDAO.getAllDemands();
-                List<Demand> latestDemandList=new ArrayList<>();
-                if(allDemandList.size()<=displayNum)
-                    latestDemandList=allDemandList;
-                else
-                    for (int i=allDemandList.size()-displayNum+1;i<allDemandList.size();i++)
-                        latestDemandList.add(allDemandList.get(i));
-                model.addAttribute("latestDemandList",latestDemandList);
-
-                //获取展会
-                ExhibitionDAO eDAO=new ExhibitionDAO();
-                List<Exhibition> allExhibitionList=eDAO.getAllExhibition();
-                List<Exhibition> latestExhibitionList=new ArrayList<>();
-                if(allExhibitionList.size()<=displayNum)
-                    latestExhibitionList=allExhibitionList;
-                else
-                    for(int i=allExhibitionList.size()-displayNum+1;i<allExhibitionList.size();i++)
-                        latestExhibitionList.add(allExhibitionList.get(i));
-                model.addAttribute("latestExhibitionList",latestExhibitionList);
-
-                //获取产品
-                ProductDAO pDAO=new ProductDAO();
-                List<Product> allProductList=pDAO.getAllProducts();
-                List<Product> latestProductList=new ArrayList<>();
-                if(allProductList.size()<=6)
-                    latestProductList=allProductList;
-                else
-                    for(int i=allProductList.size()-displayNum+1;i<allProductList.size();i++)
-                        latestProductList.add(allProductList.get(i));
-                //model.addAttribute("latestProductList",latestProductList);
-
-                //获取产品图片
-                List<String> picPath=new ArrayList<>(latestProductList.size());
-                for(Product p:latestProductList)
-                {
-                    ImageDAO iDAO=new ImageDAO();
-                    Image i=iDAO.getFirstImageOfOriginId(p.getProId());
-                    picPath.add(i.getStoreLocation());
-                }
-//                model.addAttribute("picPath",picPath);
-
-                //组装成ao列表
-                List<AO> pList=new ArrayList<>(latestProductList.size());
-                for(int i=0;i<latestProductList.size();i++)
-                {
-                    AO a=new AO();
-                    Product p=latestProductList.get(i);
-                    a.setFirst(p.getProName());
-                    a.setSecond(p.getProId());
-                    a.setThird(p.getInfo());
-                    a.setFourth(picPath.get(i));
-                    a.setFifth(Double.toString(p.getPrice()));
-                    a.setSixth(p.getHits().toString());
-                    pList.add(a);
-                }
-                model.addAttribute("pList",pList);
-
-                List<Image> i=new ImageDAO().getImageByOriginId(user.getUserId(),1);
-                if(i!=null)
-                    model.addAttribute("imgLocation",i.get(0).getStoreLocation());
                 return "index";
             }
         }
@@ -152,7 +76,15 @@ public class LoginController {
     @RequestMapping(value = "registerUserInfo.action", method = RequestMethod.POST)
     public String registerUserInfo(@ModelAttribute("userInfo") UserInfo userInfo, HttpServletRequest request, HttpSession session, Model model)
     {
-        User registeredUser=(User)session.getAttribute("registeredUser");
+        try
+        {
+            request.setCharacterEncoding("UTF-8");
+        }
+        catch (UnsupportedEncodingException e)
+        {
+            e.printStackTrace();
+        }
+        User registeredUser=(User)session.getAttribute("currentUser");
         userInfo.setUserId(registeredUser.getUserId());
         userInfo.setTel(registeredUser.getUserId());
         UserInfoDAO uiDAO=new UserInfoDAO();
@@ -161,7 +93,7 @@ public class LoginController {
             if( uiDAO.addUserInfo(userInfo) != null)
             {
                 System.out.println("注册详细信息成功");
-                return "index";
+                return "redirect:/index.html";
             }
         }
         catch (Exception e)
@@ -180,7 +112,7 @@ public class LoginController {
         {
             if( uDAO.addUser(user))
             {
-                session.setAttribute("registeredUser",user);
+                session.setAttribute("currentUser",user);
                 System.out.println("注册成功");
                 return "RegisterUserInfo";
             }
@@ -220,12 +152,6 @@ public class LoginController {
             return "redirect:/Login.html";
         }
     }
-
-//    @RequestMapping(value = {"editEssay"},method = RequestMethod.GET)
-//    public String testEditor()
-//    {
-//        return "EditEssay";
-//    }
 
     @RequestMapping(value="editUserInfo",method = RequestMethod.POST)
     @ResponseBody
@@ -284,4 +210,99 @@ public class LoginController {
         }
         return null;
     }
+
+    @RequestMapping(value = "/potrait")
+    public String potraitClick(Model model, HttpServletRequest request, HttpSession session) throws Exception {
+        if(session.getAttribute("currentUser") == null)
+            return "redirect:/Login.html";
+        else
+            return "redirect:/Manage/ManageLogin.html?flag=in";
+    }
+
+    public void intiIndexData(Model model, int displayNum) throws Exception{
+        //获取资讯
+        NewsDAO nDAO=new NewsDAO();
+        List<News> allNewsList=nDAO.getAllNews();
+        List<News> latestNewsList=new ArrayList<>();
+        if(allNewsList.size()<=displayNum)
+            latestNewsList=allNewsList;
+        else
+            for(int i=allNewsList.size()-displayNum-1;i<allNewsList.size();i++)
+                latestNewsList.add(allNewsList.get(i));
+        System.out.println("latestNewsList.size="+latestNewsList.size());
+        model.addAttribute("latestNewsList",latestNewsList);
+
+        //获取供应
+        SupplyDemandDAO sdDAO=new SupplyDemandDAO();
+        List<Supply> allSupplyList=sdDAO.getAllSupplies();
+        List<Supply> latestSupplyList=new ArrayList<>();
+        if(allSupplyList.size()<=displayNum)
+            latestSupplyList=allSupplyList;
+        else
+            for(int i=allSupplyList.size()-displayNum+1;i<allSupplyList.size();i++)
+                latestSupplyList.add(allSupplyList.get(i));
+
+        model.addAttribute("latestSupplyList",latestSupplyList);
+
+        //获取需求
+        List<Demand> allDemandList=sdDAO.getAllDemands();
+        List<Demand> latestDemandList=new ArrayList<>();
+        if(allDemandList.size()<=displayNum)
+            latestDemandList=allDemandList;
+        else
+            for (int i=allDemandList.size()-displayNum+1;i<allDemandList.size();i++)
+                latestDemandList.add(allDemandList.get(i));
+        model.addAttribute("latestDemandList",latestDemandList);
+
+        //获取展会
+        ExhibitionDAO eDAO=new ExhibitionDAO();
+        List<Exhibition> allExhibitionList=eDAO.getAllExhibition();
+        List<Exhibition> latestExhibitionList=new ArrayList<>();
+        if(allExhibitionList.size()<=displayNum)
+            latestExhibitionList=allExhibitionList;
+        else
+            for(int i=allExhibitionList.size()-displayNum+1;i<allExhibitionList.size();i++)
+                latestExhibitionList.add(allExhibitionList.get(i));
+        model.addAttribute("latestExhibitionList",latestExhibitionList);
+
+        //获取产品
+        ProductDAO pDAO=new ProductDAO();
+        List<Product> allProductList=pDAO.getAllProducts();
+        List<Product> latestProductList=new ArrayList<>();
+        if(allProductList.size()<=6)
+            latestProductList=allProductList;
+        else
+            for(int i=allProductList.size()-displayNum+1;i<allProductList.size();i++)
+                latestProductList.add(allProductList.get(i));
+        //model.addAttribute("latestProductList",latestProductList);
+
+        //获取产品图片
+        List<String> picPath=new ArrayList<>(latestProductList.size());
+        for(Product p:latestProductList)
+        {
+            ImageDAO iDAO=new ImageDAO();
+            Image i=iDAO.getFirstImageOfOriginId(p.getProId());
+            picPath.add(i.getStoreLocation());
+        }
+//                model.addAttribute("picPath",picPath);
+
+        //组装成ao列表
+        List<AO> pList=new ArrayList<>(latestProductList.size());
+        for(int i=0;i<latestProductList.size();i++)
+        {
+            AO a=new AO();
+            Product p=latestProductList.get(i);
+            a.setFirst(p.getProName());
+            a.setSecond(p.getProId());
+            a.setThird(p.getInfo());
+            a.setFourth(picPath.get(i));
+            a.setFifth(Double.toString(p.getPrice()));
+            a.setSixth(p.getHits().toString());
+            pList.add(a);
+        }
+        model.addAttribute("pList",pList);
+    }
+
+
+
 }

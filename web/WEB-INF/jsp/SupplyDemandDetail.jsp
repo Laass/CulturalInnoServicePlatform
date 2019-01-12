@@ -1,5 +1,3 @@
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="po.SupplyDemand" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -24,21 +22,18 @@
     <script src="js/base.js"></script>
 </head>
 <body>
-<%
-    SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    SupplyDemand sd=(SupplyDemand)request.getAttribute("sd");
-    String startTime=df.format(sd.getStartTime());
-    String endTime=df.format(sd.getEndTime());
-%>
 <div class="container-fluid">
     <jsp:include page="headder.jsp"/>
     <div style="margin: 0 auto;margin-left:auto;width: 1200px;margin-top: 30px;">
-        <div style="display: block;text-align: center;"><h2>${sd.title}</h2></div>
+        <div style="display: block;text-align: center;">
+            <h2>${sd.title}</h2>
+            <div id="enshrineSD">收藏</div>
+        </div>
         <div style="display: block;">
             <div class="essayInfo"  style="display: block;text-align: center;">
                 <small>发布人:${ui.nickName}</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>发布时间：<%=startTime%></small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>终止时间：<%=endTime%></small>
+                <small>发布时间：${sd.startTime}</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>终止时间：${sd.endTime}</small>
             </div>
         </div>
     </div>
@@ -53,6 +48,7 @@
             <span class="input-group-text">留言</span>
         </div>
         <div id="oid" style="display: none">${sd.sdId}</div>
+        <div id="essayType" style="display: none">sd</div>
         <textarea class="form-control" aria-label="With textarea" id="messageContent"></textarea>
         <button class="btn btn-light" id="publishMessage">发表留言</button>
     </div>

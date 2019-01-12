@@ -210,4 +210,41 @@ public class UserDAO
         return false;
     }
 
+    public boolean updateUserCompetence(String userId, int type)  throws Exception
+    {
+        try
+        {
+            getSession();
+
+            User user=(User)hs.get(User.class,userId);
+            user.setType(type);
+            hs.update(user);
+            releaseSession();
+            return true;
+        }
+        catch(Exception e)
+        {
+            releaseSession(hs);
+            throw e;
+        }
+    }
+
+    public boolean updatePasswd(String userId,String passwd) throws Exception
+    {
+        try
+        {
+            getSession();
+            Query q=hs.createQuery("update User set password=?1 where userId=?2");
+            q.setParameter(1,passwd);
+            q.setParameter(2,userId);
+            q.executeUpdate();
+            releaseSession();
+            return true;
+        }
+        catch(Exception e)
+        {
+            throw e;
+        }
+    }
+
 }

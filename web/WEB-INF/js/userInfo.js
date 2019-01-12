@@ -31,12 +31,11 @@ $("document").ready(function ()
     });
     $("#submit").click(function ()
     {
-        var imgUrl=$("#choosePortrait").val();
         console.log("about to save img");
         if(imgChanged)
         {
             $.ajaxFileUpload({
-                url: "savePortrait",
+                url: "Manage/savePortrait",
                 fileElementId: "choosePortrait",
                 dataType: 'json',
                 contentType: "application/x-www-form-urlencoded; charset=utf-8",

@@ -1,11 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
-  User: JY
+  User: YHY
   Date: 2018/12/22
   Time: 14:47
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -32,28 +33,17 @@
         <div class="left_open">
             <i title="展开左侧栏" class="iconfont">&#xe699;</i>
         </div>
-        <ul class="layui-nav left fast-add" lay-filter="">
-            <li class="layui-nav-item">
-                <a href="javascript:;">+新增</a>
-                <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                    <dd><a onclick="x_admin_show('供求','http://www.baidu.com')"><i class="iconfont">&#xe6a3;</i>供求</a></dd>
-                    <dd><a onclick="x_admin_show('供求','http://www.baidu.com')"><i class="iconfont">&#xe6a0;</i>展会</a></dd>
-                    <dd><a onclick="x_admin_show('供求','http://www.baidu.com')"><i class="iconfont">&#xe6a1;</i>资讯</a></dd>
-                    <dd><a onclick="x_admin_show('供求','http://www.baidu.com')"><i class="iconfont">&#xe6a2;</i>产品</a></dd>
-                    <dd><a onclick="x_admin_show('用户','http://www.baidu.com')"><i class="iconfont">&#xe6b8;</i>用户</a></dd>
-                </dl>
-            </li>
-        </ul>
         <ul class="layui-nav right" lay-filter="">
             <li class="layui-nav-item">
-                <a href="javascript:;">admin</a>
+                <a href="javascript:;">${sessionScope.currentUser.userId}</a>
                 <dl class="layui-nav-child"> <!-- 二级菜单 -->
                     <dd><a href="/getUserInfo.action">个人信息</a></dd>
-                    <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
-                    <dd><a href="ManageLogin.html">退出</a></dd>
+                    <dd><a href="goToEditPasswd">修改密码</a> </dd>
+                    <dd><a href="ManageLogin.html?flag=''">切换帐号</a></dd>
+                    <dd><a href="ManageLogin.html?flag=''">退出</a></dd>
+
                 </dl>
             </li>
-            <li class="layui-nav-item to-index"><a href="/">管理首页</a></li>
         </ul>
 
     </div>
@@ -63,29 +53,6 @@
     <div class="left-nav">
         <div id="side-nav">
             <ul id="nav">
-                <li>
-                    <a href="javascript:;">
-                        <i class="iconfont">&#xe6b8;</i>
-                        <cite>用户管理</cite>
-                        <i class="iconfont nav_right">&#xe697;</i>
-                    </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a _href="member-list.html">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>用户列表/管理</cite>
-
-                            </a>
-                        </li>
-                        <li>
-                            <a _href="member-del.html">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>用户删除/恢复</cite>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
                 <li>
                     <a href="javascript:;">
                         <i class="iconfont">&#xe698;</i>
@@ -137,12 +104,14 @@
                                 <cite>展会列表</cite>
                             </a>
                         </li>
+                        <c:if test="${sessionScope.currentUser.type != 32}">
                         <li>
                             <a _href="editEssay">    <!-- 增加展会 -->
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>增加展会</cite>
                             </a>
                         </li>
+                        </c:if>
                     </ul>
                 </li>
 
@@ -159,15 +128,17 @@
                                 <cite>资讯列表</cite>
                             </a>
                         </li>
+                        <c:if test="${sessionScope.currentUser.type != 32}">
                         <li>
                             <a _href="editEssay">    <!-- 增加资讯 -->
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>增加资讯</cite>
                             </a>
                         </li>
+                        </c:if>
                     </ul>
                 </li>
-
+                <c:if test="${sessionScope.currentUser.type != 32}">
                 <li>
                     <a href="javascript:;">
                         <i class="iconfont">&#xe6f4;</i>
@@ -189,24 +160,25 @@
                         </li>
                     </ul>
                 </li>
+                </c:if>
 
                 <li>
                     <a href="javascript:;">
-                        <i class="iconfont">&#xe723;</i>
-                        <cite>启用管理</cite>
+                        <i class="iconfont">&#xe6f4;</i>
+                        <cite>留言管理</cite>
                         <i class="iconfont nav_right">&#xe697;</i>
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a _href="cate.html">
+                            <a _href="toList?listName=Message">    <!-- 类似订单列表(order-list.html) -->
                                 <i class="iconfont">&#xe6a7;</i>
-                                <cite>已有模块</cite>
+                                <cite>留言列表</cite>
                             </a>
                         </li>
                     </ul>
                 </li>
 
-
+                <c:if test="${sessionScope.currentUser.type == 15}">
                 <li>
                     <a href="javascript:;">
                         <i class="iconfont">&#xe726;</i>
@@ -215,48 +187,15 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a _href="admin-list.html">
+                            <div id="apart">
                                 <i class="iconfont">&#xe6a7;</i>
-                                <cite>管理员列表</cite>
-                            </a>
-                        </li>
-                        <li>
-                            <a _href="admin-role.html">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>角色管理</cite>
-                            </a>
-                        </li>
-                        <li>
-                            <a _href="admin-cate.html">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>权限分类</cite>
-                            </a>
-                        </li>
-                        <li>
-                            <a _href="admin-rule.html">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>权限管理</cite>
-                            </a>
+                                <cite>权限分配</cite>
+                            </div>
                         </li>
                     </ul>
                 </li>
+                </c:if>
 
-
-                <li>
-                    <a href="javascript:;">
-                        <i class="iconfont">&#xe696;</i>
-                        <cite>图标字体</cite>
-                        <i class="iconfont nav_right">&#xe697;</i>
-                    </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a _href="unicode.html">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>图标对应字体</cite>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
             </ul>
         </div>
     </div>

@@ -131,7 +131,7 @@ public class CollectionController{
         catch (Exception e)
         {
             e.printStackTrace();
-            return null;
+            return "Login";
         }
     }
 
@@ -142,7 +142,7 @@ public class CollectionController{
 
         try
         {
-            Collection coll = new CollectionDAO().addToCollection(new Gson().fromJson(json, Collection.class));
+            Collection coll = new Gson().fromJson(json, Collection.class);
             User user = (User)request.getSession().getAttribute("currentUser");
             coll.setUserId(user.getUserId());
             Date dnow = new Date();
@@ -157,7 +157,8 @@ public class CollectionController{
         }
         catch(Exception e)
         {
-            return null;
+            this.message = "请登录！";
+            return this;
         }
     }
 

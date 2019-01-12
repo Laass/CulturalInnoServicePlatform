@@ -2,29 +2,28 @@ $(document).ready(function(){
 
     function gopage(cur){
 
-        var lidtcontain = $("#lists").children();//所有数据 也就是所有ul下的所有li
-        var maxlist = 6; //每页最多内容条数
-        var curpage = cur;//当前页
-        var maxpage;//所有内容可以填充的最多页面数
-        var num = $("#lists").children().length;//内容条数
+        var lidtcontain = $("#lists").children();//所有数据
+        var maxlist = 12;
+        var curpage = cur;
+        var maxpage = 0;
+        var num = $("#lists").children().length;
 
         if(num == 0)
             return;
 
-        if((num / maxlist) > parseInt(num / maxlist))//如果最后一个页面没有被填满
-            maxpage = parseInt(num / maxlist) + 1;//页面数=被填满的页面数+1
+        if((num / maxlist) > parseInt(num / maxlist))
+            maxpage = parseInt(num / maxlist) + 1;
         else
-            maxpage = parseInt(num / maxlist);//页面数=被填满的页面数
+            maxpage = parseInt(num / maxlist);
 
         if(maxpage == 0)
             maxpage = 1;
 
-        var startrows = (curpage-1) * maxlist;//所有内容的第stratrows个是这个页面的第一条
-        var endrows = curpage * maxlist - 1;//所有内容的第endrows个是这个页面的最后一条
-        endrows = (endrows > num)? num : endrows;//当最后一个页面没有没填满时 将endrows设为最后一条内容
+        var startrows = (curpage-1) * maxlist;
+        var endrows = curpage * maxlist - 1;
+        endrows = (endrows > num)? num : endrows;
 
-        debugger;
-        if(startrows  >= 0 && endrows <= num && startrows<endrows)
+        if((startrows  >= 0 || endrows <= num) && (curpage <= maxpage && curpage > 0))
             for (var i = 0; i < num; ++i){
                 var irow = lidtcontain[i];
                 if(i >= startrows && i<= endrows)
@@ -35,10 +34,7 @@ $(document).ready(function(){
                 $("#curPage").text(curpage);
             }
         else
-            if(startrows>endrows)
-                alert("没有更多！");
-            else
-                alert("到头!");
+            alert("到头!");
 
         /*var pageEnd = $("#pageEnd").text();*/
 
@@ -49,7 +45,6 @@ $(document).ready(function(){
     $("#curPage").text("1");
 
     $("#pre").click(function(){
-        console.log("取下一页");
         var curpage = $("#curPage").text();
         curpage = parseInt(curpage);
         console.log("当前页："+curpage);
@@ -58,7 +53,6 @@ $(document).ready(function(){
     });
 
     $("#next").click(function(){
-        console.log("取上一页");
         var curpage = $("#curPage").text();
         curpage = parseInt(curpage);
         console.log("当前页："+curpage);
@@ -69,6 +63,7 @@ $(document).ready(function(){
     $(".listOuter").mouseover(function(){
         $(this).css("background-color","#eeeeee");
     });
+
     $(".listOuter").mouseout(function(){
         $(this).css("background-color","white");
     });

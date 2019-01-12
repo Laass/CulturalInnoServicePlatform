@@ -23,7 +23,7 @@
     <a href="" style="display: inline-block;"><img style="margin-top: -10px;margin-left: 30px;width:70px;height: 70px;" src="images/leaf.png"></a>
     <h1 style="width: auto;display: inline-block;margin-top:20px;margin-left:30px;">文化创意产业公共服务平台</h1>
     <div class="portrait">
-        <a href="jsp/index.html" class="portrait"><img style="margin-top: -5px;" src="${picLoc}" alt="暂无头像"></a>
+        <a href="/potrait" class="portrait"><img style="margin-top: -5px;" src="${picLoc}" alt="暂无头像"></a>
     </div>
 </div>
 <div class="row">
@@ -33,6 +33,9 @@
 
         <!-- Links -->
         <ul class="navbar-nav">
+            <li class="nav-item guidLi">
+                <a class="nav-link" href="index.html" style="color: #FCFCFC;">首页</a>
+            </li><div style="color: white;margin-top: 3px;font-size: 26px;">/</div>
             <li class="nav-item guidLi">
                 <a class="nav-link" href="SupplyAndDemand.html" style="color: #FCFCFC;">供求</a>
             </li><div style="color: white;margin-top: 3px;font-size: 26px;">/</div>
@@ -47,7 +50,7 @@
                     产品
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="Product?ptype=call">书画</a>
+                    <a class="dropdown-item" href="Product?ptype=call">书法</a>
                     <a class="dropdown-item" href="Product?ptype=draw">绘画</a>
                     <a class="dropdown-item" href="Product?ptype=ins">乐器</a>
                     <a class="dropdown-item" href="Product?ptype=dress">服饰</a>

@@ -20,7 +20,7 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
-    <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-datetimepicker.js"></script>
     <script type="text/javascript" src="../js/wangEditor.js"></script>
     <script>
         $("document").ready(function ()
@@ -93,9 +93,7 @@
     </c:if>
 </div>
 <div id="editor">
-    <c:if test="${requestScope.essay!=null}">
-        ${requestScope.essay.second}
-    </c:if>
+
     <c:if test="${requestScope.essay==null}">
         <p>欢迎使用<b>wangEditor</b>富文本编辑器</p>
     </c:if>
@@ -126,6 +124,9 @@
     editor.customConfig.uploadImgShowBase64="true";
     editor.customConfig.showLinkImg=false;
     editor.create();
+    <c:if test="${requestScope.essay!=null}">
+    editor.txt.html('${requestScope.essay.second}');
+    </c:if>
 </script>
 <c:if test="${requestScope.essay==null}">
 <div class="radio betterFont">
@@ -145,20 +146,23 @@
     <input type="text" class="form-control" id="endTime" style="width: 170px;">
 </div>
 <script>
-    $('#startTime').datetimepicker({
-        format: 'yyyy-mm-dd hh:ii',
-        todayHighlight:true,
-        initialDate:new Date(),
-        keyboardNavigation:true,
-        todayBtn:true
+    $(function () {
+        $('#startTime').datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            todayHighlight:true,
+            initialDate:new Date(),
+            keyboardNavigation:true,
+            todayBtn:true
+        });
+        $('#endTime').datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            todayHighlight:true,
+            initialDate:new Date(),
+            keyboardNavigation:true,
+            todayBtn:true
+        });
     });
-    $('#endTime').datetimepicker({
-        format: 'yyyy-mm-dd hh:ii',
-        todayHighlight:true,
-        initialDate:new Date(),
-        keyboardNavigation:true,
-        todayBtn:true
-    });
+
 </script>
 </c:if>
 <c:if test="${requestScope.essay!=null}">

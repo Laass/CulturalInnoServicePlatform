@@ -21,7 +21,7 @@
     <div style="width: 500px;height:auto;margin-top: 130px;margin-left: auto;margin-right:auto;background-color: white;padding:90px;padding-bottom:40px;opacity: 0.8;border-radius: 5%;padding-top: 30px;">
         <h2>Register</h2>
         <hr/>
-        <form method="post" action="/registerUserInfo.action" style="width: 300px;">
+        <form method="post" action="/registerUserInfo.action" style="width: 300px;" accept-charset="UTF-8">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">用户名</span>

@@ -6,7 +6,7 @@
   Time: 11:01
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,7 +27,10 @@
 <div class="container-fluid">
     <jsp:include page="headder.jsp"/>
     <div style="margin: 0 auto;margin-left:auto;width: 1200px;margin-top: 30px;">
-        <div style="display: block;text-align: center;"><h2>${news.title}</h2></div>
+        <div style="display: block;text-align: center;">
+            <h2>${news.title}</h2>
+            <div id="enshrineNews">收藏</div>
+        </div>
         <div style="display: block;">
             <div class="essayInfo"  style="display: block;text-align: center;">
                 <small>发布人:${userInfo.nickName}</small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -43,6 +46,7 @@
             <span class="input-group-text">留言</span>
         </div>
         <div id="oid" style="display: none">${news.newsId}</div>
+        <div id="essayType" style="display: none">news</div>
         <textarea class="form-control" aria-label="With textarea" id="messageContent"></textarea>
         <button class="btn btn-light" id="publishMessage">发表留言</button>
     </div>

@@ -237,6 +237,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "getProductById", method = RequestMethod.GET)
+//    @ResponseBody
     public String getProductById(@RequestParam("productId") String productId,Model model)
     {
         try
@@ -260,6 +261,7 @@ public class ProductController {
             model.addAttribute("product", p);
             model.addAttribute("umList", umList);
             model.addAttribute("imageList",iList);
+//        return new ModelAndView("ProductDetail","command",this);
             return "ProductDetail";
         }
         catch (Exception e)
@@ -348,24 +350,6 @@ public class ProductController {
         }
     }
 
-    @RequestMapping(value = "/delProduct.action", method = RequestMethod.POST)
-    @ResponseBody
-    public ProductController delProduct(@RequestBody String json , HttpServletRequest request){
-        Product temp = new Gson().fromJson(json, Product.class);
-        try
-        {
-            if(new ProductDAO().delProduct(temp.getProId()))
-                this.setMessage("删除成功");
-            else
-                this.setMessage("删除失败");
-            return this;
-        }
-        catch (Exception e)
-        {
-            return null;
-        }
-    }
-
     @RequestMapping(value = "/Manage/deleteProduct.action")
     @ResponseBody
     public ProductController deleteProduct(@RequestBody String json, HttpServletRequest request){
@@ -425,4 +409,5 @@ public class ProductController {
 
         return this;
     }
+
 }

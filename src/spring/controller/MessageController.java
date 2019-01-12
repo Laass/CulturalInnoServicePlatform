@@ -85,23 +85,27 @@ public class MessageController {
             else
                 this.setMessage("fail");
 
-            MessageDAO mDAO = new MessageDAO();
-            UserInfoDAO uiDAO=new UserInfoDAO();
-            List<Message> mList = mDAO.getMessageById(temp.getOriginId(),-1);
-            List<AO> umList = new ArrayList<>();//存储用户名和留言
-            for (Message m : mList)
-            {
-                UserInfo ui = uiDAO.getUserInfo(m.getUserId());
-                AO a = new AO();
-                a.setFirst(ui.getNickName());
-                a.setSecond(m.getContent());
-                umList.add(a);
-            }
-            request.setAttribute("umList", umList);
+//            MessageDAO mDAO = new MessageDAO();
+//            UserInfoDAO uiDAO=new UserInfoDAO();
+//            List<Message> mList = mDAO.getMessageById(temp.getOriginId(),-1);
+//            List<AO> umList = new ArrayList<>();//存储用户名和留言
+//            for (Message m : mList)
+//            {
+//                UserInfo ui = uiDAO.getUserInfo(m.getUserId());
+//                AO a = new AO();
+//                if(ui != null)
+//                    a.setFirst(ui.getNickName());
+//                else
+//                    a.setFirst(m.getUserId());
+//                a.setSecond(m.getContent());
+//                umList.add(a);
+//            }
+//            request.setAttribute("umList", umList);
             return this;
         }
         catch(Exception e)
         {
+            e.printStackTrace();
             return null;
         }
     }
@@ -109,13 +113,32 @@ public class MessageController {
     @RequestMapping(value = "/delMessage.action")
     @ResponseBody
     public MessageController delMessage(@RequestBody String json){
+        AO temp = new Gson().fromJson(json, AO.class);
+        try
+        {
+            if(new MessageDAO().delMessage(temp.getFirst()) != null)
+                this.setMessage("delete success");
+            else
+                this.setMessage("delete fail");
+            return this;
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
+
+    }
+
+    @RequestMapping(value = "/updateMessage.action")
+    @ResponseBody
+    public MessageController updateMessage(@RequestBody String json){
         Message temp = new Gson().fromJson(json, Message.class);
         try
         {
-            if(new MessageDAO().delMessage(temp.getMesId()) != null)
-                this.setMessage("添加成功");
+            if(new MessageDAO().update(temp))
+                this.setMessage("update success");
             else
-                this.setMessage("添加失败");
+                this.setMessage("update fail");
             return this;
         }
         catch(Exception e)

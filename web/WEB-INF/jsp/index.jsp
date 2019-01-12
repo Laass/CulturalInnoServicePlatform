@@ -6,7 +6,7 @@
   Time: 15:51
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -61,7 +61,7 @@
             <h3>资讯信息</h3>
             <c:forEach items="${latestNewsList}" var="news">
             <div class="news">
-                <div lass="newTitle"><a href="/getNewsById?newsId=${news.newsId}">${news.title}</a></div>
+                <div lass="newTitle"><a href="getNewsById?newsId=${news.newsId}">${news.title}</a></div>
                 <%--<div class="newsInfo">${news.content}</div>--%>
             </div>
             </c:forEach>
@@ -74,7 +74,7 @@
     <div class="MidNewsListTitle"><a style="text-decoration: none; color: white;" href="SupplyAndDemand.html">供应</a></div>
     <ul class="MidNewsListContain">
         <c:forEach items="${latestSupplyList}" var="supply">
-      <li><a href="/getSDInfo?sdId=${supply.sdId}">${supply.title}</a></li>
+      <li><a href="getSDInfo?sdId=${supply.sdId}">${supply.title}</a></li>
         </c:forEach>
     </ul>
   </div>
@@ -82,7 +82,7 @@
       <div class="MidNewsListTitle"><a style="text-decoration: none; color: white;" href="SupplyAndDemand.html">需求</a></div>
     <ul class="MidNewsListContain">
         <c:forEach items="${latestDemandList}" var="demand">
-      <li><a href="/getSDInfo?sdId=${demand.sdId}">${demand.title}</a></li>
+      <li><a href="getSDInfo?sdId=${demand.sdId}">${demand.title}</a></li>
         </c:forEach>
     </ul>
   </div>
@@ -90,7 +90,7 @@
       <div class="MidNewsListTitle"><a style="text-decoration: none; color: white;" href="Exhibition.html">展会</a></div>
     <ul class="MidNewsListContain">
         <c:forEach items="${latestExhibitionList}" var="exhi">
-      <li><a href="/getExhibitionInfo?exhiId=${exhi.exId}">${exhi.theme}</a></li>
+      <li><a href="getExhibitionInfo?exhiId=${exhi.exId}">${exhi.theme}</a></li>
         </c:forEach>
     </ul>
   </div>
@@ -103,11 +103,11 @@
 <div class="row" style="justify-content: center;">
   <div style="width: 1100px;">
       <c:forEach items="${pList}" var="p">
-    <div class="product">
+    <div class="indexProduct">
       <div class="productImg">
         <img src="${p.fourth}" alt="${product.proName}" style="height: 100%;">
       </div>
-      <div class="productTitle"><a href="/getProductById?productId=${p.second}">${p.first}</a></div>
+      <div class="productTitle"><a href="getProductById?productId=${p.second}">${p.first}</a></div>
         <p>￥${p.fifth}&nbsp;&nbsp;&nbsp;点击量：${p.sixth}</p>
       <%--<div class="productInfo">
         ${p.third}
@@ -116,7 +116,6 @@
       </c:forEach>
   </div>
 </div>
-<a href="/getUserInfo.action">获取用户详细信息</a>
 <jsp:include page="footer.jsp"/>
 </body>
 </html>

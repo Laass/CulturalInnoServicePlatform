@@ -4,6 +4,20 @@ $(document).ready(function(){
         var s_url = "search.action";
         $("#lists").empty();
 
+        var aurl = "";
+        if($("#selectType option:selected").val() == "Exhibition"){
+            aurl = "getExhibitionInfo?exhiId=";
+        }
+        else if($("#selectType option:selected").val() == "News") {
+            aurl = "getNewsById?newsId=";
+        }
+        else if($("#selectType option:selected").val() == "SD"){
+            aurl = "getSDInfo?sdId=?";
+        }
+        else if($("#selectType option:selected").val() == "PRODUCT"){
+            aurl = "getProductById?productId=";
+        }
+
         $.ajax({
             type : "POST",
             contentType : 'application/json;charset=UTF-8',
@@ -11,18 +25,20 @@ $(document).ready(function(){
             data : JSON.stringify(temp),
             dataType : 'json',
             success : function(data){
-                for (var i = 0; i < data.length; ++i){
-                    var str = "<div class='listOuter'>" +
-                        "                        <li>\n" +
-                        "                            <a href='"+aurl+data[i].third+
-                        "' style=\"color: black;\">\n" +
-                        data[i].first+
-                        "                                <div class=\"subTitle\"> "+data[i].second+
-                        "</div>\n" +
-                        "                            </a>\n" +
-                        "                        </li>\n" +
-                        "                    </div>";
-                $("#lists").append(str);
+                for (var i = 0; i < data.length; ++i) {
+                    if (data[i].fifth == 1) {
+                        var str = "<div class='listOuter'>" +
+                            "                        <li>\n" +
+                            "                            <a href='" + aurl + data[i].third +
+                            "' style=\"color: black;\">\n" +
+                            data[i].first +
+                            "                                <div class=\"subTitle\"> " + data[i].second +
+                            "</div>\n" +
+                            "                            </a>\n" +
+                            "                        </li>\n" +
+                            "                    </div>";
+                        $("#lists").append(str);
+                    }
                 }
             },
             error : function(){
@@ -33,21 +49,6 @@ $(document).ready(function(){
 
     function manageSearch(temp) {
         var s_url = "../search.action";
-
-        // var aurl = "";
-        // if($("#selectType option:selected").val() == "Exhibition"){
-        //     aurl = "getExhibitionInfo?exhiId=";
-        // }
-        // else if($("#selectType option:selected").val() == "News") {
-        //     aurl = "getNewsById?newsId=";
-        // }
-        // else if($("#selectType option:selected").val() == "SD"){
-        //     aurl = "getSDInfo?sdId=?";
-        // }
-        // else if($("#selectType option:selected").val() == "PRODUCT"){
-        //     aurl = "getProductById?productId=";
-        // }
-
 
         $.ajax({
             type : "POST",
@@ -90,6 +91,7 @@ $(document).ready(function(){
             dataType : 'json',
             success : function(data){
                 alert(data.message);
+                window.location.href = window.location.href;
             },
             error : function(){
                 alert("error");
@@ -109,6 +111,7 @@ $(document).ready(function(){
             dataType : 'json',
             success : function(data){
                 alert(data.message);
+                member_del(node);
             },
             error : function(){
                 alert("error");
@@ -128,6 +131,22 @@ $(document).ready(function(){
                 window.location.href = window.location.href;
             },
             error : function(){
+                alert("error");
+            }
+        });
+    }
+
+    function enshrineEssay(temp){
+        $.ajax({
+            type : "POST",
+            contentType : 'application/json;charset=UTF-8',
+            url : 'addToCollection.action',
+            data : JSON.stringify(temp),
+            dataType : 'json',
+            success : function(data){
+                alert(data.message);
+            },
+            error : function() {
                 alert("error");
             }
         });
@@ -155,11 +174,13 @@ $(document).ready(function(){
     $("#publishMessage").click(function () {
         var temp = {
             originId : $("#oid").text(),
-            content : $("#messageContent").val()
+            content : $("#messageContent").val(),
+            originType : $("#essayType").text()
         }
         publishMessage(temp);
     });
 
+    //删除按钮点击方法
     $(".deleteButton").click(function (){
         switch ($("#listType").text()) {
             case "News":
@@ -174,9 +195,13 @@ $(document).ready(function(){
             case "PRODUCT":
                 deleteRecord(this, "deleteProduct.action");
                 break;
+            case "Message" :
+                deleteRecord(this, "../delMessage.action");
+                break;
         }
     });
 
+    //审核按钮点击方法
     $(".checkButton").click(function (){
         switch ($("#listType").text()) {
             case "News":
@@ -206,6 +231,27 @@ $(document).ready(function(){
         }
     });
 
+    $(".updateMessage").click(function () {
+        var temp = {
+            mesId : $(this).parent().parent().children(".id").text(),
+            content : $(this).parent().parent().children(".messagecontent").children("textarea").val()
+        }
+        $.ajax({
+            type : "POST",
+            contentType : 'application/json;charset=UTF-8',
+            url : "../updateMessage.action",
+            data : JSON.stringify(temp),
+            dataType : 'json',
+            success : function(data){
+                alert(data.message);
+                window.location.href = window.location.href;
+            },
+            error : function(){
+                alert("error");
+            }
+        });
+    });
+
     $(".editBtn").click(function ()
     {
         var essayId;
@@ -229,12 +275,53 @@ $(document).ready(function(){
                 essayType="Product";
                 break;
         }
-        // window.location.href="goToEdit?essayId="+essayId+"&essayType="+essayType;
         window.location.href="goToEdit?essayIdAndType="+essayId+" "+essayType;
-        // $.post("goToEdit",
-        //     {
-        //         essayType:essayType,
-        //         essayId:essayId
-        //     });
+
     });
+
+    $("#enshrineSD").click(function () {
+        var temp = {
+            originId : $("#oid").text(),
+            originType : "supplydemand"
+        }
+        enshrineEssay(temp);
+    });
+
+    $("#enshrineNews").click(function () {
+        var temp = {
+            originId : $("#oid").text(),
+            originType : "news"
+        }
+        enshrineEssay(temp);
+    });
+
+    $("#enshrineExh").click(function () {
+        var temp = {
+            originId : $("#oid").text(),
+            originType : "exhibition"
+        }
+        enshrineEssay(temp);
+    });
+
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+    });
+
+    /*用户-删除*/
+    function member_del(obj){
+        $(obj).parents("tr").remove();
+    }
+
+
+
 });

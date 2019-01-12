@@ -8,10 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.portlet.ModelAndView;
-import po.Exhibition;
-import po.News;
-import po.Product;
-import po.SupplyDemand;
+import po.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -37,6 +34,12 @@ public class SearchController {
         //第一个参数为搜索的种类，第二个参数为keywords,第三个参数为模糊查询还是精确chaxun
         AO temp = new Gson().fromJson(json, AO.class);
         List<AO> t = new ArrayList<AO>();
+        User u = (User)request.getSession().getAttribute("currentUser");
+        Boolean flag = false;
+
+        if(temp.getFourth() != null && temp.getFourth().equals("Manage") && (new UserDAO().getUser(u.getUserId()).getType() >= 16 ))
+            flag = true;
+
         if (temp.getFirst().equals("Exhibition")) {
 
             List<Exhibition> tt = null;
@@ -45,10 +48,16 @@ public class SearchController {
             else
                 tt = new ExhibitionDAO().getExhibitionByTheme(temp.getSecond());
             for(Exhibition i : tt){
+
+                if(flag && !i.getUserId().equals(u.getUserId()))
+                    continue;
+
                 AO ii = new AO();
                 ii.setFirst(i.getTheme());
                 ii.setSecond(i.getEstablishTime().toString());
                 ii.setThird(i.getExId());
+                ii.setFourth(i.getHits()+"");
+                ii.setFifth(i.getIsPass()+"");
                 t.add(ii);
             }
 
@@ -61,10 +70,16 @@ public class SearchController {
             else
                 tt = new NewsDAO().getNewsByTitle(temp.getSecond());
             for(News i : tt){
+
+                if(flag && !i.getUserId().equals(u.getUserId()))
+                    continue;
+
                 AO ii = new AO();
                 ii.setFirst(i.getTitle());
                 ii.setSecond(i.getEstablishTime().toString());
                 ii.setThird(i.getNewsId());
+                ii.setFourth(i.getHits()+"");
+                ii.setFifth(i.getIsPass()+"");
                 t.add(ii);
             }
         }
@@ -75,10 +90,16 @@ public class SearchController {
             else
                 tt = new SupplyDemandDAO().getSDByTitle(temp.getSecond());
             for(SupplyDemand i : tt){
+
+                if(flag && !i.getUserId().equals(u.getUserId()))
+                    continue;
+
                 AO ii = new AO();
                 ii.setFirst(i.getTitle());
                 ii.setSecond(i.getStartTime().toString());
                 ii.setThird(i.getSdId());
+                ii.setFourth(i.getHits()+"");
+                ii.setFifth(i.getIsPass()+"");
                 t.add(ii);
             }
         }
@@ -89,10 +110,16 @@ public class SearchController {
             else
                 tt = new ProductDAO().getProductByTitle(temp.getSecond());
             for(Product i : tt){
+
+                if(flag && !i.getUserId().equals(u.getUserId()))
+                    continue;
+
                 AO ii = new AO();
                 ii.setFirst(i.getProName());
                 ii.setSecond("产品类别"+i.getProductType());
                 ii.setThird(i.getProId());
+                ii.setFourth(i.getHits()+"");
+                ii.setFifth(i.getIsPass()+"");
                 t.add(ii);
             }
         }

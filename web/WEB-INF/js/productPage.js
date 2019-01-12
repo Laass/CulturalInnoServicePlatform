@@ -5,10 +5,10 @@ $(document).ready(function(){
         var lidtcontain = $(node).children(".card");//所有数据
         var maxlist = 12;
         var curpage = cur;
-        var maxpage;
+        var maxpage = 0;
         var num = $(node).children(".card").length;
 
-        if(num==0)
+        if(num == 0)
             return;
 
         if((num / maxlist) > parseInt(num / maxlist))
@@ -16,14 +16,14 @@ $(document).ready(function(){
         else
             maxpage = parseInt(num / maxlist);
 
-        if(num==0)
+        if(maxpage == 0)
             maxpage = 1;
 
         var startrows = (curpage-1) * maxlist;
         var endrows = curpage * maxlist - 1;
         endrows = (endrows > num)? num : endrows;
 
-        if((startrows  >= 0 && endrows <= num) && startrows<endrows)
+        if((startrows  >= 0 || endrows <= num) && (curpage <= maxpage && curpage > 0))
             for (var i = 0; i < num; ++i){
                 var irow = lidtcontain[i];
                 if(i >= startrows && i<= endrows)
@@ -34,17 +34,56 @@ $(document).ready(function(){
                 $(curPageNode).text(curpage);
             }
         else
-            if(startrows>endrows)
-                alert("没有更多!");
-            else
-                alert("到头!");
+            alert("到头!");
 
         /*var pageEnd = $("#pageEnd").text();*/
 
     }
 
+
+    function goOrderpage(cur, node, curPageNode){
+
+        var lidtcontain = $(node).children(".card");//所有数据
+        var maxlist = 12;
+        var curpage = cur;
+        var maxpage = 0;
+        var num = $(node).children(".card").length;
+
+        if(num == 0)
+            return;
+
+        if((num / maxlist) > parseInt(num / maxlist))
+            maxpage = parseInt(num / maxlist) + 1;
+        else
+            maxpage = parseInt(num / maxlist);
+
+        if(maxpage == 0)
+            maxpage = 1;
+
+        var startrows = (curpage-1) * maxlist;
+        var endrows = curpage * maxlist - 1;
+        endrows = (endrows > num)? num : endrows;
+
+        if((startrows  >= 0 || endrows <= num) && (curpage <= maxpage && curpage > 0))
+            for (var i = 0; i < num; ++i){
+                var irow = lidtcontain[i];
+                if(i >= startrows && i<= endrows)
+                    $(irow).css("display","grid");
+                else
+                    $(irow).css("display","none");
+                console.log(num);
+                $(curPageNode).text(curpage);
+            }
+        else
+            alert("到头!");
+
+        /*var pageEnd = $("#pageEnd").text();*/
+
+    }
+
+
     gocalligraphypage("1",$("#v-pills-calligraphy"),$("#curPage"));
-   //ocalligraphypage("1",$("#orderLists"),$("#ordercurPage"));
+    goOrderpage("1",$(".orderLists"),$("#ordercurPage"));
 
     $("#pre").click(function(){
         var curpage = parseInt($("#curPage").text());
@@ -106,14 +145,14 @@ $(document).ready(function(){
         var curpage = parseInt($("#ordercurPage").text());
         console.log("当前页："+curpage);
         curpage -= 1;
-        gocalligraphypage(curpage,$("#orderLists"),$("#ordercurPage"));
+        goOrderpage(curpage,$(".orderLists"),$("#ordercurPage"));
     });
 
     $("#ordernext").click(function(){
         var curpage = parseInt($("#ordercurPage").text());
         console.log("当前页："+curpage);
         curpage += 1;
-        gocalligraphypage(curpage,$("#orderLists"),$("#ordercurPage"));
+        goOrderpage(curpage,$(".orderLists"),$("#ordercurPage"));
     });
 
     $(function () {
@@ -142,7 +181,7 @@ $(document).ready(function(){
             $("#v-pills-Dress").addClass("show active");
             $("#v-pills-Dress-tab").addClass("show active");
         }
-    })
+    });
 
     $(".comment").click(function () {
         promptStu($(this));
@@ -154,10 +193,10 @@ $(document).ready(function(){
         //第二个参数是设定默认值，可以是空字符”“，缺失第二个参数部分浏览器可能显示undefined
         var ans = prompt("请输入要留言",'');
         if(ans){
-            debugger;
             var temp = {
                 originId : $(node).parent().parent().children(".proId").text(),
-                content : ans
+                content : ans,
+                originType : "product"
             }
             commentProduct(temp);
         }
@@ -171,7 +210,7 @@ $(document).ready(function(){
             data : JSON.stringify(temp),
             dataType : 'json',
             success : function(data){
-                alert(data.message);
+               alert(data.message);
             },
             error : function(){
                 alert("error");

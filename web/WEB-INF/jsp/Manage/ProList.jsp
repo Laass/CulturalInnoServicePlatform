@@ -97,6 +97,7 @@
                         <span class="layui-btn layui-btn-normal layui-btn-mini checkButton">审核</span>
                     </c:if>
                 </td>
+                <td><span class="layui-btn layui-btn-normal layui-btn-mini editBtn">编辑</span></td>
             </tr>
         </c:forEach>
         </tbody>

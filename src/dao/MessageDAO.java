@@ -132,12 +132,6 @@ public class MessageDAO
         getSession();
         try
         {
-//
-//			Query hquery = hsession.createQuery("from Message m where m.originId=? limit ?,?");
-//			hquery.setString(0,originId);
-//			hquery.setInteger(1,(page-1)*maxEssayNum-1);
-//			hquery.setInteger(2,maxEssayNum);
-//          List<Message> list = hquery.list();
 
             Query hQuery = hsession.createQuery("from Message where originId=?1");
             hQuery.setParameter(1, originId);
@@ -157,6 +151,24 @@ public class MessageDAO
             releaseSession();
             throw e;
 //            return null;
+        }
+    }
+
+    public Message getMessageById(String mesId) throws Exception
+    {
+        getSession();
+        try
+        {
+
+            Message mes = hsession.get(Message.class, mesId);
+            releaseSession();
+
+            return mes;
+        }
+        catch (Exception e)
+        {
+            releaseSession(hsession);
+            throw e;
         }
     }
 
@@ -214,5 +226,42 @@ public class MessageDAO
             throw e;
         }
 //        return null;
+    }
+
+    public boolean update(Message message) throws Exception
+    {
+        try
+        {
+            Message u = getMessageById(message.getMesId());
+            getSession();
+            u.setContent(message.getContent());
+            hsession.update(u);
+
+            releaseSession();
+
+            return true;
+        }
+        catch (Exception e)
+        {
+            releaseSession(hsession);
+            throw e;
+        }
+    }
+
+    public List<Message> getAll() throws Exception
+    {
+        getSession();
+        try
+        {
+            Query q=hsession.createQuery("from Message");
+            List<Message> ml=q.list();
+            releaseSession();
+            return ml;
+        }
+        catch(Exception e)
+        {
+            releaseSession(hsession);
+            throw e;
+        }
     }
 }

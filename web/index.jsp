@@ -67,6 +67,7 @@
         </label>
       </div>
       <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+      <a href="/Register.html" style="color: #979797;margin-left: 20px;">注册</a>
     </form>
   </div>
 </div>

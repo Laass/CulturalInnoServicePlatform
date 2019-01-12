@@ -67,13 +67,16 @@ public class SDController {
             MessageDAO mDAO=new MessageDAO();
             List<Message> mList=mDAO.getMessageById(sd.getSdId(),-1);
             List<AO> umList=new ArrayList<>();
-            SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//            SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             for(Message m:mList)
             {
-                AO a=new AO();
-                a.setFirst(ui.getNickName());
+                UserInfo uitemp = uiDAO.getUserInfo(m.getUserId());
+                AO a = new AO();
+                if(uitemp != null)
+                    a.setFirst(uitemp.getNickName());
+                else
+                    a.setFirst(m.getUserId());
                 a.setSecond(m.getContent());
-                a.setThird(df.format(m.getEstablishTime()));
                 umList.add(a);
             }
             model.addAttribute("sd",sd);
@@ -155,7 +158,7 @@ public class SDController {
     public SDController passSD(@RequestBody String json , HttpServletRequest request) throws Exception {
         SupplyDemand temp = new Gson().fromJson(json, SupplyDemand.class);
         if(new SupplyDemandDAO().setAsPass(temp))
-            this.setMessage("审核通过");
+            this.setMessage("审核成功");
         else
             this.setMessage("审核失败");
         return this;

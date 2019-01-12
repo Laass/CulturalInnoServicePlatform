@@ -7,11 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.portlet.ModelAndView;
 import po.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +38,7 @@ public class ManageListController {
 
                list = new ArrayList<AO>();
                 for (SupplyDemand i : sdList) {
-                    AO temp = new AO(i.getSdId(), i.getTitle(), i.getStartTime().toString(), i.getEndTime().toString(), i.getHits().toString(), "", "");
+                    AO temp = new AO(i.getSdId(), i.getTitle(), i.getStartTime().toString(), i.getEndTime().toString(), i.getHits().toString(), i.getIsPass()+"", "");
                     list.add(temp);
                 }
                 model.addAttribute("list", list);
@@ -107,6 +105,39 @@ public class ManageListController {
                 request.setAttribute("listType", "Order");
                 request.setAttribute("listNum", list.size());
                 return "Manage/OrderList";
+            case "Message" :
+                List<Message> messageList;
+                if(user.getType()==15)
+                    messageList = new MessageDAO().getAll();
+                else
+                    messageList = new MessageDAO().getUserMessage(user.getUserId());
+                list = new ArrayList<AO>();
+                for (Message i : messageList) {
+                    AO temp = new AO();
+                    temp.setFirst(i.getMesId());
+                    temp.setSecond(i.getContent());
+                    temp.setThird(i.getEstablishTime().toString());
+                    temp.setFourth(i.getOriginType());
+                    switch (i.getOriginType()){
+                        case "news":
+                            temp.setFifth(new NewsDAO().getNewsById(i.getOriginId()).getTitle());
+                            break;
+                        case "exhibition" :
+                            temp.setFifth(new ExhibitionDAO().getExhibitionById(i.getOriginId()).getTheme());
+                            break;
+                        case "sd" :
+                            temp.setFifth(new SupplyDemandDAO().getSDById(i.getOriginId()).getTitle());
+                            break;
+                        default:
+                            temp.setFifth(new ProductDAO().getProducById(i.getOriginId()).getProName());
+                    }
+                    list.add(temp);
+                }
+                model.addAttribute("list", list);
+                request.setAttribute("listType", "Message");
+                request.setAttribute("listNum", list.size());
+                return "Manage/MessageList";
+
         }
 
         return "List";
@@ -196,4 +227,5 @@ public class ManageListController {
         }
         return "update success";
     }
+
 }

@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
-  User: JY
+  User: YHY
   Date: 2018/12/22
   Time: 16:12
   To change this template use File | Settings | File Templates.
@@ -28,9 +28,6 @@
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script>
-
-    </script>
 </head>
 
 <body>
@@ -62,10 +59,7 @@
 
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <span class="x-right" style="line-height:40px">
-            <span id="listType"><c:out value="${listType}"/></span>
-            共有数据：<c:out value="${listNum}"/>
-        </span>
+        <span class="x-right" style="line-height:40px"><span id="listType"><c:out value="${listType}"/></span>共有数据：<c:out value = "${listNum}"/></span>
     </xblock>
 
     <table class="layui-table">
@@ -79,7 +73,7 @@
             <th>发布时间</th>
             <th>点击量</th>
             <th>审核状态</th>
-            <th>操作</th>
+            <th >操作</th>
         </tr>
         </thead>
 

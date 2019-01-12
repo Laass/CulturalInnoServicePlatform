@@ -8,8 +8,7 @@
     <!--控制类所在包-->
     <context:component-scan base-package="spring.controller"/>
 
-    <!--启动注解功能-->
-    <mvc:annotation-driven/>
+
 
     <!--&lt;!&ndash; 配置视图解析器：InternalResourceViewResolver解析出真正的物理视图
     后台返回逻辑视图：index 解析出真正的物理视图：前缀＋逻辑视图＋后缀===/WEB-INF/jsp/index.jsp &ndash;&gt;-->
@@ -30,4 +29,6 @@
     <mvc:resources mapping="/js/**" location="WEB-INF/js/" />
     <mvc:resources mapping="/css/**" location="WEB-INF/css/" />
     <mvc:resources mapping="/images/**" location="WEB-INF/images/" />
+    <!--启动注解功能-->
+    <mvc:annotation-driven/>
 </beans>

@@ -6,7 +6,7 @@
   Time: 0:06
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,46 +24,6 @@
     <script src="js/orderPage.js"></script>
     <script src="js/productPage.js"></script>
 
-
-    <%--<style type="text/css">--%>
-    <%--.log{--%>
-    <%--height: 100px;--%>
-
-    <%--overflow: hidden;--%>
-    <%--}--%>
-    <%--.search{--%>
-    <%--width: 200px;--%>
-    <%--height: 20px;--%>
-    <%--float: right;--%>
-    <%--margin-right: 80px;--%>
-    <%--}--%>
-    <%--ul.essayList{--%>
-    <%--width: 1200px;--%>
-    <%--list-style-type:square--%>
-
-    <%--}--%>
-    <%--ul.essayList > li > a{--%>
-    <%--/*--%>
-    <%--overflow: hidden;--%>
-    <%--text-overflow: ellipsis;--%>
-    <%--white-space: nowrap;*/--%>
-    <%--width: 100%;--%>
-    <%--vertical-align: top;--%>
-    <%--color: black;--%>
-    <%--display: inline-block;--%>
-    <%--line-height: 30px;--%>
-    <%--}--%>
-    <%--.orderTitle{--%>
-    <%--width: 87%;--%>
-    <%--/*	overflow: hidden;--%>
-    <%--text-overflow: ellipsis;--%>
-    <%--white-space: nowrap;--%>
-    <%--display: inline-block;--%>
-    <%--*/--%>
-    <%--padding-left: 20px;--%>
-    <%--display: inline-block;--%>
-    <%--}--%>
-    <%--</style>--%>
 </head>
 <body>
 <div class="container-fluid">
@@ -83,7 +43,7 @@
                     <div class="card-body">
                         <img src="${order.sixth}" alt="${order.second}" style="width: auto;height: 100px;float: left;">
                         <div class="orderTitle"><a href="getProductById?productId=${order.seventh}">${order.second}</a></div>
-                        <p class="text-right" style="margin-right: 30px;position: relative;bottom: -20px;">购买数量：${order.third} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp价格：
+                        <p class="text-right" style="margin-right: 30px;position: relative;bottom: -20px;">购买数量：${order.third} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp单个价格：
                             <span style="display: inline-block;color: #FF0000">${order.fourth}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;购买时间：${order.fifth}</p>
                     </div>
                     <div class="proId" style="display: none;">${order.seventh}</div>
