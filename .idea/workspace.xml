@@ -7,72 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57aee6de-58ca-47a1-8b08-ad8372572e5e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/Manage/EditPasswd.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/dao/ExhibitionDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/dao/ExhibitionDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/dao/MessageDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/dao/MessageDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/dao/NewsDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/dao/NewsDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/dao/ProductDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/dao/ProductDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/dao/SupplyDemandDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/dao/SupplyDemandDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/dao/UserDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/CollectionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/CollectionDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/CollectionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/CollectionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Demand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Demand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/ImageDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ImageDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/MessageDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/MessageDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/OrderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/OrderDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/ProductType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ProductType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/SessionMgr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/SessionMgr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Supply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Supply.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/UserInfoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UserInfoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spring/controller/CollectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spring/controller/CollectionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spring/controller/ExhibitionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spring/controller/ExhibitionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spring/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spring/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spring/controller/ManageListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spring/controller/ManageListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spring/controller/ManageLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spring/controller/ManageLoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spring/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spring/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spring/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spring/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spring/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spring/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spring/controller/SDController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spring/controller/SDController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spring/controller/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spring/controller/SearchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/css/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/dispatcher-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/js/ajaxFileUpload.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/js/ajaxFileUpload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/js/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/js/base.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/js/layui.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/js/layui.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/js/orderPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/js/orderPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/js/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/js/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/js/productPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/js/productPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/js/userInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/js/userInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/js/xadmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/js/xadmin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/Collection.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/Collection.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/Exhibition.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/Exhibition.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/ExhibitionDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/ExhibitionDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/Login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/Login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/Manage/List.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/Manage/List.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/Manage/ManageIndex.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/Manage/ManageIndex.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/Manage/ManageWelcome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/Manage/ManageWelcome.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/Manage/OrderList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/Manage/OrderList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/Manage/ProList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/Manage/ProList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/Manage/SDList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/Manage/SDList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/Manage/editEssay.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/Manage/editEssay.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/Manage/editProduct.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/Manage/editProduct.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/News.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/News.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/NewsDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/NewsDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/Order.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/Order.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/Product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/Product.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/ProductDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/ProductDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/Register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/Register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/RegisterUserInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/RegisterUserInfo.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/SupplyAndDemand.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/SupplyAndDemand.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/SupplyDemandDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/SupplyDemandDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/footer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/headder.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/headder.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/search.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/dao/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CulturalInnoServicePlatform/dao/UserDAO.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -134,7 +75,7 @@
           <entry key="project.open.time.12" value="3" />
           <entry key="project.open.time.13" value="9" />
           <entry key="project.open.time.14" value="11" />
-          <entry key="project.open.time.15" value="11" />
+          <entry key="project.open.time.15" value="12" />
           <entry key="project.open.time.16" value="5" />
           <entry key="project.open.time.17" value="2" />
           <entry key="project.open.time.18" value="4" />
@@ -144,7 +85,7 @@
           <entry key="project.open.time.29" value="1" />
           <entry key="project.open.time.4" value="2" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="56" />
+          <entry key="project.opened" value="57" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -197,7 +138,7 @@
           <entry key="java" value="48856" />
           <entry key="js" value="2048" />
           <entry key="jsp" value="15767" />
-          <entry key="txt" value="898" />
+          <entry key="txt" value="919" />
           <entry key="xml" value="852" />
         </counts>
       </usages-collector>
@@ -209,7 +150,7 @@
           <entry key="JPA QL" value="2" />
           <entry key="JSP" value="15767" />
           <entry key="JavaScript" value="2048" />
-          <entry key="PLAIN_TEXT" value="906" />
+          <entry key="PLAIN_TEXT" value="927" />
           <entry key="XML" value="852" />
         </counts>
       </usages-collector>
@@ -219,11 +160,11 @@
     <favorites_list name="CulturalInnoServicePlatform" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/Manage/ManageIndex.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
+            <state relative-caret-position="615">
               <caret line="41" column="67" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="67" />
             </state>
           </provider>
@@ -233,7 +174,7 @@
         <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/Manage/EditPasswd.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="350">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
             </state>
           </provider>
         </entry>
@@ -241,8 +182,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/spring/controller/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9">
-              <caret line="248" column="56" lean-forward="true" selection-start-line="248" selection-start-column="56" selection-end-line="248" selection-end-column="56" />
+            <state relative-caret-position="3450">
+              <caret line="248" column="56" selection-start-line="248" selection-start-column="56" selection-end-line="248" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -250,7 +191,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/Manage/ManageLogin.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
+            <state relative-caret-position="240">
               <caret line="16" column="53" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
             </state>
           </provider>
@@ -259,8 +200,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/spring/controller/ManageLoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="114" column="5" lean-forward="true" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
+            <state relative-caret-position="1530">
+              <caret line="114" column="5" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
               <folding>
                 <element signature="e#4143#4144#0" expanded="true" />
                 <element signature="e#4185#4186#0" expanded="true" />
@@ -272,7 +213,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dao/UserDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
+            <state relative-caret-position="3390">
               <caret line="239" column="26" selection-start-line="239" selection-start-column="26" selection-end-line="239" selection-end-column="26" />
             </state>
           </provider>
@@ -476,6 +417,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -531,9 +473,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -809,6 +750,7 @@
       <workItem from="1546651044389" duration="162000" />
       <workItem from="1547191323746" duration="14412000" />
       <workItem from="1547253774736" duration="34847000" />
+      <workItem from="1547293547752" duration="437000" />
     </task>
     <task id="LOCAL-00001" summary="v1.2  魔改SessionMgr 测试通过UserInfoDAO  UserDAO order表改为ordertable表">
       <created>1544595344168</created>
@@ -936,11 +878,18 @@
       <option name="project" value="LOCAL" />
       <updated>1547261899320</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="v2.0 最终版 加入及时通讯 完善其他功能">
+      <created>1547293674012</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1547293674012</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="399981000" />
+    <option name="totallyTimeSpent" value="400418000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -953,6 +902,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1488" height="878" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="Image Layers" order="1" />
@@ -961,9 +911,8 @@
       <window_info id="Capture Tool" order="4" />
       <window_info id="Web" order="5" side_tool="true" />
       <window_info id="Persistence" order="6" sideWeight="0.28590605" side_tool="true" weight="0.20606916" />
-      <window_info content_ui="combo" id="Project" order="7" sideWeight="0.714094" visible="true" weight="0.1923077" />
+      <window_info content_ui="combo" id="Project" order="7" sideWeight="0.714094" visible="true" weight="0.1951049" />
       <window_info id="Structure" order="8" sideWeight="0.2818792" side_tool="true" weight="0.16796048" />
-      <window_info anchor="bottom" id="Thumbnails" weight="0.32968536" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3261745" />
       <window_info anchor="bottom" id="Spring" order="1" weight="0.3248322" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5010586" side_tool="true" weight="0.56778526" />
@@ -980,6 +929,7 @@
       <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="14" weight="0.3691275" />
       <window_info anchor="bottom" id="Database Console" order="15" weight="0.32885906" />
+      <window_info anchor="bottom" id="Thumbnails" order="16" weight="0.32968536" />
       <window_info anchor="right" id="Coverage" order="0" side_tool="true" weight="0.32956952" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Database" order="2" weight="0.14095372" />
@@ -1077,7 +1027,8 @@
     <MESSAGE value="v1.7.4 修正订单页评论功能" />
     <MESSAGE value="v1.8 与04756合并 加入管理端 增加文章 增加产品（包括图片上传） 用户头像修改 用户详细信息修改" />
     <MESSAGE value="v1.9 增加登录电话格式验证 文章包括产品编辑 头像删除" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.9 增加登录电话格式验证 文章包括产品编辑 头像删除" />
+    <MESSAGE value="v2.0 最终版 加入及时通讯 完善其他功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="v2.0 最终版 加入及时通讯 完善其他功能" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1393,9 +1344,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="401">
           <caret line="124" column="70" lean-forward="true" selection-start-line="124" selection-start-column="70" selection-end-line="124" selection-end-column="70" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1475,31 +1423,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/Manage/ManageLogin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="16" column="53" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/UserDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="239" column="26" selection-start-line="239" selection-start-column="26" selection-end-line="239" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/Manage/ManageIndex.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
+        <state relative-caret-position="615">
           <caret line="41" column="67" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/spring/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3450">
+          <caret line="248" column="56" selection-start-line="248" selection-start-column="56" selection-end-line="248" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/Manage/ManageLogin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="53" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/spring/controller/ManageLoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="114" column="5" lean-forward="true" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
+        <state relative-caret-position="1530">
+          <caret line="114" column="5" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
           <folding>
             <element signature="e#4143#4144#0" expanded="true" />
             <element signature="e#4185#4186#0" expanded="true" />
@@ -1507,17 +1455,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/spring/controller/LoginController.java">
+    <entry file="file://$PROJECT_DIR$/src/dao/UserDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="248" column="56" lean-forward="true" selection-start-line="248" selection-start-column="56" selection-end-line="248" selection-end-column="56" />
+        <state relative-caret-position="3390">
+          <caret line="239" column="26" selection-start-line="239" selection-start-column="26" selection-end-line="239" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/Manage/EditPasswd.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
         </state>
       </provider>
     </entry>
