@@ -21,6 +21,13 @@
   <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
   <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .indexPhoto
+        {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 <div class="container-fluid">
@@ -36,15 +43,15 @@
             </ul>
 
             <!-- 轮播图片 -->
-            <div class="carousel-inner">
+            <div class="carousel-inner" style="width: 800px;height: 350px;">
                 <div class="carousel-item active">
-                    <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg">
+                    <img src="images/index/index3.jpg" class="indexPhoto">
                 </div>
                 <div class="carousel-item">
-                    <img src="http://static.runoob.com/images/mix/img_nature_wide.jpg">
+                    <img src="images/index/index2.jpg" class="indexPhoto">
                 </div>
                 <div class="carousel-item">
-                    <img src="http://static.runoob.com/images/mix/img_mountains_wide.jpg">
+                    <img src="images/index/index1.jpg" class="indexPhoto">
                 </div>
             </div>
 

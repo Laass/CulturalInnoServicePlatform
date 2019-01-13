@@ -140,7 +140,7 @@ ul#lists > listOuter > li > a{
     height: 150px;
 }
 .productImg > img{
-    width: 100%;
+    /*width: 100%;*/
     height: 150px;
 }
 
