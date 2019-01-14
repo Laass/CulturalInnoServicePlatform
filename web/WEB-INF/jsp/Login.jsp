@@ -43,7 +43,7 @@
     <div style="width: 500px;height:400px;margin-top: 130px;margin-left: auto;margin-right:auto ;background-color: white;padding:90px;opacity: 0.8;border-radius: 5%;padding-top: 30px;">
         <h2>Login</h2>
         <hr/>
-        ${message}
+        ${sessionScope.loginMessage}
         <form style="width: 300px;" method="post" action="/login.action" id="loginForm">
             <div class="form-group">
                 <label for="phone">Phone:</label>

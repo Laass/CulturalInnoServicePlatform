@@ -53,8 +53,7 @@ public class LoginController {
                 model.addAttribute("message",message);
                 session.setAttribute("currentUser",new UserDAO().getUser(user.getUserId()));
                 intiIndexData(model, displayNum);
-
-
+                session.setAttribute("loginMessage","");
                 return "index";
             }
         }
@@ -64,6 +63,7 @@ public class LoginController {
             this.message = "用户名/密码错误";
             model.addAttribute("message",message);
         }
+        session.setAttribute("loginMessage","用户名/密码错误");
         return "Login";
     }
 

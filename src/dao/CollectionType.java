@@ -7,8 +7,6 @@ public enum CollectionType
     PRODUCT("product"),
     SUPPLYDEMAND("supplydemand");
 
-
-
     public final String name;
 
     CollectionType(String name)

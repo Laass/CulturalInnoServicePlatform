@@ -139,6 +139,7 @@ public class ImageDAO
         getSession();
         try
         {
+            getSession();
             Query q=hsession.createQuery("from Image where originId=?1");
             q.setParameter(1,originId);
             List<Image> toDel=q.list();

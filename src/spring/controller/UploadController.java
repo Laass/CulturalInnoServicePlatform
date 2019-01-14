@@ -246,7 +246,7 @@ public class UploadController
 
     @RequestMapping(value = "savePortrait",method = RequestMethod.POST,produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Object savePortrait(@RequestParam() MultipartFile file, HttpServletRequest request,HttpServletResponse response,HttpSession session)
+    public Object savePortrait(MultipartFile file, HttpServletRequest request,HttpServletResponse response,HttpSession session)
     {
         User u=(User)session.getAttribute("currentUser");
         if(u==null)
