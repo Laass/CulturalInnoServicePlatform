@@ -9,6 +9,7 @@ import po.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 
 @Controller
 @RequestMapping(value = "/Manage")
@@ -87,7 +88,13 @@ public class ManageLoginController {
         User u=(User)session.getAttribute("currentUser");
         try
         {
-            new ImageDAO().deleteImage(u.getUserId());
+            ImageDAO iDAO = new ImageDAO();
+            Image i = iDAO.getFirstImageOfOriginId(u.getUserId());
+            String location = i.getStoreLocation();
+            File portrait = new File("C:\\Users\\user0\\IdeaProjects\\CulturalInnoServicePlatform\\web\\WEB-INF\\images\\portrait\\" + location.substring(location.lastIndexOf('/') + 1));
+            if (portrait.exists() && portrait.isFile())
+                portrait.delete();
+            iDAO.deleteImage(u.getUserId());
             return new ModelAndView("ManageWelcome", "command", this);
         }
         catch (Exception e)
